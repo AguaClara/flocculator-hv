@@ -78,7 +78,7 @@ export const hvFlocDesigner = function(design) returns map
         // Use the minimum of the velocity gradient set as the max for the sed tank to work and the value set by the max head loss.
         design.G = min((gravity * design.HL_bod / (design.NU * design.GT_min)), design.G_max);
         design.TI = design.GT_min / design.G;
-        design.VOL = design.TI/design.Qm_max;
+        design.VOL = design.Qm_max*design.TI;
         design.W_total = design.VOL/(design.L * design.outletHW_max);
         println(design.W_total);
         design.channelW_min = channelW_min(design);
