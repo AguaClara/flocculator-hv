@@ -123,7 +123,7 @@ export const hvFlocDesigner = function(design) returns map
  *    4) place the map with units in the context
  *    pass submaps thru superDerive in the part studio to bring other part studios into the design.
  **/
-annotation { "Feature Type Name" : "VH Floc" }
+annotation { "Feature Type Name" : "HV Floc" }
 export const hvFlocFeature = defineFeature(function(context is Context, id is Id, definition is map)
     precondition
     {
