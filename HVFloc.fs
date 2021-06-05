@@ -82,6 +82,7 @@ export const hvFlocDesigner = function(design) returns map
         design.W_total = design.VOL/(design.L * design.outletHW_max);
         
         design.channelW_min = channelW_min(design);
+        println(design.channelW_min);
         design.channelN = floor(design.W_total/design.channelW_min);
         
         
