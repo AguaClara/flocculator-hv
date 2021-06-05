@@ -37,7 +37,7 @@ const hvFlocChecks = {
             "Qm_max" : [5, 30, 200],
             "Q_pi" : [0, 1, 2],
             "L" : [1, 6, 20],
-            "W_min" : [0.3, 0.45, 1],
+            "humanW_min" : [0.3, 0.45, 1],
             "TEMP_min" : [0, 15, 40],
             "HL_bod" : [0, 0.5, 1],
             //"K_min" : [2.6, 3.5, 5],
@@ -80,7 +80,7 @@ export const hvFlocDesigner = function(design) returns map
         design.TI = design.GT_min / design.G;
         design.VOL = design.Qm_max*design.TI;
         design.W_total = design.VOL/(design.L * design.outletHW_max);
-        design.channelW_min = channelW_min(design);
+        design.channelW_min = max(channelW_min(design),design.humanW_min);
         design.channelN = floor(design.W_total/design.channelW_min);
         
         
