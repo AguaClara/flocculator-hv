@@ -36,6 +36,8 @@ const variablesToPassToChild = ["Qm_max", "TEMP_min", "FB", "wallT"];
 const hvFlocChecks = {
             "Qm_max" : [0.1, 5, 30],
             "Q_pi" : [0, 1, 2],
+            "L" : [1, 6, 20],
+            "W_min" : [0.3, 0.45, 1],
             "TEMP_min" : [0, 15, 40],
             "HL_bod" : [0, 0.5, 1],
             "K_min" : [2.6, 3.5, 5],
@@ -46,7 +48,7 @@ const hvFlocChecks = {
             "slabT" : [0.001, 0.15, 0.5],
             "wallT" : [0.001, 0.15, 0.5],
             "channelWallT" : [0.001, 0.15, 0.5],
-              "drain" : { instantiator : drainInstantiator, passVariables : ["wallT"] },
+            "drain" : { instantiator : drainInstantiator, passVariables : ["wallT"] },
             "baffle" : { instantiator : baffleInstantiator, passVariables : variablesToPassToChild },
         } as InputCheck;
 
@@ -110,7 +112,7 @@ export const hvFlocDesigner = function(design) returns map
         design.drain.HE = design.baffle.HE;
         design.drain.HW = design.inletHW;
         design = treeDesigner(design, "drain", hvFlocChecks, drainDesigner);
-        design.OW = design.baffle.S * design.channelN + design.channelWallT * (design.channelN -1) + 2 * design.wallT;
+        design.OW = design.baffle.S * design.channelN + design.channelWallT * (design.channelN - 1) + 2 * design.wallT;
 
         return design;
     };
