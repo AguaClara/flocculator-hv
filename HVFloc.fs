@@ -92,7 +92,7 @@ export const hvFlocDesigner = function(design) returns map
         design.expN = ceil(design.outletHW_max / design.baffle.expH_max);
         design.baffle.expH = design.outletHW_max / design.expN;
 
-        design.baffle.S = design.baffle.HE / design.minHS_pi;
+        design.baffle.S = baffleS(design);
 
         // Now find total length required for all of the back and forth flow
         design.baffle.TI = (design.baffle.HE * design.baffle.S ^ 2 / design.Qm_max);
