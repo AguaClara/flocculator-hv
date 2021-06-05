@@ -158,15 +158,15 @@ function baffleS(design)
 {
     var KE = baffleKE(design.maxHS_pi);
     var err = 1.0;
-    var S = design.expH / design.maxHS_pi; //first guess
+    var S = design.baffle.expH / design.maxHS_pi; //first guess
     var prevS = S;
     var count = 0;
     while ((err > 0.0001) && (count<200) )
     {
         count += 1;
         prevS = S;
-        KE = baffleKE(design.expH/prevS);
-        S = (KE/(2*design.expH * design.G^2 * design.NU))^(1/3) * design.Qm_max/design.channelW ;
+        KE = baffleKE(design.baffle.expH/prevS);
+        S = (KE/(2*design.baffle.expH * design.G^2 * design.NU))^(1/3) * design.Qm_max/design.channelW ;
         err = abs((S-prevS) / (S+prevS));
     }
     return S;
