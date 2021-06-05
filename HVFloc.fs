@@ -102,11 +102,9 @@ export const hvFlocDesigner = function(design) returns map
         design.HL_max = FlocHL(design);
         // actual inlet water level
         design.inletHW = design.outletHW + design.HL_max;
-        // actual residence time in the active part of the flocculator (not including extra water due to head loss)
-        design.TI = design.channelN * design.baffle.spacesN * design.baffle.TI;
-        //actual collision potential
+          //actual collision potential
         design.GT = sqrt(gravity * design.HL_max * design.TI / design.NU);
-        design.V = design.Qm_max / (design.baffle.S ^ 2);
+        design.V = design.Qm_max / (design.baffle.S * design.channelW);
         
         design.channelHW = ChannelHW(design);
 
