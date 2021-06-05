@@ -11,12 +11,7 @@ const ratioPlaneJetExpansion = 0.116; //expansion ratio for plane jets
 const baffleVC_pi = 0.6 ^ 2; // give a little factor of safety on head loss
 
 
-function baffleKE(HS_pi)
-{
-    const KE_min = (1 / baffleVC_pi - 1) ^ 2;
-    const KE_unbounded_expansion = ((1 - baffleVC_pi) ^ 2 / (baffleVC_pi * ratioPlaneJetExpansion * HS_pi)) ^ 2;
-    return max(KE_unbounded_expansion, KE_min);
-}
+
 
 const variablesToPassToChild = ["Qm_max", "TEMP_min", "FB", "wallT"];
 
@@ -92,7 +87,7 @@ export const hvFlocDesigner = function(design) returns map
         
         
         
-        design.KE = max([KE_unbounded_expansion, KE_min, design.K_min]);
+        design.KE = baffleKE(design.minHS_pi);
         design.baffle.HE = OptimalHE(design);
         design.baffle.S = design.baffle.HE / HS_pi;
 
@@ -155,6 +150,13 @@ export const hvFlocFeature = defineFeature(function(context is Context, id is Id
  * const ratioPlaneJetExpansion = 0.116; //expansion ratio for plane jets
   * const baffleVC_pi = 0.6 ^ 2; // give a little factor of safety on head loss
 */
+
+function baffleKE(HS_pi)
+{
+    const KE_min = (1 / baffleVC_pi - 1) ^ 2;
+    const KE_unbounded_expansion = ((1 - baffleVC_pi) ^ 2 / (baffleVC_pi * ratioPlaneJetExpansion * HS_pi)) ^ 2;
+    return max(KE_unbounded_expansion, KE_min);
+}
 
 function channelW_min(design is map)
 {
