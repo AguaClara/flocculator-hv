@@ -7,15 +7,15 @@ import(path : "4cc322f6b03a10200a5a6ffd/67e99e0e4769fd1af795c76a/57632593cd95821
 import(path : "94569ca95d5169b5296f9bc5/938ba4d703292d84de6901fb/946213f130c9ca75ca65797e", version : "04dab02e99faa2e0c4a5fb09");
 
 // constants
-const HS_pi = 6;
 const ratioPlaneJetExpansion = 0.116; //expansion ratio for plane jets
-const ratioVC = 0.6 ^ 2; // give a little factor of safety on head loss
-const KE_unbounded_expansion = ((1 - ratioVC) ^ 2 / (ratioVC * ratioPlaneJetExpansion * HS_pi)) ^ 2;
-const KE_min = (1 / ratioVC - 1) ^ 2;
+const baffleVC_pi = 0.6 ^ 2; // give a little factor of safety on head loss
+
 
 function baffleKE(HS_pi)
 {
-    
+    const KE_min = (1 / baffleVC_pi - 1) ^ 2;
+    const KE_unbounded_expansion = ((1 - baffleVC_pi) ^ 2 / (baffleVC_pi * ratioPlaneJetExpansion * HS_pi)) ^ 2;
+    return max(KE_unbounded_expansion, KE_min);
 }
 
 const variablesToPassToChild = ["Qm_max", "TEMP_min", "FB", "wallT"];
@@ -45,7 +45,9 @@ const hvFlocChecks = {
             "W_min" : [0.3, 0.45, 1],
             "TEMP_min" : [0, 15, 40],
             "HL_bod" : [0, 0.5, 1],
-            "K_min" : [2.6, 3.5, 5],
+            //"K_min" : [2.6, 3.5, 5],
+            "minHS_pi" : [ 3, 4, 5],
+            "maxHS_pi" : [ 6, 8, 10],
             "outletHW_max" : [0, 2, 5],
             "GT_min" : [0, 35000, 100000],
             "FB" : [0.05, 0.1, 0.5],
@@ -83,7 +85,10 @@ export const hvFlocDesigner = function(design) returns map
         design.TI = design.GT_min / design.G;
         design.VOL = design.TI/design.Qm_max;
         design.W_total = design.VOL/(design.L * design.outletHW_max);
-        design.channelN = 
+        
+        design.channelW_min = channelW_min(design);
+        design.channelN = floor(design.W_total/design.channelW_min);
+        
         
         
         
@@ -145,7 +150,18 @@ export const hvFlocFeature = defineFeature(function(context is Context, id is Id
         treeInstantiatorFeature(context, hvFlocInstantiator, hvFlocDesigner);
     });
 
-/** TODO: Add comments to below code */
+/**
+ * TODO: Add comments to below code
+ * const ratioPlaneJetExpansion = 0.116; //expansion ratio for plane jets
+  * const baffleVC_pi = 0.6 ^ 2; // give a little factor of safety on head loss
+*/
+
+function channelW_min(design is map)
+{
+     const a = (1 - baffleVC_pi)^4 * design.minHS_pi;
+     const b = 2 * design.NU * (design.G * baffleVC_pi * ratioPlaneJetExpansion)^2
+     return design.Qm_max/design.outletHW_max ^(4/3) * (a/b)^(1/3);
+}
 
 
 function OptimalHE(d is map)
