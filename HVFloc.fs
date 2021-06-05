@@ -88,6 +88,7 @@ export const hvFlocDesigner = function(design) returns map
         design.expN = ceil(design.outletHW / design.baffle.expH_max);
         design.baffle.expH = design.outletHW / design.expN;
         design.baffle.S = baffleS(design);
+        design.HS_pi = design.baffle.expH/design.baffle.S;
         design.tankW = (design.channelW + design.channelWallT) * design.channelN - design.channelWallT;
  //rework everything below
 
