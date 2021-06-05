@@ -30,7 +30,7 @@ const variablesToPassToChild = ["Qm_max", "TEMP_min", "FB", "wallT"];
  * G_max: maximum velocity gradient (second ^ -1)
  * slabT: slab thickness (meter)
  * wallT: exterior wall thickness (meter)
- * interiorWallT: interior wall thickness (meter)
+ * channelWallT: interior wall thickness (meter)
  * drainTI: time required to drain the flocculator (second)
  */
 const hvFlocChecks = {
@@ -102,7 +102,7 @@ export const hvFlocDesigner = function(design) returns map
         //actual collision potential
         design.GT = sqrt(gravity * design.HL_max * design.TI / design.NU);
         design.V = design.Qm_max / (design.baffle.S ^ 2);
-        design.tankW = (design.baffle.S + design.interiorWallT) * design.channelN - design.interiorWallT;
+        design.tankW = (design.baffle.S + design.channelWallT) * design.channelN - design.channelWallT;
 
         design.channelHW = ChannelHW(design);
 
@@ -110,7 +110,7 @@ export const hvFlocDesigner = function(design) returns map
         design.drain.HE = design.baffle.HE;
         design.drain.HW = design.inletHW;
         design = treeDesigner(design, "drain", hvFlocChecks, drainDesigner);
-        design.OW = design.baffle.S * design.channelN + design.interiorWallT * (design.channelN -1) + 2 * design.wallT;
+        design.OW = design.baffle.S * design.channelN + design.channelWallT * (design.channelN -1) + 2 * design.wallT;
 
         return design;
     };
