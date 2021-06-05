@@ -115,8 +115,7 @@ export const hvFlocDesigner = function(design) returns map
         //actual collision potential
         design.GT = sqrt(gravity * design.HL_max * design.TI / design.NU);
         design.V = design.Qm_max / (design.baffle.S ^ 2);
-        design.tankW = (design.baffle.S + design.channelWallT) * design.channelN - design.channelWallT;
-
+        
         design.channelHW = ChannelHW(design);
 
         design.drain.S = design.baffle.S;
