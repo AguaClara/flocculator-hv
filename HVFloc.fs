@@ -166,9 +166,9 @@ function channelW_min(design is map)
 }
 
 
-function OptimalHE(d is map)
+function OptimalHE(design is map)
 {
-    return (((HS_pi ^ 2 * d.Qm_max) ^ 3 * d.KE / (2 * d.G ^ 2 * d.NU))) ^ (1 / 7);
+    return (((design.minHS_pi ^ 2 * design.Qm_max) ^ 3 * design.KE / (2 * design.G ^ 2 * design.NU))) ^ (1 / 7);
 }
 
 function FlocHL(d is map)
