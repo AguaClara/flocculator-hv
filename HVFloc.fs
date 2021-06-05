@@ -41,8 +41,8 @@ const hvFlocChecks = {
             "TEMP_min" : [0, 15, 40],
             "HL_bod" : [0, 0.5, 1],
             //"K_min" : [2.6, 3.5, 5],
-            "minHS_pi" : [ 3, 4, 5],
-            "maxHS_pi" : [ 6, 8, 10],
+            "minHS_pi" : [3, 4, 5],
+            "maxHS_pi" : [6, 8, 10],
             "outletHW_max" : [0, 2, 5],
             "GT_min" : [0, 35000, 100000],
             "FB" : [0.05, 0.1, 0.5],
@@ -78,16 +78,20 @@ export const hvFlocDesigner = function(design) returns map
         // Use the minimum of the velocity gradient set as the max for the sed tank to work and the value set by the max head loss.
         design.G = min((gravity * design.HL_bod / (design.NU * design.GT_min)), design.G_max);
         design.TI = design.GT_min / design.G;
-        design.VOL = design.Qm_max*design.TI;
-        design.W_total = design.VOL/(design.L * design.outletHW_max);
-        design.channelW_min = max(channelW_min(design),design.humanW_min);
-        design.channelN = max(floor(design.W_total/design.channelW_min),1); //make sure we don't try zero channels
-        
-        
+        design.VOL = design.Qm_max * design.TI;
+        design.W_total = design.VOL / (design.L * design.outletHW_max);
+        design.channelW_min = max(channelW_min(design), design.humanW_min);
+        design.channelN = max(floor(design.W_total / design.channelW_min), 1); //make sure we don't try zero channels
+        design.channelW = design.W_total/design.channelN;
+
+
         //rework everything below
-        
+
         design.KE = baffleKE(design.maxHS_pi);
-        design.baffle.HE = OptimalHE(design);
+        design.baffle.expH_max = OptimalHE(design);
+        design.expN = ceil(design.outletHW_max / design.baffle.expH_max);
+        design.baffle.expH = design.outletHW_max / design.expN;
+
         design.baffle.S = design.baffle.HE / design.minHS_pi;
 
         // Now find total length required for all of the back and forth flow
@@ -100,7 +104,7 @@ export const hvFlocDesigner = function(design) returns map
 
         // find the maximum number of baffles spaces in each channel assuming that we need an even number in each channel
         design.baffle.spacesN_max = floor(design.outletHW_max / (design.baffle.S + design.baffle.T) / 2) * 2;
-       // design.channelN = ceil(design.baffle.spacesN_est / design.baffle.spacesN_max, 2);
+        // design.channelN = ceil(design.baffle.spacesN_est / design.baffle.spacesN_max, 2);
         // Now calculate the required depth of the flocculator
         design.baffle.spacesN = ceilStep(design.baffle.spacesN_est / design.channelN, 2);
 
@@ -147,8 +151,27 @@ export const hvFlocFeature = defineFeature(function(context is Context, id is Id
 /**
  * TODO: Add comments to below code
  * const ratioPlaneJetExpansion = 0.116; //expansion ratio for plane jets
-  * const baffleVC_pi = 0.6 ^ 2; // give a little factor of safety on head loss
-*/
+ * const baffleVC_pi = 0.6 ^ 2; // give a little factor of safety on head loss
+ */
+
+function baffleS(design)
+{
+    var KE = baffleKE(design.maxHS_pi);
+    var err = 1.0;
+    var S = design.expH / design.maxHS_pi; //first guess
+    var prevS = S;
+    var count = 0;
+    while ((err > 0.0001) && (count<200) )
+    {
+        count =+ 1;
+        prevS = S;
+        KE = baffleKE(design.expH/prevS)
+        S = (KE/(2*design.expH * design.G^2 * design.NU))^(1/3) * design.Qm_max/design.channelW ;
+        err = abs((S-prevS) / (S+prevS));
+    }
+    design.fluidizeV_min = fluidizeV_min;
+}
+
 
 function baffleKE(HS_pi)
 {
@@ -159,9 +182,9 @@ function baffleKE(HS_pi)
 
 function channelW_min(design is map)
 {
-     const a = (1 - baffleVC_pi)^4 * design.minHS_pi;
-     const b = 2 *  (baffleVC_pi * ratioPlaneJetExpansion)^2;
-     return design.Qm_max/(design.NU * design.G^2 *design.outletHW_max^4)^(1/3) * (a/b)^(1/3);
+    const a = (1 - baffleVC_pi) ^ 4 * design.minHS_pi;
+    const b = 2 * (baffleVC_pi * ratioPlaneJetExpansion) ^ 2;
+    return design.Qm_max / (design.NU * design.G ^ 2 * design.outletHW_max ^ 4) ^ (1 / 3) * (a / b) ^ (1 / 3);
 }
 
 
