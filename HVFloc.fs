@@ -163,7 +163,7 @@ function baffleS(design)
     var count = 0;
     while ((err > 0.0001) && (count<200) )
     {
-        count =+ 1;
+        count += 1;
         prevS = S;
         KE = baffleKE(design.expH/prevS);
         S = (KE/(2*design.expH * design.G^2 * design.NU))^(1/3) * design.Qm_max/design.channelW ;
