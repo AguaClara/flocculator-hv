@@ -34,7 +34,7 @@ const variablesToPassToChild = ["Qm_max", "TEMP_min", "FB", "wallT"];
  * drainTI: time required to drain the flocculator (second)
  */
 const hvFlocChecks = {
-            "Qm_max" : [0.1, 5, 30],
+            "Qm_max" : [5, 30, 200],
             "Q_pi" : [0, 1, 2],
             "L" : [1, 6, 20],
             "W_min" : [0.3, 0.45, 1],
