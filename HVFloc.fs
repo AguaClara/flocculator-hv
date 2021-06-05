@@ -37,7 +37,8 @@ const hvFlocChecks = {
             "Qm_max" : [5, 30, 200],
             "Q_pi" : [0, 1, 2],
             "L" : [1, 6, 20],
-            "humanW_min" : [0.3, 0.45, 1],
+            "humanChannelW_min" : [0.3, 0.45, 1],
+            "baffleChannelW_max" : [0.3, 0.45, 1],
             "TEMP_min" : [0, 15, 40],
             "HL_bod" : [0, 0.5, 1],
             //"K_min" : [2.6, 3.5, 5],
@@ -80,8 +81,11 @@ export const hvFlocDesigner = function(design) returns map
         design.TI = design.GT_min / design.G;
         design.VOL = design.Qm_max * design.TI;
         design.W_total = design.VOL / (design.L * design.outletHW);
-        design.channelW_min = max(channelW_min(design), design.humanW_min);
-        design.channelN = max(floor(design.W_total / design.channelW_min), 1); //make sure we don't try zero channels
+        design.channelW_min = max(channelW_min(design), design.humanChannelW_min);
+        // need to make sure we don't specify a channel that is wider than the polycarbonate sheets
+        design.channelN = max([floor(design.W_total / design.channelW_min),floor(design.W_total/design.baffleChannelW_max), 1]); //make sure we don't try zero channels
+        
+        
         design.channelW = design.W_total/design.channelN;
         design.KE = baffleKE(design.maxHS_pi);
         design.baffle.expH_max = OptimalHE(design);
