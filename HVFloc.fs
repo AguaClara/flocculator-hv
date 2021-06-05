@@ -81,12 +81,12 @@ export const hvFlocDesigner = function(design) returns map
         design.VOL = design.Qm_max*design.TI;
         design.W_total = design.VOL/(design.L * design.outletHW_max);
         design.channelW_min = max(channelW_min(design),design.humanW_min);
-        design.channelN = floor(design.W_total/design.channelW_min);
+        design.channelN = max(floor(design.W_total/design.channelW_min),1); //make sure we don't try zero channels
         
         
         //rework everything below
         
-        design.KE = baffleKE(design.minHS_pi);
+        design.KE = baffleKE(design.maxHS_pi);
         design.baffle.HE = OptimalHE(design);
         design.baffle.S = design.baffle.HE / design.minHS_pi;
 
