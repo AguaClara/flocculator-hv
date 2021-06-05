@@ -2,10 +2,8 @@ FeatureScript 1483;
 import(path : "onshape/std/geometry.fs", version : "1483.0");
 import(path : "1802d3650943f2f88dc71465/989918c09b8ccc514fec7317/42a93e7d952620cd5e4b9afd", version : "e0ebb52a16bf3af96585f62c");
 import(path : "6750b53736b16374e515f93d/71227b500f8b284979b992ba/181382047f743bb3a87d8136", version : "39b2ac8b0ef3cabc0f5dee7a");
-//import(path : "7fb6aa41fbee6d63333a4fa2/36f5fe187897923ddba8b2d6/8321c3895ed2b49326654b9b", version : "e2d31038daac1dc331702fd6");
 import(path : "3859f0116fbf2e199237ee59/31a7f65b7abaefd99b5bab70/db7cf0a0f695f2c4e1854d8c", version : "e3df38a07643d8f3a7753fd7");
 import(path : "4cc322f6b03a10200a5a6ffd/67e99e0e4769fd1af795c76a/57632593cd95821f373148c7", version : "2ca15dc2592687b811e11a87");
-//import(path : "56d237c4d226c580eb312df4/3685b6fb72b1fb40341bdc83/570d88f6b376dcd555e54991", version : "891828668ac0d6e44d4ede54");
 import(path : "94569ca95d5169b5296f9bc5/938ba4d703292d84de6901fb/946213f130c9ca75ca65797e", version : "04dab02e99faa2e0c4a5fb09");
 
 // constants
@@ -35,7 +33,7 @@ const variablesToPassToChild = ["Qm_max", "TEMP_min", "FB", "wallT"];
  * interiorWallT: interior wall thickness (meter)
  * drainTI: time required to drain the flocculator (second)
  */
-const vhFlocChecks = {
+const hvFlocChecks = {
             "Qm_max" : [0.1, 5, 30],
             "Q_pi" : [0, 1, 2],
             "TEMP_min" : [0, 15, 40],
@@ -47,21 +45,19 @@ const vhFlocChecks = {
             "G_max" : [1, 200, 50000],
             "slabT" : [0.001, 0.15, 0.5],
             "wallT" : [0.001, 0.15, 0.5],
-            "interiorWallT" : [0.001, 0.15, 0.5],
-            "slotDepthL" : [ 0, 0.01,0.05],
-            //"effluent" : { instantiator : effluentBoxInstantiator, passVariables : variablesToPassToChild },
-            "drain" : { instantiator : drainInstantiator, passVariables : ["wallT"] },
+            "channelWallT" : [0.001, 0.15, 0.5],
+              "drain" : { instantiator : drainInstantiator, passVariables : ["wallT"] },
             "baffle" : { instantiator : baffleInstantiator, passVariables : variablesToPassToChild },
         } as InputCheck;
 
 /**
  * `function` which takes in `definition` and checks the minimum, maximum,
- * and default values from `vhFlocChecks` before returning a `map`
+ * and default values from `hvFlocChecks` before returning a `map`
  * @param definition: map of all variables required to construct a VH Flocculator
  */
-export const vhFlocInstantiator = function(definition is map) returns map
+export const hvFlocInstantiator = function(definition is map) returns map
     {
-        return objectInstantiator(definition, vhFlocChecks);
+        return objectInstantiator(definition, hvFlocChecks);
     };
 
 /**
@@ -70,7 +66,7 @@ export const vhFlocInstantiator = function(definition is map) returns map
  * @param design: `map` of all variables required to construct a VH Flocculator
  * @return `map` of designed VH Floc with new entries like `G`
  **/
-export const vhFlocDesigner = function(design) returns map
+export const hvFlocDesigner = function(design) returns map
     {
 
         design.NU = viscosityKinematic(design.TEMP_min);
@@ -86,7 +82,7 @@ export const vhFlocDesigner = function(design) returns map
         design.baffle.TI = (design.baffle.HE * design.baffle.S ^ 2 / design.Qm_max);
         design.baffle.spacesN_est = round(design.TI / design.baffle.TI);
 
-        // we want an even number of channels so that the water
+        // we want an odd  number of channels so that the water
         // enters the flocculator from the top and exits from the top.
         // We need to design an overflow to dump poorly flocculated water
 
@@ -113,7 +109,7 @@ export const vhFlocDesigner = function(design) returns map
         design.drain.S = design.baffle.S;
         design.drain.HE = design.baffle.HE;
         design.drain.HW = design.inletHW;
-        design = treeDesigner(design, "drain", vhFlocChecks, drainDesigner);
+        design = treeDesigner(design, "drain", hvFlocChecks, drainDesigner);
         design.OW = design.baffle.S * design.channelN + design.interiorWallT * (design.channelN -1) + 2 * design.wallT;
 
         return design;
@@ -128,12 +124,12 @@ export const vhFlocDesigner = function(design) returns map
  *    pass submaps thru superDerive in the part studio to bring other part studios into the design.
  **/
 annotation { "Feature Type Name" : "VH Floc" }
-export const vhFlocFeature = defineFeature(function(context is Context, id is Id, definition is map)
+export const hvFlocFeature = defineFeature(function(context is Context, id is Id, definition is map)
     precondition
     {
     }
     {
-        treeInstantiatorFeature(context, vhFlocInstantiator, vhFlocDesigner);
+        treeInstantiatorFeature(context, hvFlocInstantiator, hvFlocDesigner);
     });
 
 /** TODO: Add comments to below code */
