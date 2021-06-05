@@ -83,16 +83,13 @@ export const hvFlocDesigner = function(design) returns map
         design.channelW_min = max(channelW_min(design), design.humanW_min);
         design.channelN = max(floor(design.W_total / design.channelW_min), 1); //make sure we don't try zero channels
         design.channelW = design.W_total/design.channelN;
-
-
-        //rework everything below
-
         design.KE = baffleKE(design.maxHS_pi);
         design.baffle.expH_max = OptimalHE(design);
         design.expN = ceil(design.outletHW_max / design.baffle.expH_max);
         design.baffle.expH = design.outletHW_max / design.expN;
-
         design.baffle.S = baffleS(design);
+        design.tankW = (design.channelW + design.channelWallT) * design.channelN - design.channelWallT;
+ //rework everything below
 
         // Now find total length required for all of the back and forth flow
         design.baffle.TI = (design.baffle.HE * design.baffle.S ^ 2 / design.Qm_max);
