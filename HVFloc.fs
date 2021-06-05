@@ -165,11 +165,11 @@ function baffleS(design)
     {
         count =+ 1;
         prevS = S;
-        KE = baffleKE(design.expH/prevS)
+        KE = baffleKE(design.expH/prevS);
         S = (KE/(2*design.expH * design.G^2 * design.NU))^(1/3) * design.Qm_max/design.channelW ;
         err = abs((S-prevS) / (S+prevS));
     }
-    design.fluidizeV_min = fluidizeV_min;
+    return S;
 }
 
 
