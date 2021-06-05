@@ -100,7 +100,7 @@ export const hvFlocDesigner = function(design) returns map
 
         // find the maximum number of baffles spaces in each channel assuming that we need an even number in each channel
         design.baffle.spacesN_max = floor(design.outletHW_max / (design.baffle.S + design.baffle.T) / 2) * 2;
-        design.channelN = ceil(design.baffle.spacesN_est / design.baffle.spacesN_max, 2);
+       // design.channelN = ceil(design.baffle.spacesN_est / design.baffle.spacesN_max, 2);
         // Now calculate the required depth of the flocculator
         design.baffle.spacesN = ceilStep(design.baffle.spacesN_est / design.channelN, 2);
 
