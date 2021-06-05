@@ -89,7 +89,7 @@ export const hvFlocDesigner = function(design) returns map
         
         design.KE = baffleKE(design.minHS_pi);
         design.baffle.HE = OptimalHE(design);
-        design.baffle.S = design.baffle.HE / HS_pi;
+        design.baffle.S = design.baffle.HE / design.minHS_pi;
 
         // Now find total length required for all of the back and forth flow
         design.baffle.TI = (design.baffle.HE * design.baffle.S ^ 2 / design.Qm_max);
