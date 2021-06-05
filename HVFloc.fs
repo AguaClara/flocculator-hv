@@ -7,11 +7,16 @@ import(path : "4cc322f6b03a10200a5a6ffd/67e99e0e4769fd1af795c76a/57632593cd95821
 import(path : "94569ca95d5169b5296f9bc5/938ba4d703292d84de6901fb/946213f130c9ca75ca65797e", version : "04dab02e99faa2e0c4a5fb09");
 
 // constants
-const ratioHS = 6;
+const HS_pi = 6;
 const ratioPlaneJetExpansion = 0.116; //expansion ratio for plane jets
 const ratioVC = 0.6 ^ 2; // give a little factor of safety on head loss
-const KE_unbounded_expansion = ((1 - ratioVC) ^ 2 / (ratioVC * ratioPlaneJetExpansion * ratioHS)) ^ 2;
+const KE_unbounded_expansion = ((1 - ratioVC) ^ 2 / (ratioVC * ratioPlaneJetExpansion * HS_pi)) ^ 2;
 const KE_min = (1 / ratioVC - 1) ^ 2;
+
+function baffleKE(HS_pi)
+{
+    
+}
 
 const variablesToPassToChild = ["Qm_max", "TEMP_min", "FB", "wallT"];
 
@@ -76,9 +81,15 @@ export const hvFlocDesigner = function(design) returns map
         // Use the minimum of the velocity gradient set as the max for the sed tank to work and the value set by the max head loss.
         design.G = min((gravity * design.HL_bod / (design.NU * design.GT_min)), design.G_max);
         design.TI = design.GT_min / design.G;
+        design.VOL = design.TI/design.Qm_max;
+        design.W_total = design.VOL/(design.L * design.outletHW_max);
+        design.channelN = 
+        
+        
+        
         design.KE = max([KE_unbounded_expansion, KE_min, design.K_min]);
         design.baffle.HE = OptimalHE(design);
-        design.baffle.S = design.baffle.HE / ratioHS;
+        design.baffle.S = design.baffle.HE / HS_pi;
 
         // Now find total length required for all of the back and forth flow
         design.baffle.TI = (design.baffle.HE * design.baffle.S ^ 2 / design.Qm_max);
@@ -139,7 +150,7 @@ export const hvFlocFeature = defineFeature(function(context is Context, id is Id
 
 function OptimalHE(d is map)
 {
-    return (((ratioHS ^ 2 * d.Qm_max) ^ 3 * d.KE / (2 * d.G ^ 2 * d.NU))) ^ (1 / 7);
+    return (((HS_pi ^ 2 * d.Qm_max) ^ 3 * d.KE / (2 * d.G ^ 2 * d.NU))) ^ (1 / 7);
 }
 
 function FlocHL(d is map)
