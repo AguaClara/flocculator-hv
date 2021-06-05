@@ -159,7 +159,7 @@ export const hvFlocFeature = defineFeature(function(context is Context, id is Id
 function channelW_min(design is map)
 {
      const a = (1 - baffleVC_pi)^4 * design.minHS_pi;
-     const b = 2 * design.NU * (design.G * baffleVC_pi * ratioPlaneJetExpansion)^2
+     const b = 2 * design.NU * (design.G * baffleVC_pi * ratioPlaneJetExpansion)^2;
      return design.Qm_max/design.outletHW_max ^(4/3) * (a/b)^(1/3);
 }
 
