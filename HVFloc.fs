@@ -91,19 +91,11 @@ export const hvFlocDesigner = function(design) returns map
         design.tankW = (design.channelW + design.channelWallT) * design.channelN - design.channelWallT;
  //rework everything below
 
-        // Now find total length required for all of the back and forth flow
-        // design.baffle.TI = (design.baffle.HE * design.baffle.S ^ 2 / design.Qm_max);
-        // design.baffle.spacesN_est = round(design.TI / design.baffle.TI);
-
-        // we want an odd  number of channels so that the water
-        // enters the flocculator from the top and exits from the top.
-        // We need to design an overflow to dump poorly flocculated water
-
-        // find the maximum number of baffles spaces in each channel assuming that we need an even number in each channel
-        design.baffle.spacesN_max = floor(design.L / (design.baffle.S + design.baffle.T) / 2) * 2;
-        // design.channelN = ceil(design.baffle.spacesN_est / design.baffle.spacesN_max, 2);
-        // Now calculate the required depth of the flocculator
-        design.baffle.spacesN = ceilStep(design.baffle.spacesN_est / design.channelN, 2);
+        // find the maximum number of baffles spaces in each channel assuming that we need an even number in each channell
+        // except the last channel where the inlet is low and the outlet is high and thus we need an odd number\
+        // we will figure out the last channel by simply deleting the last baffle
+        design.baffle.spacesN = floor(design.L / (design.baffle.S + design.baffle.T) / 2) * 2;
+        
 
         //design.outletHW = design.baffle.spacesN * (design.baffle.S + design.baffle.T) - design.baffle.T;
         // actual head loss given actual number of baffles
