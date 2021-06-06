@@ -53,7 +53,7 @@ export const tankDesigner = function(design) returns map
             else
             {
                 direction = 0;
-            }
+            };
             rotate = append(rotate, direction * 180*degree);
             
         }
