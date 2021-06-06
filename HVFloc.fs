@@ -84,8 +84,8 @@ export const hvFlocDesigner = function(design) returns map
         design.channelW_min = max(channelW_min(design), design.humanChannelW_min);
         // need to make sure we don't specify a channel that is wider than the polycarbonate sheets
         design.channelN = max([floor(design.W_total / design.channelW_min), ceil(design.W_total/design.baffleChannelW_max)]); //make sure we don't try zero channels
-        design.multipleChannel = (design.ChannelN > 1);
-        design.morethan2Channels = (design.ChannelN > 2);
+        design.multipleChannel = (design.channelN > 1);
+        design.morethan2Channels = (design.channelN > 2);
         design.channelW = design.W_total/design.channelN;
         design.KE = baffleKE(design.maxHS_pi);
         design.baffle.expH_max = OptimalHE(design);
