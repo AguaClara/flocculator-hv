@@ -9,8 +9,10 @@ import(path : "94569ca95d5169b5296f9bc5/672c60a12415d0d19238b12a/946213f130c9ca7
  **/
 const tankChecks = {
               "L" : [1, 6, 20],
-            "ChannelW" : [0.3, 0.45, 2],
+            "channelW" : [0.3, 0.45, 2],
             "outletHW" : [0, 2, 5],
+            "inletHW" : [0, 2, 5],
+            "channelN" : [1,2,20],
             "FB" : [0.05, 0.1, 0.5],
             "slabT" : [0.001, 0.15, 0.5],
             "wallT" : [0.001, 0.15, 0.5],
