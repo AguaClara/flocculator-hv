@@ -17,6 +17,7 @@ const tankChecks = {
             "slabT" : [0.001, 0.15, 0.5],
             "wallT" : [0.001, 0.15, 0.5],
             "channelWallT" : [0.001, 0.15, 0.5],
+            "portS" : [ 0.05, 0.15, 3]
             
         } as InputCheck;
 
