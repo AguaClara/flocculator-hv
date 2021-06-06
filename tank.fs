@@ -42,7 +42,7 @@ export const tankInstantiator = function(definition is map) returns map
  **/
 export const tankDesigner = function(design) returns map
     {
-        var rotate = [];
+        design.rotate = [];
         var direction = 0;
         for (var i = 0; i < design.channelN; i += 1)
         {
