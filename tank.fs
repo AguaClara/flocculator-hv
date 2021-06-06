@@ -44,7 +44,7 @@ export const tankDesigner = function(design) returns map
     {
         design.channelB = design.channelW + design.channelWallT;
         design.odd = max(floor((design.channelN)/2),0);
-        design.even = max(floor((design.channelN)/2),0);
+        design.even = max(floor((design.channelN-1)/2),0);
         return design;
     };
 
