@@ -15,7 +15,7 @@ const baffleVC_pi = 0.6 ^ 2; // give a little factor of safety on head loss
 
 
 
-const variablesToPassToChild = ["Qm_max", "TEMP_min", "FB", "wallT"];
+const variablesToPassToChild = ["Qm_max", "TEMP_min", "L", "FB", "wallT","channelWallT","slabT","outletHW"];
 
 /**
  * Custom check for VH Floc values, in the format "variable_name" : [min, default, max]
@@ -55,7 +55,7 @@ const hvFlocChecks = {
             "channelWallT" : [0.001, 0.15, 0.5],
             "drain" : { instantiator : drainInstantiator, passVariables : ["wallT"] },
             "baffle" : { instantiator : baffleInstantiator, passVariables : variablesToPassToChild },
-                        "tank" : { instantiator : baffleInstantiator, passVariables : variablesToPassToChild },
+            "tank" : { instantiator : baffleInstantiator, passVariables : variablesToPassToChild },
         } as InputCheck;
 
 /**
@@ -86,34 +86,40 @@ export const hvFlocDesigner = function(design) returns map
         design.W_total = design.VOL / (design.L * design.outletHW);
         design.channelW_min = max(channelW_min(design), design.humanChannelW_min);
         // need to make sure we don't specify a channel that is wider than the polycarbonate sheets
-        design.channelN = max([floor(design.W_total / design.channelW_min), ceil(design.W_total/design.baffleChannelW_max)]); //make sure we don't try zero channels
+        design.channelN = max([floor(design.W_total / design.channelW_min), ceil(design.W_total / design.baffleChannelW_max)]); //make sure we don't try zero channels
         design.multipleChannel = (design.channelN > 1);
         design.morethan2Channels = (design.channelN > 2);
-        design.channelW = design.W_total/design.channelN;
+        design.channelW = design.W_total / design.channelN;
         design.KE = baffleKE(design.maxHS_pi);
         design.baffle.expH_max = OptimalHE(design);
         design.expN = ceil(design.outletHW / design.baffle.expH_max);
         design.baffle.expH = design.outletHW / design.expN;
         design.baffle.S = baffleS(design);
-        design.HS_pi = design.baffle.expH/design.baffle.S;
-        design.tankW = (design.channelW + design.channelWallT) * design.channelN - design.channelWallT;
- //rework everything below
+        design.HS_pi = design.baffle.expH / design.baffle.S;
+        //design.tankW = (design.channelW + design.channelWallT) * design.channelN - design.channelWallT;
+        //rework everything below
 
         // find the maximum number of baffles spaces in each channel assuming that we need an even number in each channell
         // except the last channel where the inlet is low and the outlet is high and thus we need an odd number\
         // we will figure out the last channel by simply deleting the last baffle
         design.baffle.spacesN = floor(design.L / (design.baffle.S + design.baffle.T) / 2) * 2;
-        
+
 
         //design.outletHW = design.baffle.spacesN * (design.baffle.S + design.baffle.T) - design.baffle.T;
         // actual head loss given actual number of baffles
         design.HL_max = FlocHL(design);
         // actual inlet water level
         design.inletHW = design.outletHW + design.HL_max;
-          //actual collision potential
+        
+        design.tank.inletHW = design.inletHW;
+        design.tank.channelW = design.channelW;
+         design.tank.channelN = design.channelN;
+         design.tank.portS = design.baffle.S;
+        
+        //actual collision potential
         design.GT = sqrt(gravity * design.HL_max * design.TI / design.NU);
         design.V = design.Qm_max / (design.baffle.S * design.channelW);
-        
+
         design.channelHW = ChannelHW(design);
 
         design.drain.S = design.baffle.S;
@@ -155,13 +161,13 @@ function baffleS(design)
     var S = design.baffle.expH / design.maxHS_pi; //first guess
     var prevS = S;
     var count = 0;
-    while ((err > 0.0001) && (count<200) )
+    while ((err > 0.0001) && (count < 200))
     {
         count += 1;
         prevS = S;
-        KE = baffleKE(design.baffle.expH/prevS);
-        S = (KE/(2*design.baffle.expH * design.G^2 * design.NU))^(1/3) * design.Qm_max/design.channelW ;
-        err = abs((S-prevS) / (S+prevS));
+        KE = baffleKE(design.baffle.expH / prevS);
+        S = (KE / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
+        err = abs((S - prevS) / (S + prevS));
     }
     return S;
 }
@@ -189,13 +195,13 @@ function OptimalHE(design is map)
 
 function FlocHL(d is map)
 {
-    println("d.expN "~d.expN);
-    println("d.channelN "~d.channelN);
-    println("d.baffle.spacesN "~d.baffle.spacesN);
-    println("d.KE "~d.KE);
-    println("d.baffle.S "~d.baffle.S);
-      println("d.Qm_max "~d.Qm_max);
-        println("d.channelW "~d.channelW);
+    println("d.expN " ~ d.expN);
+    println("d.channelN " ~ d.channelN);
+    println("d.baffle.spacesN " ~ d.baffle.spacesN);
+    println("d.KE " ~ d.KE);
+    println("d.baffle.S " ~ d.baffle.S);
+    println("d.Qm_max " ~ d.Qm_max);
+    println("d.channelW " ~ d.channelW);
     return d.expN * d.baffle.spacesN * d.channelN * d.KE * d.Qm_max ^ 2 / (2 * gravity * d.baffle.S ^ 2 * d.channelW ^ 2);
 }
 
