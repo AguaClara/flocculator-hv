@@ -44,7 +44,7 @@ export const tankDesigner = function(design) returns map
     {
         design.rotate = [];
         design.move = [];
-        var direction = 0;
+        var direction = 1;
         for (var i = 0; i < design.channelN; i += 1)
         {
             if (direction == 0)
