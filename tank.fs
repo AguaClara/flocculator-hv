@@ -56,7 +56,7 @@ export const tankDesigner = function(design) returns map
                 direction = 0;
             }
             design.rotate = append(design.rotate, direction * 180*degree);
-            design.move = append(design.move, i*(design.channelW + design.channelWallT) * (-1)^direction);
+            design.move = append(design.move, (i+1)*(design.channelW + design.channelWallT) * (-1)^direction);
         }
         return design;
     };
