@@ -55,7 +55,7 @@ const hvFlocChecks = {
             "channelWallT" : [0.001, 0.15, 0.5],
             "drain" : { instantiator : drainInstantiator, passVariables : ["wallT"] },
             "baffle" : { instantiator : baffleInstantiator, passVariables : variablesToPassToChild },
-            "tank" : { instantiator : baffleInstantiator, passVariables : variablesToPassToChild },
+            "tank" : { instantiator : tankInstantiator, passVariables : variablesToPassToChild },
         } as InputCheck;
 
 /**
