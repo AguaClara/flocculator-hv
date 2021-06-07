@@ -195,13 +195,7 @@ function OptimalHE(design is map)
 
 function FlocHL(d is map)
 {
-    println("d.expN " ~ d.expN);
-    println("d.channelN " ~ d.channelN);
-    println("d.baffle.spacesN " ~ d.baffle.spacesN);
-    println("d.KE " ~ d.KE);
-    println("d.baffle.S " ~ d.baffle.S);
-    println("d.Qm_max " ~ d.Qm_max);
-    println("d.channelW " ~ d.channelW);
+    
     return d.expN * d.baffle.spacesN * d.channelN * d.KE * d.Qm_max ^ 2 / (2 * gravity * d.baffle.S ^ 2 * d.channelW ^ 2);
 }
 
