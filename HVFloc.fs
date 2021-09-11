@@ -176,6 +176,7 @@ function baffleS(design)
         KE = baffleKE(design.baffle.expH / prevS);
         S = (KE / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
         println("S is " ~ S);
+        println("H/S is" ~ design.baffle.expH/S);
         err = abs((S - prevS) / (S + prevS));
     }
     return S;
