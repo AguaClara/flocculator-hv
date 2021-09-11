@@ -101,11 +101,8 @@ export const hvFlocPreDesigner = function(design) returns map
         // design.morethan2Channels = (design.channelN > 2);
         design.channelW = design.W_total / design.channelN;
         design.KE = baffleKE(design.maxHS_pi);
-        design.baffle = {};
-        design.baffle.expH_max = OptimalHE(design);
-        design.expN = ceil(design.outletHW / design.baffle.expH_max); // expansions per baffle
-        design.baffle.expH = design.outletHW / design.expN; //distance between expansions
-        design.baffle.S = baffleS(design);
+
+        design = baffleS(design);
         design.HS_pi = design.baffle.expH / design.baffle.S;
         //design.tankW = (design.channelW + design.channelWallT) * design.channelN - design.channelWallT;
         //rework everything below
@@ -164,9 +161,10 @@ export const hvFlocFeature = defineFeature(function(context is Context, id is Id
 
 function baffleS(design)
 {
-    var KE = baffleKE(design.maxHS_pi);
+    design.baffle = {};
+    design.KE = baffleKE(design.maxHS_pi);
     var err = 1.0;
-    var S = (KE / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW; //first guess
+    design.S = (design.KE / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW; //first guess
     println("S is " ~ S);
     println("H/S is" ~ design.baffle.expH / S);
     var prevS = S;
@@ -174,14 +172,18 @@ function baffleS(design)
     while ((err > 0.0001) && (count < 200))
     {
         count += 1;
-        prevS = S;
-        KE = baffleKE(design.baffle.expH / prevS);
-        S = (KE / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
-        println("S is " ~ S);
-        println("H/S is" ~ design.baffle.expH / S);
-        err = abs((S - prevS) / (S + prevS));
+        prevS = design.S;
+
+        design.baffle.expH_max = OptimalHE(design);
+        design.expN = ceil(design.outletHW / design.baffle.expH_max); // expansions per baffle
+        design.baffle.expH = design.outletHW / design.expN; //distance between expansions
+        design.KE = baffleKE(design.baffle.expH / prevS);
+        design.S = (design.KE / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
+        println("S is " ~ design.S);
+        println("H/S is" ~ design.baffle.expH / design.S);
+        err = abs((design.S - prevS) / (design.S + prevS));
     }
-    return S;
+    return design;
 }
 
 // estimating the baffle loss coefficient using jet expansion rate and the vena contracta
