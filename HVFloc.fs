@@ -1,21 +1,72 @@
 FeatureScript 1483;
 import(path : "onshape/std/geometry.fs", version : "1483.0");
-import(path : "1802d3650943f2f88dc71465/989918c09b8ccc514fec7317/42a93e7d952620cd5e4b9afd", version : "e0ebb52a16bf3af96585f62c");
-import(path : "6750b53736b16374e515f93d/71227b500f8b284979b992ba/181382047f743bb3a87d8136", version : "39b2ac8b0ef3cabc0f5dee7a");
-import(path : "3859f0116fbf2e199237ee59/3278c45cbd9cd1a648cbbdcf/db7cf0a0f695f2c4e1854d8c", version : "d43640e55104cc3a1d55eabe");
-import(path : "4cc322f6b03a10200a5a6ffd/67e99e0e4769fd1af795c76a/57632593cd95821f373148c7", version : "2ca15dc2592687b811e11a87");
-import(path : "bcfb7f5d40ed28bd191efd57", version : "000000000000000000000000");
+import(path : "2fa81f50be25609bc956cd5f/9315fcf8489f0c0cc1a06a01/40a6bde79e4081741060af59", version : "24d9ce4bf05b3add5d64a574");
 
-import(path : "94569ca95d5169b5296f9bc5/938ba4d703292d84de6901fb/946213f130c9ca75ca65797e", version : "04dab02e99faa2e0c4a5fb09");
+//import(path : "3859f0116fbf2e199237ee59/3278c45cbd9cd1a648cbbdcf/db7cf0a0f695f2c4e1854d8c", version : "d43640e55104cc3a1d55eabe");
+//import(path : "4cc322f6b03a10200a5a6ffd/67e99e0e4769fd1af795c76a/57632593cd95821f373148c7", version : "2ca15dc2592687b811e11a87");
+
 
 // constants
 const ratioPlaneJetExpansion = 0.116; //expansion ratio for plane jets
 const baffleVC_pi = 0.6 ^ 2; // give a little factor of safety on head loss
 
 
+export const hvFlocTree = {
+        name : "hvFloc",
+        notes : {
+            description : "horizontal vertical Flocculator",
+            imagelink : "",
+            textbooklink : "",
+        },
+        designers : {
+            pre : hvFlocPreDesigner,
+            post : hvFlocPostDesigner,
+        },
+        params : {
+            ip : "GENERIC",
+            rep : true,
+            "Qm_max" : [5, 30, 200],
+            "Q_pi" : [0, 1, 2],
+            "L" : [1, 6, 20],
+            "humanChannelW_min" : [0.3, 0.45, 1],
+            "baffleChannelW_max" : [1, 1.08, 2],
+            "TEMP_min" : [0, 15, 40],
+            "HL_bod" : [0, 0.5, 1],
+            //"K_min" : [2.6, 3.5, 5],
+            "minHS_pi" : [3, 4, 5],
+            "maxHS_pi" : [6, 8, 10],
+            "outletHW" : [0, 2, 5],
+            "GT_min" : [0, 35000, 100000],
+            "FB" : [0.05, 0.1, 0.5],
+            "G_max" : [1, 200, 50000],
+        },
+        execution : { order : ["tank"] },
+        children : {
+            tank : {
+                tree : tankTree,
+                inputs :
+                {
+                    ip : "$.ip",
+                    "FB" : "$.tankFB",
+                    HW : "$.flocUpstreamHW",
+                    L : "$.L",
+                    "W" : "$.W",
+                    N : 1,
+                    left : true,
+                    right : true,
+                    front : true,
+                    back : true,
+                    bottom : true,
+                    top : false,
+                    portH : 0 * meter,
+                    portW : 0 * meter,
+                    portSwap : false,
+                },
+            },
+        },
+    };
 
-
-const variablesToPassToChild = ["Qm_max", "TEMP_min", "L", "FB", "wallT","channelWallT","slabT","outletHW"];
+//const variablesToPassToChild = ["Qm_max", "TEMP_min", "L", "FB", "wallT", "channelWallT", "slabT", "outletHW"];
 
 /**
  * Custom check for VH Floc values, in the format "variable_name" : [min, default, max]
@@ -35,46 +86,30 @@ const variablesToPassToChild = ["Qm_max", "TEMP_min", "L", "FB", "wallT","channe
  * channelWallT: interior wall thickness (meter)
  * drainTI: time required to drain the flocculator (second)
  */
-const hvFlocChecks = {
-            "Qm_max" : [5, 30, 200],
-            "Q_pi" : [0, 1, 2],
-            "L" : [1, 6, 20],
-            "humanChannelW_min" : [0.3, 0.45, 1],
-            "baffleChannelW_max" : [1, 1.08, 2],
-            "TEMP_min" : [0, 15, 40],
-            "HL_bod" : [0, 0.5, 1],
-            //"K_min" : [2.6, 3.5, 5],
-            "minHS_pi" : [3, 4, 5],
-            "maxHS_pi" : [6, 8, 10],
-            "outletHW" : [0, 2, 5],
-            "GT_min" : [0, 35000, 100000],
-            "FB" : [0.05, 0.1, 0.5],
-            "G_max" : [1, 200, 50000],
-            "slabT" : [0.001, 0.15, 0.5],
-            "wallT" : [0.001, 0.15, 0.5],
-            "channelWallT" : [0.001, 0.15, 0.5],
-            "drain" : { instantiator : drainInstantiator, passVariables : ["wallT"] },
-            "baffle" : { instantiator : baffleInstantiator, passVariables : variablesToPassToChild },
-            "tank" : { instantiator : tankInstantiator, passVariables : variablesToPassToChild },
-        } as InputCheck;
+// const hvFlocChecks = {
+//             "Qm_max" : [5, 30, 200],
+//             "Q_pi" : [0, 1, 2],
+//             "L" : [1, 6, 20],
+//             "humanChannelW_min" : [0.3, 0.45, 1],
+//             "baffleChannelW_max" : [1, 1.08, 2],
+//             "TEMP_min" : [0, 15, 40],
+//             "HL_bod" : [0, 0.5, 1],
+//             //"K_min" : [2.6, 3.5, 5],
+//             "minHS_pi" : [3, 4, 5],
+//             "maxHS_pi" : [6, 8, 10],
+//             "outletHW" : [0, 2, 5],
+//             "GT_min" : [0, 35000, 100000],
+//             "FB" : [0.05, 0.1, 0.5],
+//             "G_max" : [1, 200, 50000],
+//             "slabT" : [0.001, 0.15, 0.5],
+//             "wallT" : [0.001, 0.15, 0.5],
+//             "channelWallT" : [0.001, 0.15, 0.5],
+//             "drain" : { instantiator : drainInstantiator, passVariables : ["wallT"] },
+//             "baffle" : { instantiator : baffleInstantiator, passVariables : variablesToPassToChild },
+//             "tank" : { instantiator : tankInstantiator, passVariables : variablesToPassToChild },
+//         } as InputCheck;
 
-/**
- * `function` which takes in `definition` and checks the minimum, maximum,
- * and default values from `hvFlocChecks` before returning a `map`
- * @param definition: map of all variables required to construct a VH Flocculator
- */
-export const hvFlocInstantiator = function(definition is map) returns map
-    {
-        return objectInstantiator(definition, hvFlocChecks);
-    };
-
-/**
- * Hydraulic code and any calculations required before creating the geometry
- * as a standalone component
- * @param design: `map` of all variables required to construct a VH Flocculator
- * @return `map` of designed VH Floc with new entries like `G`
- **/
-export const hvFlocDesigner = function(design) returns map
+export const hvFlocPreDesigner = function(design) returns map
     {
 
         design.NU = viscosityKinematic(design.TEMP_min);
@@ -110,12 +145,12 @@ export const hvFlocDesigner = function(design) returns map
         design.HL_max = FlocHL(design);
         // actual inlet water level
         design.inletHW = design.outletHW + design.HL_max;
-        
+
         design.tank.inletHW = design.inletHW;
         design.tank.channelW = design.channelW;
-         design.tank.channelN = design.channelN;
-         design.tank.portS = design.baffle.S;
-        
+        design.tank.channelN = design.channelN;
+        design.tank.portS = design.baffle.S;
+
         //actual collision potential
         design.GT = sqrt(gravity * design.HL_max * design.TI / design.NU);
         design.V = design.Qm_max / (design.baffle.S * design.channelW);
@@ -125,27 +160,22 @@ export const hvFlocDesigner = function(design) returns map
         design.drain.S = design.baffle.S;
         design.drain.HE = design.baffle.HE;
         design.drain.HW = design.inletHW;
-        design = treeDesigner(design, "drain", hvFlocChecks, drainDesigner);
         design.OW = design.baffle.S * design.channelN + design.channelWallT * (design.channelN - 1) + 2 * design.wallT;
-
         return design;
     };
 
-/**
- * Design steps
- *    1) instantiate recursively to build the map (no units) that defines the design and print the map to the FeatureScript notices. This will be especially useful if the user needs the map to modify the design.
- *    2) apply units recursively
- *    3) design the feature including passing parameters to submaps that need to be set
- *    4) place the map with units in the context
- *    pass submaps thru superDerive in the part studio to bring other part studios into the design.
- **/
+export const hvFlocPostDesigner = function(design) returns map
+    {
+        return design;
+    };
+
 annotation { "Feature Type Name" : "HV Floc" }
 export const hvFlocFeature = defineFeature(function(context is Context, id is Id, definition is map)
     precondition
     {
     }
     {
-        treeInstantiatorFeature(context, hvFlocInstantiator, hvFlocDesigner);
+        treeInstantiatorFeature(context, id, hvFlocTree as InputTree);
     });
 
 /**
@@ -195,7 +225,7 @@ function OptimalHE(design is map)
 
 function FlocHL(d is map)
 {
-    
+
     return d.expN * d.baffle.spacesN * d.channelN * d.KE * d.Qm_max ^ 2 / (2 * gravity * d.baffle.S ^ 2 * d.channelW ^ 2);
 }
 
