@@ -49,7 +49,7 @@ export const hvFlocTree = {
                     "FB" : "$.FB",
                     HW : "$.inletHW",
                     L : "$.L",
-                    "W" : "$.W",
+                    "W" : "$.channelW",
                     N : "$.channelN",
                     left : true,
                     right : true,
@@ -64,8 +64,6 @@ export const hvFlocTree = {
             },
         },
     };
-
-//const variablesToPassToChild = ["Qm_max", "TEMP_min", "L", "FB", "wallT", "channelWallT", "slabT", "outletHW"];
 
 /**
  * Custom check for VH Floc values, in the format "variable_name" : [min, default, max]
@@ -85,28 +83,6 @@ export const hvFlocTree = {
  * channelWallT: interior wall thickness (meter)
  * drainTI: time required to drain the flocculator (second)
  */
-// const hvFlocChecks = {
-//             "Qm_max" : [5, 30, 200],
-//             "Q_pi" : [0, 1, 2],
-//             "L" : [1, 6, 20],
-//             "humanChannelW_min" : [0.3, 0.45, 1],
-//             "baffleChannelW_max" : [1, 1.08, 2],
-//             "TEMP_min" : [0, 15, 40],
-//             "HL_bod" : [0, 0.5, 1],
-//             //"K_min" : [2.6, 3.5, 5],
-//             "minHS_pi" : [3, 4, 5],
-//             "maxHS_pi" : [6, 8, 10],
-//             "outletHW" : [0, 2, 5],
-//             "GT_min" : [0, 35000, 100000],
-//             "FB" : [0.05, 0.1, 0.5],
-//             "G_max" : [1, 200, 50000],
-//             "slabT" : [0.001, 0.15, 0.5],
-//             "wallT" : [0.001, 0.15, 0.5],
-//             "channelWallT" : [0.001, 0.15, 0.5],
-//             "drain" : { instantiator : drainInstantiator, passVariables : ["wallT"] },
-//             "baffle" : { instantiator : baffleInstantiator, passVariables : variablesToPassToChild },
-//             "tank" : { instantiator : tankInstantiator, passVariables : variablesToPassToChild },
-//         } as InputCheck;
 
 export const hvFlocPreDesigner = function(design) returns map
     {
