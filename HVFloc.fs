@@ -166,6 +166,7 @@ function baffleS(design)
     var err = 1.0;
     design.baffle.expH_max = OptimalHE(design);
     design.S = design.baffle.expH_max/design.maxHS_pi ; //first guess
+    design.expN = ceil(design.outletHW / design.baffle.expH_max); // expansions per baffle
     //println("S is " ~ design.S);
     //println("H/S is" ~ design.baffle.expH / design.S);
     var prevS = design.S;
@@ -176,7 +177,7 @@ function baffleS(design)
         prevS = design.S;
 
         
-        design.expN = ceil(design.outletHW / design.baffle.expH_max); // expansions per baffle
+        
         design.baffle.expH = design.outletHW / design.expN; //distance between expansions
         design.KE = baffleKE(design.baffle.expH / prevS);
         design.S = (design.KE / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
