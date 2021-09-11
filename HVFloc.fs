@@ -47,19 +47,19 @@ export const hvFlocTree = {
                 inputs :
                 {
                     ip : "$.ip",
-                    "FB" : "$.tankFB",
-                    HW : "$.flocUpstreamHW",
+                    "FB" : "$.FB",
+                    HW : "$.inletHW",
                     L : "$.L",
                     "W" : "$.W",
-                    N : 1,
+                    N : "$.channelN",
                     left : true,
                     right : true,
                     front : true,
                     back : true,
                     bottom : true,
                     top : false,
-                    portH : 0 * meter,
-                    portW : 0 * meter,
+                    portH : "$.channelW",
+                    portW : "$.baffle.S",
                     portSwap : false,
                 },
             },
@@ -122,8 +122,8 @@ export const hvFlocPreDesigner = function(design) returns map
         design.channelW_min = max(channelW_min(design), design.humanChannelW_min);
         // need to make sure we don't specify a channel that is wider than the polycarbonate sheets
         design.channelN = max([floor(design.W_total / design.channelW_min), ceil(design.W_total / design.baffleChannelW_max)]); //make sure we don't try zero channels
-        design.multipleChannel = (design.channelN > 1);
-        design.morethan2Channels = (design.channelN > 2);
+        // design.multipleChannel = (design.channelN > 1);
+        // design.morethan2Channels = (design.channelN > 2);
         design.channelW = design.W_total / design.channelN;
         design.KE = baffleKE(design.maxHS_pi);
         design.baffle.expH_max = OptimalHE(design);
@@ -146,10 +146,10 @@ export const hvFlocPreDesigner = function(design) returns map
         // actual inlet water level
         design.inletHW = design.outletHW + design.HL_max;
 
-        design.tank.inletHW = design.inletHW;
-        design.tank.channelW = design.channelW;
-        design.tank.channelN = design.channelN;
-        design.tank.portS = design.baffle.S;
+        // design.tank.inletHW = design.inletHW;
+        // design.tank.channelW = design.channelW;
+        // design.tank.channelN = design.channelN;
+        design.portS = design.baffle.S;
 
         //actual collision potential
         design.GT = sqrt(gravity * design.HL_max * design.TI / design.NU);
