@@ -166,7 +166,7 @@ function baffleS(design)
 {
     var KE = baffleKE(design.maxHS_pi);
     var err = 1.0;
-    var S = design.baffle.expH / design.maxHS_pi; //first guess
+    var S = (KE / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW; //first guess
     println("S is " ~ S);
     println("H/S is" ~ design.baffle.expH / S);
     var prevS = S;
