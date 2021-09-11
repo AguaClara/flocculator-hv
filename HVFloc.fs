@@ -103,8 +103,8 @@ export const hvFlocPreDesigner = function(design) returns map
         design.KE = baffleKE(design.maxHS_pi);
         design.baffle = {};
         design.baffle.expH_max = OptimalHE(design);
-        design.expN = ceil(design.outletHW / design.baffle.expH_max);
-        design.baffle.expH = design.outletHW / design.expN;
+        design.expN = ceil(design.outletHW / design.baffle.expH_max); // expansions per baffle
+        design.baffle.expH = design.outletHW / design.expN; //distance between expansions
         design.baffle.S = baffleS(design);
         design.HS_pi = design.baffle.expH / design.baffle.S;
         //design.tankW = (design.channelW + design.channelWallT) * design.channelN - design.channelWallT;
@@ -115,7 +115,7 @@ export const hvFlocPreDesigner = function(design) returns map
         // we will figure out the last channel by simply deleting the last baffle
         design.baffle.T = 0.003 * meter;
         design.baffle.spacesN = floor(design.L / (design.baffle.S + design.baffle.T) / 2) * 2;
-
+design.V = design.Qm_max / (design.baffle.S * design.channelW);
 
         //design.outletHW = design.baffle.spacesN * (design.baffle.S + design.baffle.T) - design.baffle.T;
         // actual head loss given actual number of baffles
@@ -130,7 +130,7 @@ export const hvFlocPreDesigner = function(design) returns map
 
         //actual collision potential
         design.GT = sqrt(gravity * design.HL_max * design.TI / design.NU);
-        design.V = design.Qm_max / (design.baffle.S * design.channelW);
+        
 
         design.channelHW = ChannelHW(design);
 
