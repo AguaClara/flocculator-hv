@@ -161,12 +161,13 @@ export const hvFlocPreDesigner = function(design) returns map
         // design.drain.S = design.baffle.S;
         // design.drain.HE = design.baffle.HE;
         // design.drain.HW = design.inletHW;
-        design.OW = design.baffle.S * design.channelN + design.channelWallT * (design.channelN - 1) + 2 * design.wallT;
+       
         return design;
     };
 
 export const hvFlocPostDesigner = function(design) returns map
     {
+        // design.OW = design.baffle.S * design.channelN + design.channelWallT * (design.channelN - 1) + 2 * design.wallT;
         return design;
     };
 
