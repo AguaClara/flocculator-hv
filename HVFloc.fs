@@ -115,7 +115,7 @@ export const hvFlocPreDesigner = function(design) returns map
         // we will figure out the last channel by simply deleting the last baffle
         design.baffle.T = 0.003 * meter;
         design.baffle.spacesN = floor(design.L / (design.baffle.S + design.baffle.T) / 2) * 2;
-design.V = design.Qm_max / (design.baffle.S * design.channelW);
+        design.V = design.Qm_max / (design.baffle.S * design.channelW);
 
         //design.outletHW = design.baffle.spacesN * (design.baffle.S + design.baffle.T) - design.baffle.T;
         // actual head loss given actual number of baffles
@@ -130,14 +130,14 @@ design.V = design.Qm_max / (design.baffle.S * design.channelW);
 
         //actual collision potential
         design.GT = sqrt(gravity * design.HL_max * design.TI / design.NU);
-        
+
 
         design.channelHW = ChannelHW(design);
 
         // design.drain.S = design.baffle.S;
         // design.drain.HE = design.baffle.HE;
         // design.drain.HW = design.inletHW;
-       
+
         return design;
     };
 
@@ -204,7 +204,7 @@ function OptimalHE(design is map)
 function FlocHL(d is map)
 {
 
-    return d.expN * d.baffle.spacesN * d.channelN * d.KE * d.Qm_max ^ 2 / (2 * gravity * d.baffle.S ^ 2 * d.channelW ^ 2);
+    return d.expN * d.baffle.spacesN * d.channelN * d.KE * d.V^2 / (2 * gravity);
 }
 
 /**
