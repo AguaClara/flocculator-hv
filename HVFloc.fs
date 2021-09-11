@@ -180,7 +180,7 @@ function baffleS(design)
     return S;
 }
 
-
+// estimating the baffle loss coefficient using jet expansion rate and the vena contracta
 function baffleKE(HS_pi)
 {
     const KE_min = (1 / baffleVC_pi - 1) ^ 2;
