@@ -155,10 +155,11 @@ export const flocGeometry = function(context is Context, id is Id, design is map
 
         skSolve(waterSketch);
         
-        const waterLine = qSketchFilter(waterSketch, true);
-        debug(context, waterLine, DebugColor.RED);
+        
+        //const waterLine = qSketchFilter(, waterSketch);
+        //debug(context, waterLine, DebugColor.RED);
         opExtrude(context, id + "extrude1", {
-                "entities" : waterLine,
+                "entities" : sketchEntityQuery(id + "sketch1", EntityType.EDGE, waterSketch),
                 "direction" : XY_PLANE.normal,
                 "endBound" : BoundingType.BLIND,
                 "endDepth" : design.baffle.S
