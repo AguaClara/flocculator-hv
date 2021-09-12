@@ -199,7 +199,8 @@ function baffleK(design is map)
     }
     const baffleK_min = (1 / baffleVC_pi - 1) ^ 2;
     const unboundedExpansionK = ((1 - baffleVC_pi) ^ 2 / (baffleVC_pi * ratioPlaneJetExpansion * design.HS_pi)) ^ 2;
-    return max(unboundedExpansionK, baffleK_min);
+    design.baffleK = max(unboundedExpansionK, baffleK_min);
+    return design;
 }
 
 function channelW_min(design is map)
