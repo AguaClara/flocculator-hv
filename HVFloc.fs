@@ -51,7 +51,7 @@ export const hvFlocTree = {
                     L : "$.L",
                     "W" : "$.channelW",
                     N : "$.channelN",
-                    left : true,
+                   // left : true,
                     right : true,
                     front : true,
                     back : true,
