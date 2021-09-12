@@ -157,12 +157,12 @@ export const flocgeometry = function(context is Context, id is Id, design is map
         
         const waterLine = qSketchRegion(id + "sketch", true);
         
-        opExtrude(context, id + "extrude1", {
-                "entities" : waterLine,
-                "direction" : XY_PLANE.normal,
-                "endBound" : BoundingType.BLIND,
-                "endDepth" : design.baffle.S
-        });
+        // opExtrude(context, id + "extrude1", {
+        //         "entities" : waterLine,
+        //         "direction" : XY_PLANE.normal,
+        //         "endBound" : BoundingType.BLIND,
+        //         "endDepth" : design.baffle.S
+        // });
 
         return design;
     };
