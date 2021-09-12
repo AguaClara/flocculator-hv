@@ -21,6 +21,7 @@ export const hvFlocTree = {
         designers : {
             pre : hvFlocPreDesigner,
             post : hvFlocPostDesigner,
+            geometry : flocgeometry,
         },
         params : {
             ip : "GENERIC",
@@ -51,7 +52,7 @@ export const hvFlocTree = {
                     L : "$.L",
                     "W" : "$.channelW",
                     N : "$.channelN",
-                   // left : true,
+                    // left : true,
                     right : true,
                     front : true,
                     back : true,
@@ -141,6 +142,32 @@ export const hvFlocPostDesigner = function(design) returns map
         return design;
     };
 
+export const flocgeometry = function(context is Context, id is Id, design is map)
+    {
+        const waterSketch = newSketchOnPlane(context, id + "sketch", {
+                    "sketchPlane" : XY_PLANE
+                });
+
+        skLineSegment(waterSketch, "line1", {
+                "start" : vector(0, 0) * inch,
+                "end" : vector(1, 1) * inch
+        });
+
+        skSolve(waterSketch);
+        
+        const waterLine = qSketchRegion(id + "sketch", true);
+        
+        opExtrude(context, id + "extrude1", {
+                "entities" : waterLine,
+                "direction" : XY_PLANE.normal,
+                "endBound" : BoundingType.BLIND,
+                "endDepth" : design.baffle.S
+        });
+
+        return design;
+    };
+
+
 annotation { "Feature Type Name" : "HV Floc" }
 export const hvFlocFeature = defineFeature(function(context is Context, id is Id, definition is map)
     precondition
@@ -163,7 +190,7 @@ function baffleS(design)
     var err = 1.0;
 
     design = expH_min(design);
-    design.expN = max(floor(design.outletHW / design.baffle.expH_min),1); // expansions per baffle
+    design.expN = max(floor(design.outletHW / design.baffle.expH_min), 1); // expansions per baffle
     design.baffle.expH = design.outletHW / design.expN; //distance between expansions
     design.baffle.S = design.baffle.expH / design.minHS_pi; //first guess
 
