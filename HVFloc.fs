@@ -100,7 +100,7 @@ export const hvFlocPreDesigner = function(design) returns map
         // design.multipleChannel = (design.channelN > 1);
         // design.morethan2Channels = (design.channelN > 2);
         design.channelW = design.W_total / design.channelN;
-        design.KE = baffleKE(design.maxHS_pi);
+        design.baffleK = baffleKE(design.maxHS_pi);
 
         design = baffleS(design);
         
@@ -162,7 +162,7 @@ export const hvFlocFeature = defineFeature(function(context is Context, id is Id
 function baffleS(design)
 {
     design.baffle = {};
-    //design.KE = baffleKE(design.maxHS_pi);
+    //design.baffleK = baffleKE(design.maxHS_pi);
     var err = 1.0;
     design.baffle.expH_max = OptimalHE(design);
     design.baffle.S = design.baffle.expH_max/design.maxHS_pi ; //first guess
@@ -179,8 +179,8 @@ function baffleS(design)
         
         
         design.baffle.expH = design.outletHW / design.expN; //distance between expansions
-        design.KE = baffleKE(design.baffle.expH / prevS);
-        design.baffle.S = (design.KE / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
+        design.baffleK = baffleK(design.baffle.expH / prevS);
+        design.baffle.S = (design.baffleK / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
         println("S is " ~ design.baffle.S);
         println("H/S is" ~ design.baffle.expH / design.baffle.S);
         err = abs((design.baffle.S - prevS) / (design.baffle.S + prevS));
@@ -190,11 +190,11 @@ function baffleS(design)
 }
 
 // estimating the baffle loss coefficient using jet expansion rate and the vena contracta
-function baffleKE(HS_pi)
+function baffleK(HS_pi)
 {
-    const KE_min = (1 / baffleVC_pi - 1) ^ 2;
-    const KE_unbounded_expansion = ((1 - baffleVC_pi) ^ 2 / (baffleVC_pi * ratioPlaneJetExpansion * HS_pi)) ^ 2;
-    return max(KE_unbounded_expansion, KE_min);
+    const baffleK_min = (1 / baffleVC_pi - 1) ^ 2;
+    const unboundedExpansionK = ((1 - baffleVC_pi) ^ 2 / (baffleVC_pi * ratioPlaneJetExpansion * HS_pi)) ^ 2;
+    return max(unboundedExpansionK, baffleK_min);
 }
 
 function channelW_min(design is map)
@@ -207,7 +207,7 @@ function channelW_min(design is map)
 
 function OptimalHE(design is map)
 {
-    return (((design.minHS_pi ^ 2 * design.Qm_max) ^ 3 * design.KE / (2 * design.G ^ 2 * design.NU))) ^ (1 / 7);
+    return (((design.minHS_pi ^ 2 * design.Qm_max) ^ 3 * design.baffleK / (2 * design.G ^ 2 * design.NU))) ^ (1 / 7);
 }
 
 function FlocHL(d is map)
