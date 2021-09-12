@@ -191,14 +191,14 @@ function baffleS(design)
 }
 
 // estimating the baffle loss coefficient using jet expansion rate and the vena contracta
-function baffleK(HS_pi)
+function baffleK(design is map)
 {
-    if (HS_pi < 3)
+    if (design.HS_pi < design.minHS_pi)
     {
-        HS_pi = 3;
+        design.HS_pi = design.minHS_pi;
     }
     const baffleK_min = (1 / baffleVC_pi - 1) ^ 2;
-    const unboundedExpansionK = ((1 - baffleVC_pi) ^ 2 / (baffleVC_pi * ratioPlaneJetExpansion * HS_pi)) ^ 2;
+    const unboundedExpansionK = ((1 - baffleVC_pi) ^ 2 / (baffleVC_pi * ratioPlaneJetExpansion * design.HS_pi)) ^ 2;
     return max(unboundedExpansionK, baffleK_min);
 }
 
