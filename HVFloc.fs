@@ -154,13 +154,13 @@ export const flocGeometry = function(context is Context, id is Id, design is map
         });
 
         skSolve(waterSketch);
-        sketchEntityQuery(id + "sketch1", EntityType.EDGE, "junk");
+        //sketchEntityQuery(id + "sketch1", EntityType.EDGE, "junk");
         
         
         //const waterLine = qSketchFilter(, waterSketch);
         //debug(context, waterLine, DebugColor.RED);
         opExtrude(context, id + "extrude1", {
-                "entities" : sketchEntityQuery(id + "sketch2", EntityType.EDGE, id + "sketch"),
+                "entities" : sketchEntityQuery(id + "sketch1", EntityType.EDGE, "junk"),
                 "direction" : XY_PLANE.normal,
                 "endBound" : BoundingType.BLIND,
                 "endDepth" : design.baffle.S
