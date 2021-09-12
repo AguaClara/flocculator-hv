@@ -221,7 +221,7 @@ function FlocHL(design is map)
  * Then it calculates the water surface elevations as a function of the current flow rate.
  * This is used to draw the water surface in each of the flocculator channels.
  */
-function ChannelHW(d is map)
+function ChannelHW(design is map)
 {
     const baffleHL = design.baffleK * (design.Q_pi * design.Qm_max) ^ 2 / (2 * gravity * design.baffle.S ^ 4);
     var channelHW = makeArray(design.channelN);
