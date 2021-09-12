@@ -210,10 +210,10 @@ function OptimalHE(design is map)
     return (((design.minHS_pi ^ 2 * design.Qm_max) ^ 3 * design.baffleK / (2 * design.G ^ 2 * design.NU))) ^ (1 / 7);
 }
 
-function FlocHL(d is map)
+function FlocHL(design is map)
 {
 
-    return d.expN * d.baffle.spacesN * d.channelN * d.KE * d.V ^ 2 / (2 * gravity);
+    return design.expN * design.baffle.spacesN * design.channelN * design.baffleK * design.V ^ 2 / (2 * gravity);
 }
 
 /**
@@ -223,12 +223,12 @@ function FlocHL(d is map)
  */
 function ChannelHW(d is map)
 {
-    const baffleHL = d.KE * (d.Q_pi * d.Qm_max) ^ 2 / (2 * gravity * d.baffle.S ^ 4);
-    var channelHW = makeArray(d.channelN);
+    const baffleHL = design.baffleK * (design.Q_pi * design.Qm_max) ^ 2 / (2 * gravity * design.baffle.S ^ 4);
+    var channelHW = makeArray(design.channelN);
     var baffleSpacesN = 0;
     var myeven = true;
-    channelHW[0] = d.outletHW + baffleHL * d.baffle.spacesN * d.channelN;
-    for (var i = 1; i < d.channelN; i += 1)
+    channelHW[0] = design.outletHW + baffleHL * design.baffle.spacesN * design.channelN;
+    for (var i = 1; i < design.channelN; i += 1)
     {
         myeven = !myeven;
         if (myeven)
@@ -237,7 +237,7 @@ function ChannelHW(d is map)
         }
         else
         {
-            baffleSpacesN = 2 * d.baffle.spacesN - 1;
+            baffleSpacesN = 2 * design.baffle.spacesN - 1;
         }
 
         channelHW[i] = channelHW[i - 1] - baffleSpacesN * baffleHL;
