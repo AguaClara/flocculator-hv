@@ -164,7 +164,7 @@ function baffleS(design)
     design.HS_pi = design.minHS_pi;
     design = baffleK(design);
     design.baffle.expH_max = OptimalHE(design);
-    design.expN = ceil(design.outletHW / design.baffle.expH_max); // expansions per baffle
+    design.expN = ceil(design.outletHW / design.baffle.expH_min); // expansions per baffle
     design.baffle.expH = design.outletHW / design.expN; //distance between expansions
     design.baffle.S = design.baffle.expH / design.minHS_pi; //first guess
     
