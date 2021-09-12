@@ -149,24 +149,24 @@ export const flocGeometry = function(context is Context, id is Id, design is map
                 });
 
         skLineSegment(waterSketch, "line1", {
-                "start" : vector(0, 0) * inch,
-                "end" : vector(1, 1) * inch
-        });
+                    "start" : vector(0, 0) * inch,
+                    "end" : vector(1, 1) * inch
+                });
 
         skSolve(waterSketch);
-        //sketchEntityQuery(id + "sketch1", EntityType.EDGE, "junk");
-        
-        
+        const myline = sketchEntityQuery(id + "sketch1", EntityType.EDGE, "line1");
+        debug(context, myline, DebugColor.RED);
+
         //const waterLine = qSketchFilter(, waterSketch);
-        //debug(context, waterLine, DebugColor.RED);
+
         opExtrude(context, id + "extrude1", {
-                "entities" : sketchEntityQuery(id + "sketch1", EntityType.EDGE, "line1"),
-                "direction" : XY_PLANE.normal,
-                "endBound" : BoundingType.BLIND,
-                "endDepth" : design.baffle.S
-        });
-        
-        
+                    "entities" : myline,
+                    "direction" : XY_PLANE.normal,
+                    "endBound" : BoundingType.BLIND,
+                    "endDepth" : design.baffle.S
+                });
+
+
         return design;
     };
 
