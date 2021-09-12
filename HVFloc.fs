@@ -155,7 +155,6 @@ export const flocGeometry = function(context is Context, id is Id, design is map
 
         skSolve(waterSketch);
         
-        sketch
         
         //const waterLine = qSketchFilter(, waterSketch);
         //debug(context, waterLine, DebugColor.RED);
