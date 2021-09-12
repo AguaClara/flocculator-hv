@@ -100,7 +100,7 @@ export const hvFlocPreDesigner = function(design) returns map
         // design.multipleChannel = (design.channelN > 1);
         // design.morethan2Channels = (design.channelN > 2);
         design.channelW = design.W_total / design.channelN;
-        design.baffleK = baffleKE(design.maxHS_pi);
+        design.baffleK = baffleK(design.maxHS_pi);
 
         design = baffleS(design);
         
