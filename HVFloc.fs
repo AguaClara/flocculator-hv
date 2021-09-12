@@ -86,7 +86,7 @@ export const hvFlocTree = {
 
 export const hvFlocPreDesigner = function(design) returns map
     {
-        
+
         design.NU = viscosityKinematic(design.TEMP_min);
 
         // Use the minimum of the velocity gradient set as the max for the sed tank to work and the value set by the max head loss.
@@ -161,12 +161,12 @@ function baffleS(design)
     design.baffle = {};
     //design.baffleK = baffleKE(design.maxHS_pi);
     var err = 1.0;
-   
+
     design = expH_min(design);
     design.expN = floor(design.outletHW / design.baffle.expH_min); // expansions per baffle
     design.baffle.expH = design.outletHW / design.expN; //distance between expansions
     design.baffle.S = design.baffle.expH / design.minHS_pi; //first guess
-    
+
     //println("S is " ~ design.S);
     //println("H/S is" ~ design.baffle.expH / design.S);
     var prevS = design.baffle.S;
@@ -182,12 +182,12 @@ function baffleS(design)
         design.HS_pi = design.baffle.expH / design.baffle.S;
         design = baffleK(design);
         design.baffle.S = (design.baffleK / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
-        println("S is " ~ design.baffle.S);
-        println("H/S is " ~ design.baffle.expH / design.baffle.S);
-        println("baffleK is " ~ design.baffleK);
+        // println("S is " ~ design.baffle.S);
+        // println("H/S is " ~ design.baffle.expH / design.baffle.S);
+        // println("baffleK is " ~ design.baffleK);
         err = abs((design.baffle.S - prevS) / (design.baffle.S + prevS));
     }
-    
+
     return design;
 }
 
@@ -214,7 +214,7 @@ function channelW_min(design is map)
 
 function expH_min(design is map)
 {
-     design.HS_pi = design.minHS_pi;
+    design.HS_pi = design.minHS_pi;
     design = baffleK(design);
     design.baffle.expH_min = (((design.minHS_pi ^ 2 * design.Qm_max) ^ 3 * design.baffleK / (2 * design.G ^ 2 * design.NU))) ^ (1 / 7);
     return design;
