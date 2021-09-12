@@ -161,6 +161,8 @@ function baffleS(design)
     design.baffle = {};
     //design.baffleK = baffleKE(design.maxHS_pi);
     var err = 1.0;
+    design.HS_pi = design.minHS_pi;
+    design = baffleK(design);
     design.baffle.expH_max = OptimalHE(design);
     design.baffle.S = design.baffle.expH_max / design.maxHS_pi; //first guess
     design.expN = ceil(design.outletHW / design.baffle.expH_max); // expansions per baffle
