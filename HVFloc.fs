@@ -86,7 +86,7 @@ export const hvFlocTree = {
 
 export const hvFlocPreDesigner = function(design) returns map
     {
-println("baffle K for H/S of 3 " ~ baffleK(3));
+        println("baffle K for H/S of 4 " ~ baffleK(4));
         design.NU = viscosityKinematic(design.TEMP_min);
 
         // Use the minimum of the velocity gradient set as the max for the sed tank to work and the value set by the max head loss.
@@ -103,7 +103,7 @@ println("baffle K for H/S of 3 " ~ baffleK(3));
         design.baffleK = baffleK(design.maxHS_pi);
 
         design = baffleS(design);
-        
+
         //design.tankW = (design.channelW + design.channelWallT) * design.channelN - design.channelWallT;
         //rework everything below
 
@@ -165,7 +165,7 @@ function baffleS(design)
     //design.baffleK = baffleKE(design.maxHS_pi);
     var err = 1.0;
     design.baffle.expH_max = OptimalHE(design);
-    design.baffle.S = design.baffle.expH_max/design.maxHS_pi ; //first guess
+    design.baffle.S = design.baffle.expH_max / design.maxHS_pi; //first guess
     design.expN = ceil(design.outletHW / design.baffle.expH_max); // expansions per baffle
     //println("S is " ~ design.S);
     //println("H/S is" ~ design.baffle.expH / design.S);
@@ -176,8 +176,8 @@ function baffleS(design)
         count += 1;
         prevS = design.baffle.S;
 
-        
-        
+
+
         design.baffle.expH = design.outletHW / design.expN; //distance between expansions
         design.baffleK = baffleK(design.baffle.expH / prevS);
         design.baffle.S = (design.baffleK / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
@@ -193,7 +193,7 @@ function baffleS(design)
 // estimating the baffle loss coefficient using jet expansion rate and the vena contracta
 function baffleK(HS_pi)
 {
-    if (HS_pi<3)
+    if (HS_pi < 3)
     {
         HS_pi = 3;
     }
