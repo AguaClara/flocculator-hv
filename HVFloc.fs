@@ -164,8 +164,10 @@ function baffleS(design)
     design.HS_pi = design.minHS_pi;
     design = baffleK(design);
     design.baffle.expH_max = OptimalHE(design);
-    design.baffle.S = design.baffle.expH_max / design.maxHS_pi; //first guess
     design.expN = ceil(design.outletHW / design.baffle.expH_max); // expansions per baffle
+    design.baffle.expH = design.outletHW / design.expN; //distance between expansions
+    design.baffle.S = design.baffle.expH / design.minHS_pi; //first guess
+    
     //println("S is " ~ design.S);
     //println("H/S is" ~ design.baffle.expH / design.S);
     var prevS = design.baffle.S;
