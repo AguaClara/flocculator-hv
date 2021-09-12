@@ -86,7 +86,7 @@ export const hvFlocTree = {
 
 export const hvFlocPreDesigner = function(design) returns map
     {
-
+println("baffle K for H/S of 3 " ~ baffleK(3));
         design.NU = viscosityKinematic(design.TEMP_min);
 
         // Use the minimum of the velocity gradient set as the max for the sed tank to work and the value set by the max head loss.
