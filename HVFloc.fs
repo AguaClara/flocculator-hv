@@ -21,7 +21,7 @@ export const hvFlocTree = {
         designers : {
             pre : hvFlocPreDesigner,
             post : hvFlocPostDesigner,
-            geometry : flocgeometry,
+            geometry : flocGeometry,
         },
         params : {
             ip : "GENERIC",
@@ -142,7 +142,7 @@ export const hvFlocPostDesigner = function(design) returns map
         return design;
     };
 
-export const flocgeometry = function(context is Context, id is Id, design is map)
+export const flocGeometry = function(context is Context, id is Id, design is map)
     {
         const waterSketch = newSketchOnPlane(context, id + "sketch", {
                     "sketchPlane" : XY_PLANE
@@ -163,7 +163,8 @@ export const flocgeometry = function(context is Context, id is Id, design is map
                 "endBound" : BoundingType.BLIND,
                 "endDepth" : design.baffle.S
         });
-
+        
+        
         return design;
     };
 
