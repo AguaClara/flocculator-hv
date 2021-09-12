@@ -154,6 +154,7 @@ export const flocGeometry = function(context is Context, id is Id, design is map
                 });
 
         skSolve(waterSketch);
+        debug(context, waterSketch, DebugColor.RED);
         const myline = sketchEntityQuery(id + "sketch1", EntityType.EDGE, "line1");
         debug(context, myline, DebugColor.RED);
 
