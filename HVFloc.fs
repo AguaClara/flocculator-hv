@@ -21,7 +21,7 @@ export const hvFlocTree = {
         designers : {
             pre : hvFlocPreDesigner,
             post : hvFlocPostDesigner,
-            geometry : flocGeometry,
+            // geometry : flocGeometry,
         },
         params : {
             ip : "GENERIC",
@@ -142,34 +142,34 @@ export const hvFlocPostDesigner = function(design) returns map
         return design;
     };
 
-export const flocGeometry = function(context is Context, id is Id, design is map)
-    {
-        const waterSketch = newSketchOnPlane(context, id + "sketch", {
-                    "sketchPlane" : XY_PLANE
-                });
+// export const flocGeometry = function(context is Context, id is Id, design is map)
+//     {
+//         const waterSketch = newSketchOnPlane(context, id + "sketch", {
+//                     "sketchPlane" : XY_PLANE
+//                 });
 
-        skLineSegment(waterSketch, "line1", {
-                    "start" : vector(0, 0) * inch,
-                    "end" : vector(1, 1) * inch
-                });
+//         skLineSegment(waterSketch, "line1", {
+//                     "start" : vector(0, 0) * inch,
+//                     "end" : vector(1, 1) * inch
+//                 });
 
-        skSolve(waterSketch);
-        debug(context, waterSketch, DebugColor.RED);
-        const myline = sketchEntityQuery(id + "sketch1", EntityType.EDGE, "line1");
-        debug(context, myline, DebugColor.RED);
+//         skSolve(waterSketch);
+//         debug(context, waterSketch, DebugColor.RED);
+//         const myline = sketchEntityQuery(id + "sketch1", EntityType.EDGE, "line1");
+//         debug(context, myline, DebugColor.RED);
 
-        //const waterLine = qSketchFilter(, waterSketch);
+//         //const waterLine = qSketchFilter(, waterSketch);
 
-        opExtrude(context, id + "extrude1", {
-                    "entities" : myline,
-                    "direction" : XY_PLANE.normal,
-                    "endBound" : BoundingType.BLIND,
-                    "endDepth" : design.baffle.S
-                });
+//         opExtrude(context, id + "extrude1", {
+//                     "entities" : myline,
+//                     "direction" : XY_PLANE.normal,
+//                     "endBound" : BoundingType.BLIND,
+//                     "endDepth" : design.baffle.S
+//                 });
 
 
-        return design;
-    };
+//         return design;
+//     };
 
 
 annotation { "Feature Type Name" : "HV Floc" }
