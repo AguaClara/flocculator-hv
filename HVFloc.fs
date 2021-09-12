@@ -161,10 +161,9 @@ function baffleS(design)
     design.baffle = {};
     //design.baffleK = baffleKE(design.maxHS_pi);
     var err = 1.0;
-    design.HS_pi = design.minHS_pi;
-    design = baffleK(design);
-    design.baffle.expH_max = OptimalHE(design);
-    design.expN = ceil(design.outletHW / design.baffle.expH_min); // expansions per baffle
+   
+    design = expH_min(design);
+    design.expN = floor(design.outletHW / design.baffle.expH_min); // expansions per baffle
     design.baffle.expH = design.outletHW / design.expN; //distance between expansions
     design.baffle.S = design.baffle.expH / design.minHS_pi; //first guess
     
@@ -213,9 +212,12 @@ function channelW_min(design is map)
 }
 
 
-function OptimalHE(design is map)
+function expH_min(design is map)
 {
-    return (((design.minHS_pi ^ 2 * design.Qm_max) ^ 3 * design.baffleK / (2 * design.G ^ 2 * design.NU))) ^ (1 / 7);
+     design.HS_pi = design.minHS_pi;
+    design = baffleK(design);
+    design.baffle.expH_min = (((design.minHS_pi ^ 2 * design.Qm_max) ^ 3 * design.baffleK / (2 * design.G ^ 2 * design.NU))) ^ (1 / 7);
+    return design;
 }
 
 function FlocHL(design is map)
