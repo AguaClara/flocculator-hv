@@ -163,7 +163,7 @@ function baffleS(design)
     var err = 1.0;
 
     design = expH_min(design);
-    design.expN = floor(design.outletHW / design.baffle.expH_min); // expansions per baffle
+    design.expN = max(floor(design.outletHW / design.baffle.expH_min),1); // expansions per baffle
     design.baffle.expH = design.outletHW / design.expN; //distance between expansions
     design.baffle.S = design.baffle.expH / design.minHS_pi; //first guess
 
