@@ -39,6 +39,7 @@ export const hvFlocTree = {
             "GT_min" : [0, 35000, 100000],
             "FB" : [0.05, 0.1, 0.5],
             "G_max" : [1, 200, 50000],
+            "etWall" : false,
         },
         execution : { order : ["tank"] },
         children : {
@@ -52,7 +53,7 @@ export const hvFlocTree = {
                     L : "$.L",
                     "W" : "$.channelW",
                     N : "$.channelN",
-                    // left : true,
+                    left : "$.etWall",
                     right : true,
                     front : true,
                     back : true,
