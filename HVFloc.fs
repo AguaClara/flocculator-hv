@@ -139,7 +139,12 @@ export const hvFlocPreDesigner = function(design) returns map
 
 export const hvFlocPostDesigner = function(design) returns map
     {
-        // design.OW = design.baffle.S * design.channelN + design.channelWallT * (design.channelN - 1) + 2 * design.wallT;
+        design.OW = (design.channelW + design.tank.wall.T);
+        if (design.etWall)
+        {
+            design.OW = design.OW + design.tank.wall.T;
+        }
+        design.channelEven = floor(design.channelN/2) == ceil(design.channelN/2);
         return design;
     };
 
