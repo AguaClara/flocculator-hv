@@ -21,7 +21,7 @@ export const hvFlocTree = {
         designers : {
             pre : hvFlocPreDesigner,
             post : hvFlocPostDesigner,
-            // geometry : flocGeometry,
+        // geometry : flocGeometry,
         },
         params : {
             ip : "GENERIC",
@@ -97,10 +97,14 @@ export const hvFlocPreDesigner = function(design) returns map
         design.VOL = design.Qm_max * design.TI;
         design.W_total = design.VOL / (design.L * design.outletHW);
         design.channelW_min = max(channelW_min(design), design.humanChannelW_min);
+        if (design.W_total < design.channelW_min)
+        {
+            design.W_total = design.channelW_min;
+            design.L = design.VOL / (design.W_total * design.outletHW);
+        }
         // need to make sure we don't specify a channel that is wider than the polycarbonate sheets
         design.channelN = max([floor(design.W_total / design.channelW_min), ceil(design.W_total / design.baffleChannelW_max)]); //make sure we don't try zero channels
-        // design.multipleChannel = (design.channelN > 1);
-        // design.morethan2Channels = (design.channelN > 2);
+
         design.channelW = design.W_total / design.channelN;
         design = baffleS(design);
         //design.tankW = (design.channelW + design.channelWallT) * design.channelN - design.channelWallT;
@@ -144,7 +148,7 @@ export const hvFlocPostDesigner = function(design) returns map
         {
             design.OW = design.OW + design.tank.wall.T;
         }
-        design.channelEven = floor(design.channelN/2) == ceil(design.channelN/2);
+        design.channelEven = floor(design.channelN / 2) == ceil(design.channelN / 2);
         return design;
     };
 
