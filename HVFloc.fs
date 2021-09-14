@@ -203,10 +203,10 @@ function baffleS(design)
     //design.baffleK = baffleKE(design.maxHS_pi);
     var err = 1.0;
 
-    design = expH_min(design);
-    design.expN = max(floor(design.outletHW / design.baffle.expH_min), 1); // expansions per baffle
-    design.baffle.expH = design.outletHW / design.expN; //distance between expansions
-    design.baffle.S = design.baffle.expH / design.minHS_pi; //first guess
+    // design = expH_min(design);
+    // design.expN = max(floor(design.outletHW / design.baffle.expH_min), 1); // expansions per baffle
+    // design.baffle.expH = design.outletHW / ceil(design.outletHW / (design.baffle.S * design.maxHS_pi)); //distance between expansions
+    design.baffle.S = 0.01 * meter; //first guess
 
     //println("S is " ~ design.S);
     //println("H/S is" ~ design.baffle.expH / design.S);
