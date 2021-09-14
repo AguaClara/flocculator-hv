@@ -282,17 +282,7 @@ function ChannelHW(design is map)
     channelHW[0] = design.outletHW + baffleHL * design.baffle.spacesN * design.channelN;
     for (var i = 1; i < design.channelN; i += 1)
     {
-        myeven = !myeven;
-        if (myeven)
-        {
-            baffleSpacesN = 1; //one bend as water flows through channel wall
-        }
-        else
-        {
-            baffleSpacesN = 2 * design.baffle.spacesN - 1;
-        }
-
-        channelHW[i] = channelHW[i - 1] - baffleSpacesN * baffleHL;
+        channelHW[i] = channelHW[i - 1] - design.baffle.spacesN * baffleHL;
     }
     return channelHW;
 
