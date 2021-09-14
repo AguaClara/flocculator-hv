@@ -281,10 +281,10 @@ function ChannelHW(design is map)
     var channelHW = makeArray(design.channelN);
     var baffleSpacesN = 0;
     var myeven = true;
-    channelHW[0] = design.outletHW + baffleHL * design.baffle.spacesN * design.channelN;
+    channelHW[0] = design.inletHW;
     for (var i = 1; i < design.channelN; i += 1)
     {
-        channelHW[i] = channelHW[i - 1] - design.baffle.spacesN * baffleHL;
+        channelHW[i] = channelHW[i - 1] - design.baffle.spacesN * design.expN * baffleHL;
     }
     return channelHW;
 
