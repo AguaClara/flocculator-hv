@@ -23,12 +23,13 @@ export const baffleTree =
             channelW : [0.05, 1, 100], //width of channel
             channelL : [0, 1, 200], //length of channel
             FB : [0, 10, 20], //free board
+            baffleT: [0, 0.1, 2] //baffle thickness
         },
         children : {
             "plate" : { //check if this is right
                 tree : sheetTree,
                 inputs : {
-                    T : "$.baffleT", //thickness, this will want to be a user input????
+                    T : "$.baffleT", //thickness, this will want to be a user input?
                     L : "$.baffleL", //length
                     W : "$.baffleW", //width
                     t : "sheet", //type
@@ -41,8 +42,7 @@ export const baffleTree =
 
 export const bafflePreDesigner = function(design) returns map
     {
-        design.baffleT = 1; //user input?
-        design.baffleB = 1; //update! and does this go here?
+        design.baffleB = [0, 1, 10]; //update! and does this go here?
         design.baffleS = design.baffleB - design.baffleT; //spacing between baffles, s = b - t
         design.baffleW = design.channelW; //width of baffle is width of channel
         design.baffleL = design.tankH - design.FB / 2 - design.baffleS; //length = top of tank - (free board/2) - s
