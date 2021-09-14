@@ -226,7 +226,10 @@ function baffleS(design)
         // println("baffleK is " ~ design.baffleK);
         err = abs((design.baffle.S - prevS) / (design.baffle.S + prevS));
     }
-
+design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
+        design.baffle.expH = design.outletHW /design.expN;  //distance between expansions
+        design.HS_pi = design.baffle.expH / design.baffle.S;
+        design = baffleK(design);
     return design;
 }
 
