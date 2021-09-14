@@ -217,7 +217,7 @@ function baffleS(design)
         count += 1;
         prevS = design.baffle.S;
         design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
-        design.baffle.expH = design.outletHW /design.expN;  //distance between expansions
+        design.baffle.expH = design.outletHW / design.expN; //distance between expansions
         design.HS_pi = design.baffle.expH / design.baffle.S;
         design = baffleK(design);
         design.baffle.S = (design.baffleK / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
@@ -226,10 +226,10 @@ function baffleS(design)
         // println("baffleK is " ~ design.baffleK);
         err = abs((design.baffle.S - prevS) / (design.baffle.S + prevS));
     }
-design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
-        design.baffle.expH = design.outletHW /design.expN;  //distance between expansions
-        design.HS_pi = design.baffle.expH / design.baffle.S;
-        design = baffleK(design);
+    design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
+    design.baffle.expH = design.outletHW / design.expN; //distance between expansions
+    design.HS_pi = design.baffle.expH / design.baffle.S;
+    design = baffleK(design);
     return design;
 }
 
