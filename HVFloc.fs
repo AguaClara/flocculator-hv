@@ -216,7 +216,8 @@ function baffleS(design)
     {
         count += 1;
         prevS = design.baffle.S;
-        design.baffle.expH = design.outletHW / ceil(design.outletHW / (design.baffle.S * design.maxHS_pi)); //distance between expansions
+        design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
+        design.baffle.expH = design.outletHW /design.expN;  //distance between expansions
         design.HS_pi = design.baffle.expH / design.baffle.S;
         design = baffleK(design);
         design.baffle.S = (design.baffleK / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
