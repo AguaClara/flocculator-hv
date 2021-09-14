@@ -115,7 +115,7 @@ export const hvFlocPreDesigner = function(design) returns map
         // we will figure out the last channel by simply deleting the last baffle
         design.baffle.T = 0.003 * meter;
         design.baffle.spacesN = floor(design.L / (design.baffle.S + design.baffle.T) / 2) * 2;
-        design.V = design.Qm_max / (design.baffle.S * design.channelW);
+        
 
         //design.outletHW = design.baffle.spacesN * (design.baffle.S + design.baffle.T) - design.baffle.T;
         // actual head loss given actual number of baffles
@@ -230,6 +230,8 @@ function baffleS(design)
     design.baffle.expH = design.outletHW / design.expN; //distance between expansions
     design.HS_pi = design.baffle.expH / design.baffle.S;
     design = baffleK(design);
+    design.V = design.Qm_max / (design.baffle.S * design.channelW);
+    design.expHL = design.baffleK * design.V ^ 2 / (2 * gravity);
     return design;
 }
 
@@ -265,7 +267,7 @@ function expH_min(design is map)
 function FlocHL(design is map)
 {
 
-    return design.expN * design.baffle.spacesN * design.channelN * design.baffleK * design.V ^ 2 / (2 * gravity);
+    return design.expN * design.baffle.spacesN * design.channelN * design.expHL;
 }
 
 /**
