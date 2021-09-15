@@ -35,7 +35,7 @@ export const baffleTree =
                 W : "$.channelW", //width, sheet width same as channel width
                 t : "sheet", //type
                 mat : "PC", //material
-                ip : "app", //implementation partner
+                ip : "$.ip", //implementation partner
             },
         },
         },
