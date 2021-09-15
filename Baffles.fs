@@ -23,7 +23,7 @@ export const baffleTree =
             channelW : [0.05, 1, 100], //width of channel, will be defined in parent via tank info
             channelL : [0, 1, 200], //length of channel, will be defined in parent via tank info
             FB : [0, 10, 20], //free board, will be defined in parent generally
-            baffleT : [0, 0.001, 2], //baffle thickness, will be defined in parent generally
+            baffleT : [0, 0.0008, 2], //baffle thickness, will be defined in parent generally
             baffleS : [1, 5, 10], //baffle spacing, will be calculated in parent
         },
         children : {
