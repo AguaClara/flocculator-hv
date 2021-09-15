@@ -43,7 +43,7 @@ export const hvFlocTree = {
             S : [0, 2, 10], //spacing between baffles
             T : [0, 0.1, 2], //thickness of baffle
         },
-        execution : { order : ["tank", "baffle"] },
+        execution : { order : ["tank"] },
         children : {
             tank : {
                 tree : tankTree,
