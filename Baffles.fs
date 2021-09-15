@@ -19,17 +19,18 @@ export const baffleTree =
         params : {
             rep : true,
             ip : "app",
-            tankH : [1, 2, 200], //height of tank
-            channelW : [0.05, 1, 100], //width of channel
-            channelL : [0, 1, 200], //length of channel
-            FB : [0, 10, 20], //free board
-            baffleT: [0, 0.1, 2] //baffle thickness
+            tankH : [1, 2, 200], //height of tank... will be defined in parent via HVFloc
+            channelW : [0.05, 1, 100], //width of channel, will be defined in parent via HVFloc
+            channelL : [0, 1, 200], //length of channel, will be defined in parent via HVFloc
+            FB : [0, 10, 20], //free board, will be defined in parent generally
+            baffleT: [0, 0.1, 2], //baffle thickness, will be defined in parent generally
+            baffleS: [1, 5, 10], //baffle spacing, will be calculated in parent
         },
         children : {
             "plate" : { //check if this is right
                 tree : sheetTree,
                 inputs : {
-                    T : "$.baffleT", //thickness, this will want to be a user input?
+                    T : "$.baffleT", //thickness
                     L : "$.baffleL", //length
                     W : "$.baffleW", //width
                     t : "sheet", //type
@@ -42,8 +43,6 @@ export const baffleTree =
 
 export const bafflePreDesigner = function(design) returns map
     {
-        design.baffleB = [0, 1, 10]; //update! and does this go here?
-        design.baffleS = design.baffleB - design.baffleT; //spacing between baffles, s = b - t
         design.baffleW = design.channelW; //width of baffle is width of channel
         design.baffleL = design.tankH - design.FB / 2 - design.baffleS; //length = top of tank - (free board/2) - s
         return design;
@@ -51,6 +50,6 @@ export const bafflePreDesigner = function(design) returns map
 
 export const bafflePostDesigner = function(design) returns map
     {
-        design.baffleN = design.channelL / design.baffleS; //number of baffles = length of channel / s ; remember, has to be odd or even
+        design.baffleN = design.channelL / design.baffleS; //total number of baffles = length of channel / s ; remember, has to be odd or even. should this happen 
         return design;
     };
