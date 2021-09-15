@@ -23,8 +23,8 @@ export const baffleTree =
             channelW : [0.05, 1, 100], //width of channel, will be defined in parent via tank info
             channelL : [0, 1, 200], //length of channel, will be defined in parent via tank info
             FB : [0, 10, 20], //free board, will be defined in parent generally
-            baffleT: [0, 0.1, 2], //baffle thickness, will be defined in parent generally
-            baffleS: [1, 5, 10], //baffle spacing, will be calculated in parent
+            baffleT : [0, 0.1, 2], //baffle thickness, will be defined in parent generally
+            baffleS : [1, 5, 10], //baffle spacing, will be calculated in parent
         },
         children : {
             "plate" : { //check if this is right
@@ -50,6 +50,16 @@ export const bafflePreDesigner = function(design) returns map
 
 export const bafflePostDesigner = function(design) returns map
     {
-        design.baffleN = design.channelL / design.baffleS; //total number of baffles = length of channel / s ; remember, has to be odd or even. should this happen 
+        design.baffleN = design.channelL / design.baffleS; //total number of baffles = length of channel / s ; remember, has to be odd or even. should this happen
         return design;
     };
+
+
+annotation { "Feature Type Name" : "Baffle" }
+export const baffleFeature = defineFeature(function(context is Context, id is Id, definition is map)
+    precondition
+    {
+    }
+    {
+        treeInstantiatorFeature(context, id, baffleTree as InputTree);
+    });
