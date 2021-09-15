@@ -41,7 +41,7 @@ export const hvFlocTree = {
             "G_max" : [1, 200, 50000],
             "etWall" : false,
             S : [0, 2, 10], //spacing between baffles
-            T: [0, 0.1, 2], //thickness of baffle
+            T : [0, 0.1, 2], //thickness of baffle
         },
         execution : { order : ["tank", "baffle"] },
         children : {
@@ -74,10 +74,11 @@ export const hvFlocTree = {
                     tankH : [1, 2, 200], //height of tank... will be defined in parent via HVFloc
                     channelW : "$.channelW",
                     channelL : "$.L",
-                    FB : "$.FB", 
-                    baffleT : "$.T", 
-                    baffleS : "$.S", 
-                }, 
+                    FB : "$.FB",
+                    baffleT : "$.T",
+                    baffleS : "$.S",
+                },
+            },
         },
     };
 
