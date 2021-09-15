@@ -19,6 +19,7 @@ export const baffleTree =
         params : {
             rep : true,
             ip : "app",
+            lastchannel: false,
             tankH : [1, 2, 200], //height of tank... will be defined in parent via tank info
             channelW : [0.05, 0.5, 100], //width of channel, will be defined in parent via tank info
             channelL : [0, 7, 200], //length of channel, will be defined in parent via tank info
@@ -44,14 +45,23 @@ export const baffleTree =
 export const bafflePreDesigner = function(design) returns map
     {
         design.baffleL = design.tankH - design.FB / 2 - design.baffleS; //length = top of tank - (free board/2) - s
-        println(design);
         return design;
     };
 
 export const bafflePostDesigner = function(design) returns map
     {
         design.baffleN = design.channelL / design.baffleS; //total number of baffles = length of channel / s ; remember, has to be odd or even. should this happen
+        if ("$.baffleN" = 1)
+        {    if (lastchannel=true)
+        {"$.baffleN"="$.baffleN" - 1}
+        }
+        else
+            {if (lastchannel=false)
+            {"baffleN" = "$baffleN" - 1}
+            }
+        }
         return design;
+        
     };
 
 
@@ -63,3 +73,10 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
     {
         treeInstantiatorFeature(context, id, baffleTree as InputTree);
     });
+
+
+//GOALS w/ baffle
+//1. figure out if channel is last or not
+//2. decide on number of baffles based on that (how does calculated value of baffleS in HVfloc play into this? is the last spacing from baffle to wall allowed to be any spacing?)
+//3. design top baffles (length and og spots are different)
+//4. design bottom baffles
