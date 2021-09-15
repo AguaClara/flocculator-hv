@@ -33,7 +33,7 @@ export const baffleTree =
                 T : "$.baffleT", //thickness
                 L : "$.baffleL", //length
                 W : "$.channelW", //width, sheet width same as channel width
-                // t : "corrugated", //type
+                t : "corrugated", //type
                 mat : "PC", //material
                 ip : "$.ip", //implementation partner
             },
