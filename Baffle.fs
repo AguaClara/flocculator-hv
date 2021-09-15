@@ -51,7 +51,7 @@ export const bafflePreDesigner = function(design) returns map
 export const bafflePostDesigner = function(design) returns map
     {
         design.baffleN = design.channelL / design.baffleS; //total number of baffles = length of channel / s ; remember, has to be odd or even. should this happen
-        if ("$.baffleN" = 1)
+        if ("$.baffleN" = odd) //might have to somehow pull value out? also, how do you code if its odd?
         {    if (lastchannel=true)
         {"$.baffleN"="$.baffleN" - 1}
         }
