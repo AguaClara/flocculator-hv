@@ -40,7 +40,6 @@ export const hvFlocTree = {
             "FB" : [0.05, 0.1, 0.5],
             "G_max" : [1, 200, 50000],
             "etWall" : false,
-            // S : [0, 2, 10], //spacing between baffles
             // T : [0, 0.1, 2], //thickness of baffle
         },
         execution : { order : ["tank"] },
