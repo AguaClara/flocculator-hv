@@ -19,7 +19,7 @@ export const baffleTree =
         params : {
             rep : true,
             ip : "app",
-            tankH : [1, 2, 200], //height of tank... will be defined in parent via tank info
+            tankH : [1, 100, 200], //height of tank... will be defined in parent via tank info
             channelW : [0.05, 1, 100], //width of channel, will be defined in parent via tank info
             channelL : [0, 1, 200], //length of channel, will be defined in parent via tank info
             FB : [0, 10, 20], //free board, will be defined in parent generally
