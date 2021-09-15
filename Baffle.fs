@@ -27,17 +27,17 @@ export const baffleTree =
             baffleS : [0.01, 0.1, 10], //baffle spacing, will be calculated in parent
         },
         children : {
-        // "plate" : { //check if this is right
-        //     tree : sheetTree,
-        //     inputs : {
-        //         T : "$.baffleT", //thickness
-        //         L : "$.baffleL", //length
-        //         W : "$.channelW", //width, sheet width same as channel width
-        //         t : "sheet", //type
-        //         mat : "PC", //material
-        //         ip : "app", //implementation partner
-        //     },
-        // },
+        "plate" : { //check if this is right
+            tree : sheetTree,
+            inputs : {
+                T : "$.baffleT", //thickness
+                L : "$.baffleL", //length
+                W : "$.channelW", //width, sheet width same as channel width
+                t : "sheet", //type
+                mat : "PC", //material
+                ip : "app", //implementation partner
+            },
+        },
         },
     };
 
