@@ -40,8 +40,10 @@ export const hvFlocTree = {
             "FB" : [0.05, 0.1, 0.5],
             "G_max" : [1, 200, 50000],
             "etWall" : false,
+            S : [0, 2, 10], //spacing between baffles
+            T: [0, 0.1, 2], //thickness of baffle
         },
-        execution : { order : ["tank"] },
+        execution : { order : ["tank", "baffle"] },
         children : {
             tank : {
                 tree : tankTree,
@@ -64,6 +66,18 @@ export const hvFlocTree = {
                     portSwap : false,
                 },
             },
+            baffle : {
+                tree : baffleTree,
+                inputs : {
+                    rep : "$.rep",
+                    ip : "$.ip",
+                    tankH : [1, 2, 200], //height of tank... will be defined in parent via HVFloc
+                    channelW : "$.channelW",
+                    channelL : "$.L",
+                    FB : "$.FB", 
+                    baffleT : "$.T", 
+                    baffleS : "$.S", 
+                }, 
         },
     };
 
