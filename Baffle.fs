@@ -44,6 +44,7 @@ export const baffleTree =
 export const bafflePreDesigner = function(design) returns map
     {
         design.baffleL = design.tankH - design.FB / 2 - design.baffleS; //length = top of tank - (free board/2) - s
+        println(design);
         return design;
     };
 
