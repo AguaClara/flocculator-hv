@@ -23,7 +23,7 @@ export const baffleTree =
             channelW : [0.05, 1, 100], //width of channel, will be defined in parent via tank info
             channelL : [0, 1, 200], //length of channel, will be defined in parent via tank info
             FB : [0, 10, 20], //free board, will be defined in parent generally
-            baffleT : [0, 0.1, 2], //baffle thickness, will be defined in parent generally
+            baffleT : [0, 0.001, 2], //baffle thickness, will be defined in parent generally
             baffleS : [1, 5, 10], //baffle spacing, will be calculated in parent
         },
         children : {
@@ -32,9 +32,9 @@ export const baffleTree =
                 inputs : {
                     T : "$.baffleT", //thickness
                     L : "$.baffleL", //length
-                    W : "$.baffleW", //width
+                    W : "$.channelW", //width, sheet width same as channel width
                     t : "sheet", //type
-                    mat : "PVC", //material
+                    mat : "PC", //material
                     ip : "app", //implementation partner
                 },
             },
@@ -43,7 +43,6 @@ export const baffleTree =
 
 export const bafflePreDesigner = function(design) returns map
     {
-        design.baffleW = design.channelW; //width of baffle is width of channel
         design.baffleL = design.tankH - design.FB / 2 - design.baffleS; //length = top of tank - (free board/2) - s
         return design;
     };
