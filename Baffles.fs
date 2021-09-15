@@ -19,9 +19,9 @@ export const baffleTree =
         params : {
             rep : true,
             ip : "app",
-            tankH : [1, 2, 200], //height of tank... will be defined in parent via HVFloc
-            channelW : [0.05, 1, 100], //width of channel, will be defined in parent via HVFloc
-            channelL : [0, 1, 200], //length of channel, will be defined in parent via HVFloc
+            tankH : [1, 2, 200], //height of tank... will be defined in parent via tank info
+            channelW : [0.05, 1, 100], //width of channel, will be defined in parent via tank info
+            channelL : [0, 1, 200], //length of channel, will be defined in parent via tank info
             FB : [0, 10, 20], //free board, will be defined in parent generally
             baffleT: [0, 0.1, 2], //baffle thickness, will be defined in parent generally
             baffleS: [1, 5, 10], //baffle spacing, will be calculated in parent
