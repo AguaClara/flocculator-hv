@@ -46,10 +46,10 @@ export const baffleTree =
 export const bafflePreDesigner = function(design) returns map
     {
         design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS;
-        
-        design.baffletopL = design.tankH - design.FB/2;
-        
-        design.baffleN = floor(design.channelL / design.baffleS); //total number of baffles = length of channel / s ; remember, has to be odd or even. should this happen
+
+        design.baffletopL = design.tankH - design.FB / 2;
+
+        design.baffleN = floor(design.channelL / design.baffleS);
 
         if (design.lastchannel == true)
         {
@@ -63,8 +63,8 @@ export const bafflePreDesigner = function(design) returns map
             }
         }
 
-           return design;
-   
+        return design;
+
     };
 
 export const bafflePostDesigner = function(design) returns map
