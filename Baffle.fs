@@ -44,12 +44,11 @@ export const baffleTree =
 
 export const bafflePreDesigner = function(design) returns map
     {
-        design.baffleL = design.tankH - design.FB / 2 - design.baffleS; //length = top of tank - (free board/2) - s
+        //design.baffleL = design.tankH - design.FB / 2 - design.baffleS; //length = top of tank - (free board/2) - s
+        
+        //note: this is gonna depend on if bottom or top
         return design;
-    };
 
-export const bafflePostDesigner = function(design) returns map
-    {
         design.baffleN = floor(design.channelL / design.baffleS); //total number of baffles = length of channel / s ; remember, has to be odd or even. should this happen
 
         if (design.lastchannel == true)
@@ -64,6 +63,26 @@ export const bafflePostDesigner = function(design) returns map
             }
         }
 
+    };
+
+export const bafflePostDesigner = function(design) returns map
+    {
+        //design bottom baffles:
+            //number of baffles: ceil(baffleN/2)
+            //first baffle placed S distance from wall
+            //repeat @ spacing of 2*baffleS
+            //distance from floor: 0
+            //length: tankH - FB - HL - s
+        
+        //design top baffles:
+            //number of baffles: floor(baffleN/2)
+            //first baffle placed 2*s distance from wall
+            //repeat @ spacing of 2*baffleS
+            //distance from floor: s
+            //length: (tankH - FB/2) - s
+        
+        
+        
         return design;
 
     };
