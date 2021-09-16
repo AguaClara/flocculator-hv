@@ -81,6 +81,6 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 
 //GOALS w/ baffle
 //1. figure out if channel is last or not (DONE)
-//2. decide on number of baffles based on that (how does calculated value of baffleS in HVfloc play into this? is the last spacing from baffle to wall allowed to be any spacing?) last=even, not last=odd
+//2. decide on number of baffles based on that (how does calculated value of baffleS in HVfloc play into this? is the last spacing from baffle to wall allowed to be any spacing?) last=even, not last=odd (DONE!)
 //3. design top baffles (length and og spots are different)
 //4. design bottom baffles
