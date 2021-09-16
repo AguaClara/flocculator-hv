@@ -52,7 +52,7 @@ export const bafflePostDesigner = function(design) returns map
     {
         design.baffleN = floor(design.channelL / design.baffleS); //total number of baffles = length of channel / s ; remember, has to be odd or even. should this happen
 
-        if (lastchannel == true)
+        if (design.lastchannel == true)
         {
             design.baffleN = floor(design.baffleN / 2) * 2;
         }
