@@ -54,13 +54,13 @@ export const bafflePostDesigner = function(design) returns map
        
         if (lastchannel==true)
             {
-                design.baffleN = floor(design.baffleN/2)*2
+                design.baffleN = floor(design.baffleN/2)*2;
                 }
             else
             {
               if  ((floor(design.baffleN / 2) == ceil(design.baffleN / 2)) == true)
               {
-                  design.baffleN = design.baffleN - 1
+                  design.baffleN = design.baffleN - 1;
               }
             }
         }
