@@ -45,11 +45,9 @@ export const baffleTree =
 
 export const bafflePreDesigner = function(design) returns map
     {
-        design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS;
-
-        design.baffletopL = design.tankH - design.FB / 2;
-
-        design.baffleN = floor(design.channelL / design.baffleS);
+        design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle
+        design.baffletopL = design.tankH - design.FB / 2; //length of top baffle
+        design.baffleN = floor(design.channelL / design.baffleS); //total number of baffles
 
         if (design.lastchannel == true)
         {
@@ -62,6 +60,12 @@ export const bafflePreDesigner = function(design) returns map
                 design.baffleN = design.baffleN - 1;
             }
         }
+        
+        design.bafflebottomN = ceil(design.baffleN/2); //number of bottom baffles
+        design.baffletopN = floor(design.baffleN/2); //number of top baffles
+        design.floorbottomS = 0; //distance between bottom of baffle and tank bottom (bottom baffle)
+        design.floortopS = design.baffleS; //distance between bottom of baffle and tank bottom (top baffle)
+        
 
         return design;
 
@@ -70,18 +74,18 @@ export const bafflePreDesigner = function(design) returns map
 export const bafflePostDesigner = function(design) returns map
     {
         //design bottom baffles:
-        //number of baffles: ceil(baffleN/2)
+            //number of baffles: ceil(baffleN/2)... use super part pattern? (PRE)
         //first baffle placed S distance from wall
         //repeat @ spacing of 2*baffleS
-        //distance from floor: 0
-        //length: tankH - FB - HL - s
+            //distance from floor: 0
+            //length: tankH - FB - HL - s (DONE IN PRE)
 
         //design top baffles:
-        //number of baffles: floor(baffleN/2)
+            //number of baffles: floor(baffleN/2)... use super part pattern? (PRE)
         //first baffle placed 2*s distance from wall
         //repeat @ spacing of 2*baffleS
-        //distance from floor: s
-        //length: (tankH - FB/2) - s
+            //distance from floor: s
+            //length: (tankH - FB/2) - s (DONE IN PRE)
 
 
         //SOME QUESTIONS:
@@ -108,3 +112,4 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 //2. decide on number of baffles based on that (how does calculated value of baffleS in HVfloc play into this? is the last spacing from baffle to wall allowed to be any spacing?) last=even, not last=odd (DONE!)
 //3. design top baffles (length and og spots are different)
 //4. design bottom baffles
+//5. 
