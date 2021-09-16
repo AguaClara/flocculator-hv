@@ -26,6 +26,7 @@ export const baffleTree =
             FB : [0, 0.1, 1], //free board, will be defined in parent generally
             baffleT : [0, 0.0008, 2], //baffle thickness, will be defined in parent generally
             baffleS : [0.01, 0.1, 10], //baffle spacing, will be calculated in parent
+            HL_bod : [0, 0.4, 1], //head loss, defined in parent
         },
         children : {
             "plate" : { //check if this is right
@@ -44,11 +45,10 @@ export const baffleTree =
 
 export const bafflePreDesigner = function(design) returns map
     {
-        //design.baffleL = design.tankH - design.FB / 2 - design.baffleS; //length = top of tank - (free board/2) - s
+        design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS;
         
-        //note: this is gonna depend on if bottom or top
-        return design;
-
+        design.baffletopL = design.tankH - design.FB/2;
+        
         design.baffleN = floor(design.channelL / design.baffleS); //total number of baffles = length of channel / s ; remember, has to be odd or even. should this happen
 
         if (design.lastchannel == true)
@@ -63,26 +63,31 @@ export const bafflePreDesigner = function(design) returns map
             }
         }
 
+           return design;
+   
     };
 
 export const bafflePostDesigner = function(design) returns map
     {
         //design bottom baffles:
-            //number of baffles: ceil(baffleN/2)
-            //first baffle placed S distance from wall
-            //repeat @ spacing of 2*baffleS
-            //distance from floor: 0
-            //length: tankH - FB - HL - s
-        
+        //number of baffles: ceil(baffleN/2)
+        //first baffle placed S distance from wall
+        //repeat @ spacing of 2*baffleS
+        //distance from floor: 0
+        //length: tankH - FB - HL - s
+
         //design top baffles:
-            //number of baffles: floor(baffleN/2)
-            //first baffle placed 2*s distance from wall
-            //repeat @ spacing of 2*baffleS
-            //distance from floor: s
-            //length: (tankH - FB/2) - s
-        
-        
-        
+        //number of baffles: floor(baffleN/2)
+        //first baffle placed 2*s distance from wall
+        //repeat @ spacing of 2*baffleS
+        //distance from floor: s
+        //length: (tankH - FB/2) - s
+
+
+        //SOME QUESTIONS:
+        //how do we locate the baffles? I am assuming we will have to place them in relation to some sort of plane
+
+
         return design;
 
     };
