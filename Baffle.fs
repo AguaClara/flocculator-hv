@@ -19,7 +19,7 @@ export const baffleTree =
         params : {
             rep : true,
             ip : "app",
-            lastchannel: false,
+            lastchannel : false,
             tankH : [1, 2, 200], //height of tank... will be defined in parent via tank info
             channelW : [0.05, 0.5, 100], //width of channel, will be defined in parent via tank info
             channelL : [0, 7, 200], //length of channel, will be defined in parent via tank info
@@ -28,17 +28,17 @@ export const baffleTree =
             baffleS : [0.01, 0.1, 10], //baffle spacing, will be calculated in parent
         },
         children : {
-        "plate" : { //check if this is right
-            tree : sheetTree,
-            inputs : {
-                T : "$.baffleT", //thickness
-                L : "$.baffleL", //length
-                W : "$.channelW", //width, sheet width same as channel width
-                t : "corrugated", //type
-                mat : "PC", //material
-                ip : "$.ip", //implementation partner
+            "plate" : { //check if this is right
+                tree : sheetTree,
+                inputs : {
+                    T : "$.baffleT", //thickness
+                    L : "$.baffleL", //length
+                    W : "$.channelW", //width, sheet width same as channel width
+                    t : "corrugated", //type
+                    mat : "PC", //material
+                    ip : "$.ip", //implementation partner
+                },
             },
-        },
         },
     };
 
@@ -51,21 +51,21 @@ export const bafflePreDesigner = function(design) returns map
 export const bafflePostDesigner = function(design) returns map
     {
         design.baffleN = floor(design.channelL / design.baffleS); //total number of baffles = length of channel / s ; remember, has to be odd or even. should this happen
-       
-        if (lastchannel==true)
+
+        if (lastchannel == true)
+        {
+            design.baffleN = floor(design.baffleN / 2) * 2;
+        }
+        else
+        {
+            if ((floor(design.baffleN / 2) == ceil(design.baffleN / 2)) == true)
             {
-                design.baffleN = floor(design.baffleN/2)*2;
-                }
-            else
-            {
-              if  ((floor(design.baffleN / 2) == ceil(design.baffleN / 2)) == true)
-              {
-                  design.baffleN = design.baffleN - 1;
-              }
+                design.baffleN = design.baffleN - 1;
             }
         }
+
         return design;
-        
+
     };
 
 
