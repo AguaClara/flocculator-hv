@@ -83,6 +83,7 @@ export const bafflePreDesigner = function(design) returns map
         //holes
         design.tophedgeD = 0.1*meter; //horizontal edge distance from middle of top hole  
         design.topvedgeD = 0.1*meter; //vertical edge distance from middle of top hole
+        design.pipeOD = pipe.OD; //sedimentor -> manifold -> line 134 (ask monroe about this!)
 
         return design;
 
