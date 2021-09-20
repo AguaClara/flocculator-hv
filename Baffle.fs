@@ -56,6 +56,8 @@ export const baffleTree =
 
 export const bafflePreDesigner = function(design) returns map
     {
+        
+        //sheet
         design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle
         design.baffletopL = design.tankH - design.FB / 2; //length of top baffle
         design.baffleN = floor(design.channelL / design.baffleS); //total number of baffles
@@ -77,6 +79,10 @@ export const bafflePreDesigner = function(design) returns map
         design.floorbottomS = 0*meter; //distance between bottom of baffle and tank bottom (bottom baffle)
         design.floortopS = design.baffleS; //distance between bottom of baffle and tank bottom (top baffle)
 
+
+        //holes
+        design.horizedgeD = 0.1*meter; //horizontal edge distance from middle of hole  
+        design.vertedgeD = 0.1*meter; //vertical edge distance from middle of hole
 
         return design;
 
@@ -103,3 +109,14 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 
 
 
+//to do list
+//1. holes into baffle (based on sedimentation)
+    //what is the edge distance? distance from top/bottom for top/bottom?
+    //top/bottom holes a function of the width of the baffles
+        //need variables for distance to edge and bottom/top, hole size (from 1/2")
+    //holes for spacers: function of height and spacings
+    //what is the distance between holes?
+    //how many rows? 0 or 1 for now
+//2. washers into baffle (make out of sheets, remove/extrude)
+//3. pipes that go through baffles
+//4. spacer half pipes
