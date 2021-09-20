@@ -86,7 +86,7 @@ export const bafflePreDesigner = function(design) returns map
         design.hedgeD = 0.1*meter; //horizontal edge distance from middle of hole  
         design.pipecolS = (design.channelW - 2*design.hedgeD)/(design.pipecolN - 1); //pipe column spacing
         design.topvedgeD = 0.1*meter; //vertical edge distance from middle of top hole
-        design.botvedgeD = 0.1*meter; //vertical edge distance from middle of bottom hole
+        design.botvedgeD = 0.15*meter; //vertical edge distance from middle of bottom hole
 
         return design;
 
