@@ -90,7 +90,7 @@ export const bafflePreDesigner = function(design) returns map
         
         //holes - middle
         design.pipemidrowN = 0; //number of middle spacer rows dependent on spacing & height
-        design.piperowS = (design.bafflebottomL - design.baffleS)/(design.pipemidrowN + 1) + design.baffleS; //spacing between mid rows, and also from edges
+        design.piperowS = (design.bafflebottomL - design.baffleS)/(design.pipemidrowN + 1) + design.baffleS - design.botvedgeD; //spacing from midpoint of bottom pipe
         
         //which of these are dependent on which?
 
