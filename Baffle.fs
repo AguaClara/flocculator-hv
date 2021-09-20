@@ -29,11 +29,22 @@ export const baffleTree =
             HL_bod : [0, 0.4, 1], //head loss, defined in parent
         },
         children : {
-            "plate" : { //check if this is right
+            "bottom" : {
                 tree : sheetTree,
                 inputs : {
                     T : "$.baffleT", //thickness
-                    L : "$.baffleL", //length
+                    L : "$.bafflebottomL", //length
+                    W : "$.channelW", //width, sheet width same as channel width
+                    t : "corrugated", //type
+                    mat : "PC", //material
+                    ip : "$.ip", //implementation partner
+                },
+            },
+            "top" : {
+                tree : sheetTree,
+                inputs : {
+                    T : "$.baffleT", //thickness
+                    L : "$.baffletopL", //length
                     W : "$.channelW", //width, sheet width same as channel width
                     t : "corrugated", //type
                     mat : "PC", //material
@@ -60,12 +71,12 @@ export const bafflePreDesigner = function(design) returns map
                 design.baffleN = design.baffleN - 1;
             }
         }
-        
-        design.bafflebottomN = ceil(design.baffleN/2); //number of bottom baffles
-        design.baffletopN = floor(design.baffleN/2); //number of top baffles
+
+        design.bafflebottomN = ceil(design.baffleN / 2); //number of bottom baffles
+        design.baffletopN = floor(design.baffleN / 2); //number of top baffles
         design.floorbottomS = 0; //distance between bottom of baffle and tank bottom (bottom baffle)
         design.floortopS = design.baffleS; //distance between bottom of baffle and tank bottom (top baffle)
-        
+
 
         return design;
 
@@ -74,18 +85,18 @@ export const bafflePreDesigner = function(design) returns map
 export const bafflePostDesigner = function(design) returns map
     {
         //design bottom baffles:
-            //number of baffles: ceil(baffleN/2)... use super part pattern? (PRE)
+        //number of baffles: ceil(baffleN/2)... use super part pattern? (PRE)
         //first baffle placed S distance from wall
         //repeat @ spacing of 2*baffleS
-            //distance from floor: 0
-            //length: tankH - FB - HL - s (DONE IN PRE)
+        //distance from floor: 0
+        //length: tankH - FB - HL - s (DONE IN PRE)
 
         //design top baffles:
-            //number of baffles: floor(baffleN/2)... use super part pattern? (PRE)
+        //number of baffles: floor(baffleN/2)... use super part pattern? (PRE)
         //first baffle placed 2*s distance from wall
         //repeat @ spacing of 2*baffleS
-            //distance from floor: s
-            //length: (tankH - FB/2) - s (DONE IN PRE)
+        //distance from floor: s
+        //length: (tankH - FB/2) - s (DONE IN PRE)
 
 
         //SOME QUESTIONS:
@@ -112,4 +123,7 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 //2. decide on number of baffles based on that (how does calculated value of baffleS in HVfloc play into this? is the last spacing from baffle to wall allowed to be any spacing?) last=even, not last=odd (DONE!)
 //3. design top baffles (length and og spots are different)
 //4. design bottom baffles
-//5. 
+//5. draw top baffle
+//6. copy top baffle via part pattern
+//7. draw bottom baffle. do I have to make two children in order to do this?
+//8. copy bottom baffle via part pattern
