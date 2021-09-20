@@ -89,7 +89,7 @@ export const bafflePreDesigner = function(design) returns map
         design.botvedgeD = 0.15*meter; //vertical edge distance from middle of bottom hole
         
         //holes - middle
-        design.piperowS = 0*meter; //change
+        design.piperowS = 0.2*meter; //change
         design.pipemidrowN = 1; //change?
         
         //which of these are dependent on which?
