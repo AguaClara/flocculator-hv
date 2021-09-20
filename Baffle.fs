@@ -81,8 +81,8 @@ export const bafflePreDesigner = function(design) returns map
 
 
         //holes
-        design.tophorizedgeD = 0.1*meter; //horizontal edge distance from middle of hole  
-        design.topvertedgeD = 0.1*meter; //vertical edge distance from middle of hole
+        design.tophedgeD = 0.1*meter; //horizontal edge distance from middle of top hole  
+        design.topvedgeD = 0.1*meter; //vertical edge distance from middle of top hole
 
         return design;
 
