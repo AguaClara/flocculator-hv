@@ -99,10 +99,6 @@ export const bafflePostDesigner = function(design) returns map
         //length: (tankH - FB/2) - s (DONE IN PRE)
 
 
-        //SOME QUESTIONS:
-        //how do we locate the baffles? I am assuming we will have to place them in relation to some sort of plane
-
-
         return design;
 
     };
