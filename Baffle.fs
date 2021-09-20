@@ -84,20 +84,6 @@ export const bafflePreDesigner = function(design) returns map
 
 export const bafflePostDesigner = function(design) returns map
     {
-        //design bottom baffles:
-        //number of baffles: ceil(baffleN/2)... use super part pattern? (PRE)
-        //first baffle placed S distance from wall
-        //repeat @ spacing of 2*baffleS
-        //distance from floor: 0
-        //length: tankH - FB - HL - s (DONE IN PRE)
-
-        //design top baffles:
-        //number of baffles: floor(baffleN/2)... use super part pattern? (PRE)
-        //first baffle placed 2*s distance from wall
-        //repeat @ spacing of 2*baffleS
-        //distance from floor: s
-        //length: (tankH - FB/2) - s (DONE IN PRE)
-
 
         return design;
 
@@ -112,14 +98,3 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
     {
         treeInstantiatorFeature(context, id, baffleTree as InputTree);
     });
-
-
-//GOALS w/ baffle
-//1. figure out if channel is last or not (DONE)
-//2. decide on number of baffles based on that (how does calculated value of baffleS in HVfloc play into this? is the last spacing from baffle to wall allowed to be any spacing?) last=even, not last=odd (DONE!)
-//3. design top baffles (length and og spots are different)
-//4. design bottom baffles
-//5. draw top baffle
-//6. copy top baffle via part pattern
-//7. draw bottom baffle. do I have to make two children in order to do this?
-//8. copy bottom baffle via part pattern
