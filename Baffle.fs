@@ -81,9 +81,11 @@ export const bafflePreDesigner = function(design) returns map
 
 
         //holes
+        design.pipeOD = 0.02*meter; //sedimentor -> manifold -> line 134 (ask monroe about this!)
         design.tophedgeD = 0.1*meter; //horizontal edge distance from middle of top hole  
         design.topvedgeD = 0.1*meter; //vertical edge distance from middle of top hole
-        design.pipeOD = 0.02*meter; //sedimentor -> manifold -> line 134 (ask monroe about this!)
+        design.pipecolN = ceil(design.channelW/(0.25*meter)); //random equation for number of pipe columns
+        design.pipecolS = (design.channelW - 2*design.tophedgeD)/(design.pipecolN-1); //pipe column spacing
 
         return design;
 
