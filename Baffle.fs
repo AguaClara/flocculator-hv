@@ -89,8 +89,8 @@ export const bafflePreDesigner = function(design) returns map
         design.botvedgeD = 0.15*meter; //vertical edge distance from middle of bottom hole
         
         //holes - middle
-        design.piperowS = 0.2*meter; //change
-        design.pipemidrowN = 1; //change?
+        design.pipemidrowN = 1; //dependent on spacing & height
+        design.piperowS = (design.bafflebottomL - design.baffleS)/(design.pipemidrowN + 1);
         
         //which of these are dependent on which?
 
@@ -124,9 +124,8 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
     //what is the edge distance? distance from top/bottom for top/bottom?
     //top/bottom holes a function of the width of the baffles
         //need variables for distance to edge and bottom/top, hole size (from 1/2")
-    //holes for spacers: function of height and spacings
     //what is the distance between holes?
-    //how many rows? 0 or 1 for now
+    //how many rows of spacers? 0 or 1 for now, function of height and spacings
 //2. washers into baffle (make out of sheets, remove/extrude)
 //3. pipes that go through baffles
 //4. spacer half pipes
