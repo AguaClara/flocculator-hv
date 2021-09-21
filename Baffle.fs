@@ -100,15 +100,15 @@ export const bafflePreDesigner = function(design) returns map
         //holes - top & bottom
         design.pipe = {};
         design.pipe.OD = 0.048 * meter; //sedimentor -> manifold -> line 134 (ask monroe about this!)
-        design.pipecolN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns
-        design.hedgeD = 0.1 * meter; //horizontal edge distance from middle of hole
-        design.pipecolS = (design.channelW - 2 * design.hedgeD) / (design.pipecolN - 1); //pipe column spacing
-        design.topvedgeD = 0.1 * meter; //vertical edge distance from middle of top hole
-        design.botvedgeD = 0.15 * meter; //vertical edge distance from middle of bottom hole
+        design.pipe.colN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns
+        design.pipe.hedgeD = 0.1 * meter; //horizontal edge distance from middle of hole
+        design.pipe.colS = (design.channelW - 2 * design.hedgeD) / (design.pipecolN - 1); //pipe column spacing
+        design.pipe.topvedgeD = 0.1 * meter; //vertical edge distance from middle of top hole
+        design.pipe.botvedgeD = 0.15 * meter; //vertical edge distance from middle of bottom hole
 
         //holes - middle
-        design.pipemidrowN = 1; //number of middle spacer rows dependent on spacing & height
-        design.piperowS = (design.bafflebottomL - design.baffleS) / (design.pipemidrowN + 1) + design.baffleS - design.botvedgeD; //spacing from midpoint of bottom pipe
+        design.pipe.midrowN = 1; //number of middle spacer rows dependent on spacing & height
+        design.pipe.rowS = (design.bafflebottomL - design.baffleS) / (design.pipemidrowN + 1) + design.baffleS - design.botvedgeD; //spacing from midpoint of bottom pipe
 
         //washers
         design.washerID = design.pipe.OD; 
