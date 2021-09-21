@@ -88,8 +88,8 @@ export const bafflePreDesigner = function(design) returns map
             }
         }
 
-        design.bafflebottomN = ceil(design.baffleN / 2); //number of bottom baffles
-        design.baffletopN = floor(design.baffleN / 2); //number of top baffles
+        design.bottom.N = ceil(design.baffleN / 2); //number of bottom baffles
+        design.top.N = floor(design.baffleN / 2); //number of top baffles
         design.floorbottomS = 0 * meter; //distance between bottom of baffle and tank bottom (bottom baffle)
         design.floortopS = design.baffleS; //distance between bottom of baffle and tank bottom (top baffle)
 
