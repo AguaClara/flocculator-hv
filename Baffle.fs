@@ -27,6 +27,8 @@ export const baffleTree =
             baffleT : [0, 0.0008, 2], //baffle thickness, will be defined in parent generally
             baffleS : [0.01, 0.1, 10], //baffle spacing, will be calculated in parent
             HL_bod : [0, 0.4, 1], //head loss, defined in parent
+            washerT : [0.025, 0.050, 0.2], //washer thickness
+            washerD : [0.125, 1, 2], //washer diameter
         },
         children : {
             "bottom" : {
@@ -55,8 +57,8 @@ export const baffleTree =
                 tree : sheetTree,
                 inputs : {
                     T : "$.washerT", //thickness
-                    L : "$.washerW", //outer washer width
-                    W : "$.washerW", //outer washer width
+                    L : "$.washerD", //outer washer width
+                    W : "$.washerD", //outer washer width
                     t : "sheet", //type... CONFIRM
                     mat : "SS", //material... CONFIRM
                     ip : "$.ip", //implementation partner
@@ -137,5 +139,6 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 //what is the distance between holes?
 //how many rows of spacers? 0 or 1 for now, function of height and spacings
 //2. washers into baffle (make out of sheets, remove/extrude)
+    //only put upstream
 //3. pipes that go through baffles
 //4. spacer half pipes
