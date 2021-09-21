@@ -113,7 +113,7 @@ export const bafflePreDesigner = function(design) returns map
         //washers
         design.washer = {};
         design.washer.ID = design.pipe.OD; 
-        design.washer.OD = design.washer.ID + design.washer.ID*0.5; //ADJUST
+        design.washerOD = design.washer.ID + design.washer.ID*0.5; //ADJUST
         
         if (design.flowfront == true)
             { 
