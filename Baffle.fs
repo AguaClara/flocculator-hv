@@ -28,7 +28,7 @@ export const baffleTree =
             baffleS : [0.01, 0.1, 10], //baffle spacing, will be calculated in parent
             HL_bod : [0, 0.4, 1], //head loss, defined in parent
             washerT : [0.025, 0.050, 0.2], //washer thickness
-            washerD : [0.125, 1, 2], //washer diameter
+            washerOD : [0.125, 1, 2], //washer diameter
         },
         children : {
             "bottom" : {
@@ -57,8 +57,8 @@ export const baffleTree =
                 tree : sheetTree,
                 inputs : {
                     T : "$.washerT", //thickness
-                    L : "$.washerD", //outer washer width
-                    W : "$.washerD", //outer washer width
+                    L : "$.washerOD", //outer washer width
+                    W : "$.washerOD", //outer washer width
                     t : "sheet", //type... CONFIRM
                     mat : "SS", //material... CONFIRM
                     ip : "$.ip", //implementation partner
@@ -104,6 +104,10 @@ export const bafflePreDesigner = function(design) returns map
         //holes - middle
         design.pipemidrowN = 1; //number of middle spacer rows dependent on spacing & height
         design.piperowS = (design.bafflebottomL - design.baffleS) / (design.pipemidrowN + 1) + design.baffleS - design.botvedgeD; //spacing from midpoint of bottom pipe
+
+        //washers
+        design.washerID = design.pipeOD; 
+        design.washerOD = design.washerID + 0.05*meter;
 
 
         return design;
