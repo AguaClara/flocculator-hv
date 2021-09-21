@@ -112,11 +112,11 @@ export const bafflePreDesigner = function(design) returns map
         
         if (design.flowfront == true)
             { 
-               washerS = design.washerT; //placement of washer against baffle
+               design.washerS = design.washerT; //placement of washer against baffle
             }
         else
             {
-                washerS = design.baffleT;
+                design.washerS = design.baffleT;
             }
             
         return design;
