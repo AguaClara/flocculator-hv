@@ -111,16 +111,17 @@ export const bafflePreDesigner = function(design) returns map
         design.pipe.rowS = (design.bafflebottomL - design.baffleS) / (design.pipe.midrowN + 1) + design.baffleS - design.pipe.botvedgeD; //spacing from midpoint of bottom pipe
 
         //washers
-        design.washerID = design.pipe.OD; 
-        design.washerOD = design.washerID + design.washerID*0.5; //ADJUST
+        design.washer = {};
+        design.washer.ID = design.pipe.OD; 
+        design.washer.OD = design.washer.ID + design.washer.ID*0.5; //ADJUST
         
         if (design.flowfront == true)
             { 
-               design.washerS = design.washerT; //placement of washer against baffle
+               design.washer.tobaffleS = design.washerT; //placement of washer against baffle
             }
         else
             {
-                design.washerS = -design.baffleT;
+                design.washer.tobaffleS = -design.baffleT;
             }
             
         return design;
