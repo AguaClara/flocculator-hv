@@ -43,11 +43,22 @@ export const baffleTree =
             "top" : {
                 tree : sheetTree,
                 inputs : {
-                    T : "$.baffleT", //thickness
-                    L : "$.baffletopL", //length
-                    W : "$.channelW", //width, sheet width same as channel width
-                    t : "corrugated", //type
-                    mat : "PC", //material
+                    T : "$.baffleT",
+                    L : "$.baffletopL", 
+                    W : "$.channelW", 
+                    t : "corrugated", 
+                    mat : "PC",
+                    ip : "$.ip", 
+                },
+            },
+            "washer" : {
+                tree : sheetTree,
+                inputs : {
+                    T : "$.washerT", //thickness
+                    L : "$.washerW", //outer washer width
+                    W : "$.washerW", //outer washer width
+                    t : "corrugated", //type... adjust type according to parts list
+                    mat : "PC", //material... adjust material
                     ip : "$.ip", //implementation partner
                 },
             },
@@ -56,7 +67,7 @@ export const baffleTree =
 
 export const bafflePreDesigner = function(design) returns map
     {
-        
+
         //sheet
         design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle
         design.baffletopL = design.tankH - design.FB / 2; //length of top baffle
@@ -76,22 +87,22 @@ export const bafflePreDesigner = function(design) returns map
 
         design.bafflebottomN = ceil(design.baffleN / 2); //number of bottom baffles
         design.baffletopN = floor(design.baffleN / 2); //number of top baffles
-        design.floorbottomS = 0*meter; //distance between bottom of baffle and tank bottom (bottom baffle)
+        design.floorbottomS = 0 * meter; //distance between bottom of baffle and tank bottom (bottom baffle)
         design.floortopS = design.baffleS; //distance between bottom of baffle and tank bottom (top baffle)
 
 
         //holes - top & bottom
-        design.pipeOD = 0.02*meter; //sedimentor -> manifold -> line 134 (ask monroe about this!)
-        design.pipecolN = ceil(design.channelW/(0.25*meter)); //random equation for number of pipe columns
-        design.hedgeD = 0.1*meter; //horizontal edge distance from middle of hole  
-        design.pipecolS = (design.channelW - 2*design.hedgeD)/(design.pipecolN - 1); //pipe column spacing
-        design.topvedgeD = 0.1*meter; //vertical edge distance from middle of top hole
-        design.botvedgeD = 0.15*meter; //vertical edge distance from middle of bottom hole
-        
+        design.pipeOD = 0.02 * meter; //sedimentor -> manifold -> line 134 (ask monroe about this!)
+        design.pipecolN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns
+        design.hedgeD = 0.1 * meter; //horizontal edge distance from middle of hole
+        design.pipecolS = (design.channelW - 2 * design.hedgeD) / (design.pipecolN - 1); //pipe column spacing
+        design.topvedgeD = 0.1 * meter; //vertical edge distance from middle of top hole
+        design.botvedgeD = 0.15 * meter; //vertical edge distance from middle of bottom hole
+
         //holes - middle
         design.pipemidrowN = 1; //number of middle spacer rows dependent on spacing & height
-        design.piperowS = (design.bafflebottomL - design.baffleS)/(design.pipemidrowN + 1) + design.baffleS - design.botvedgeD; //spacing from midpoint of bottom pipe
-        
+        design.piperowS = (design.bafflebottomL - design.baffleS) / (design.pipemidrowN + 1) + design.baffleS - design.botvedgeD; //spacing from midpoint of bottom pipe
+
 
         return design;
 
@@ -120,11 +131,11 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 
 //to do list
 //1. holes into baffle (based on sedimentation)
-    //what is the edge distance? distance from top/bottom for top/bottom?
-    //top/bottom holes a function of the width of the baffles
-        //need variables for distance to edge and bottom/top, hole size (from 1/2")
-    //what is the distance between holes?
-    //how many rows of spacers? 0 or 1 for now, function of height and spacings
+//what is the edge distance? distance from top/bottom for top/bottom?
+//top/bottom holes a function of the width of the baffles
+//need variables for distance to edge and bottom/top, hole size (from 1/2")
+//what is the distance between holes?
+//how many rows of spacers? 0 or 1 for now, function of height and spacings
 //2. washers into baffle (make out of sheets, remove/extrude)
 //3. pipes that go through baffles
 //4. spacer half pipes
