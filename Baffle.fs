@@ -116,7 +116,7 @@ export const bafflePreDesigner = function(design) returns map
             }
         else
             {
-                design.washerS = design.baffleT;
+                design.washerS = -design.baffleT;
             }
             
         return design;
