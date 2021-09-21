@@ -35,8 +35,8 @@ export const baffleTree =
             "bottom" : {
                 tree : sheetTree,
                 inputs : {
-                    T : "$.baffleT", //thickness
-                    L : "$.bafflebottomL", //length
+                    T : "$.baffle.T", //thickness
+                    L : "$.baffle.bottomL", //length
                     W : "$.channelW", //width, sheet width same as channel width
                     t : "corrugated", //type
                     mat : "PC", //material
@@ -46,8 +46,8 @@ export const baffleTree =
             "top" : {
                 tree : sheetTree,
                 inputs : {
-                    T : "$.baffleT",
-                    L : "$.baffletopL", 
+                    T : "$.baffle.T",
+                    L : "$.baffle.topL", 
                     W : "$.channelW", 
                     t : "corrugated", 
                     mat : "PC",
@@ -72,26 +72,26 @@ export const bafflePreDesigner = function(design) returns map
     {
 
         //sheet
-        design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle
-        design.baffletopL = design.tankH - design.FB / 2; //length of top baffle
-        design.baffleN = floor(design.channelL / design.baffleS); //total number of baffles
+        design.baffle.bottomL = design.tankH - design.FB - design.HL_bod - design.baffle.S; //length of bottom baffle
+        design.baffle.topL = design.tankH - design.FB / 2; //length of top baffle
+        design.baffle.N = floor(design.channelL / design.baffle.S); //total number of baffles
 
         if (design.lastchannel == true)
         {
-            design.baffleN = floor(design.baffleN / 2) * 2;
+            design.baffle.N = floor(design.baffle.N / 2) * 2;
         }
         else
         {
-            if ((floor(design.baffleN / 2) == ceil(design.baffleN / 2)) == true)
+            if ((floor(design.baffle.N / 2) == ceil(design.baffle.N / 2)) == true)
             {
-                design.baffleN = design.baffleN - 1;
+                design.baffle.N = design.baffle.N - 1;
             }
         }
 
-        design.bafflebottomN = ceil(design.baffleN / 2); //number of bottom baffles
-        design.baffletopN = floor(design.baffleN / 2); //number of top baffles
-        design.floorbottomS = 0 * meter; //distance between bottom of baffle and tank bottom (bottom baffle)
-        design.floortopS = design.baffleS; //distance between bottom of baffle and tank bottom (top baffle)
+        design.baffle.bottomN = ceil(design.baffle.N / 2); //number of bottom baffles
+        design.baffle.topN = floor(design.baffle.N / 2); //number of top baffles
+        design.baffle.floorbottomS = 0 * meter; //distance between bottom of baffle and tank bottom (bottom baffle)
+        design.baffle.floortopS = design.baffle.S; //distance between bottom of baffle and tank bottom (top baffle)
 
 
         //holes - top & bottom
