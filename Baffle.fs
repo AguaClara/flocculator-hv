@@ -98,7 +98,8 @@ export const bafflePreDesigner = function(design) returns map
 
 
         //holes - top & bottom
-        design.pipeOD = 0.048 * meter; //sedimentor -> manifold -> line 134 (ask monroe about this!)
+        design.pipe = {};
+        design.pipe.OD = 0.048 * meter; //sedimentor -> manifold -> line 134 (ask monroe about this!)
         design.pipecolN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns
         design.hedgeD = 0.1 * meter; //horizontal edge distance from middle of hole
         design.pipecolS = (design.channelW - 2 * design.hedgeD) / (design.pipecolN - 1); //pipe column spacing
@@ -110,7 +111,7 @@ export const bafflePreDesigner = function(design) returns map
         design.piperowS = (design.bafflebottomL - design.baffleS) / (design.pipemidrowN + 1) + design.baffleS - design.botvedgeD; //spacing from midpoint of bottom pipe
 
         //washers
-        design.washerID = design.pipeOD; 
+        design.washerID = design.pipe.OD; 
         design.washerOD = design.washerID + design.washerID*0.5; //ADJUST
         
         if (design.flowfront == true)
