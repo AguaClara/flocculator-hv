@@ -57,8 +57,8 @@ export const baffleTree =
                     T : "$.washerT", //thickness
                     L : "$.washerW", //outer washer width
                     W : "$.washerW", //outer washer width
-                    t : "corrugated", //type... adjust type according to parts list
-                    mat : "PC", //material... adjust material
+                    t : "sheet", //type... CONFIRM
+                    mat : "SS", //material... CONFIRM
                     ip : "$.ip", //implementation partner
                 },
             },
