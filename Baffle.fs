@@ -28,7 +28,7 @@ export const baffleTree =
             baffleS : [0.01, 0.1, 10], //baffle spacing, will be calculated in parent
             HL_bod : [0, 0.4, 1], //head loss, defined in parent
             washerT : [0.025, 0.050, 0.2], //washer thickness
-            washerOD : [0.125, 1, 2], //washer diameter
+            washerOD : [0.125, 1, 3], //washer diameter
         },
         children : {
             "bottom" : {
