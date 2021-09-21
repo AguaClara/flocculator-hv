@@ -59,8 +59,8 @@ export const baffleTree =
                     T : "$.washerT", //thickness
                     L : "$.washerOD", //outer washer width
                     W : "$.washerOD", //outer washer width
-                    t : "sheet", //type... CONFIRM
-                    mat : "PVC", //material... CONFIRM
+                    t : "sheet", //type
+                    mat : "PVC", //material
                     ip : "$.ip", //implementation partner
                 },
             },
