@@ -19,7 +19,7 @@ export const baffleTree =
         params : {
             rep : true,
             ip : "app",
-            lastchannel : false;
+            lastchannel : false,
             tankH : [1, 2, 200], //height of tank... will be defined in parent via tank info
             channelW : [0.05, 0.5, 100], //width of channel, will be defined in parent via tank info
             channelL : [0, 7, 200], //length of channel, will be defined in parent via tank info
