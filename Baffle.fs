@@ -108,7 +108,7 @@ export const bafflePreDesigner = function(design) returns map
 
         //holes - middle
         design.pipe.midrowN = 1; //number of middle spacer rows dependent on spacing & height
-        design.pipe.rowS = (design.bafflebottomL - design.baffleS) / (design.pipe.midrowN + 1) + design.baffleS - design.botvedgeD; //spacing from midpoint of bottom pipe
+        design.pipe.rowS = (design.bafflebottomL - design.baffleS) / (design.pipe.midrowN + 1) + design.baffleS - design.pipe.botvedgeD; //spacing from midpoint of bottom pipe
 
         //washers
         design.washerID = design.pipe.OD; 
