@@ -25,8 +25,8 @@ export const baffleTree =
             channelW : [0.05, 0.5, 100], //width of channel, will be defined in parent via tank info
             channelL : [0, 7, 200], //length of channel, will be defined in parent via tank info
             FB : [0, 0.1, 1], //free board, will be defined in parent generally
-            baffle.T : [0, 0.0008, 2], //baffle thickness, will be defined in parent generally
-            baffle.S : [0.01, 0.1, 10], //baffle spacing, will be calculated in parent
+            baffleT : [0, 0.0008, 2], //baffle thickness, will be defined in parent generally
+            baffleS : [0.01, 0.1, 10], //baffle spacing, will be calculated in parent
             HL_bod : [0, 0.4, 1], //head loss, defined in parent
             washerT : [0.001, 0.003175, 0.2], //washer thickness
             washerOD : [0.125, 1, 3], //washer diameter
@@ -35,8 +35,8 @@ export const baffleTree =
             "bottom" : {
                 tree : sheetTree,
                 inputs : {
-                    T : "$.baffle.T", //thickness
-                    L : "$.baffle.bottomL", //length
+                    T : "$.baffleT", //thickness
+                    L : "$.bafflebottomL", //length
                     W : "$.channelW", //width, sheet width same as channel width
                     t : "corrugated", //type
                     mat : "PC", //material
@@ -46,8 +46,8 @@ export const baffleTree =
             "top" : {
                 tree : sheetTree,
                 inputs : {
-                    T : "$.baffle.T",
-                    L : "$.baffle.topL", 
+                    T : "$.baffleT",
+                    L : "$.baffletopL", 
                     W : "$.channelW", 
                     t : "corrugated", 
                     mat : "PC",
@@ -72,26 +72,26 @@ export const bafflePreDesigner = function(design) returns map
     {
 
         //sheet
-        design.baffle.bottomL = design.tankH - design.FB - design.HL_bod - design.baffle.S; //length of bottom baffle
-        design.baffle.topL = design.tankH - design.FB / 2; //length of top baffle
-        design.baffle.N = floor(design.channelL / design.baffle.S); //total number of baffles
+        design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle
+        design.baffletopL = design.tankH - design.FB / 2; //length of top baffle
+        design.baffleN = floor(design.channelL / design.baffleS); //total number of baffles
 
         if (design.lastchannel == true)
         {
-            design.baffle.N = floor(design.baffle.N / 2) * 2;
+            design.baffleN = floor(design.baffleN / 2) * 2;
         }
         else
         {
-            if ((floor(design.baffle.N / 2) == ceil(design.baffle.N / 2)) == true)
+            if ((floor(design.baffleN / 2) == ceil(design.baffleN / 2)) == true)
             {
-                design.baffle.N = design.baffle.N - 1;
+                design.baffleN = design.baffleN - 1;
             }
         }
 
-        design.baffle.bottomN = ceil(design.baffle.N / 2); //number of bottom baffles
-        design.baffle.topN = floor(design.baffle.N / 2); //number of top baffles
-        design.baffle.floorbottomS = 0 * meter; //distance between bottom of baffle and tank bottom (bottom baffle)
-        design.baffle.floortopS = design.baffle.S; //distance between bottom of baffle and tank bottom (top baffle)
+        design.bafflebottomN = ceil(design.baffleN / 2); //number of bottom baffles
+        design.baffletopN = floor(design.baffleN / 2); //number of top baffles
+        design.bafflefloorbottomS = 0 * meter; //distance between bottom of baffle and tank bottom (bottom baffle)
+        design.bafflefloortopS = design.baffleS; //distance between bottom of baffle and tank bottom (top baffle)
 
 
         //holes - top & bottom
@@ -104,7 +104,7 @@ export const bafflePreDesigner = function(design) returns map
 
         //holes - middle
         design.pipemidrowN = 1; //number of middle spacer rows dependent on spacing & height
-        design.piperowS = (design.baffle.bottomL - design.baffle.S) / (design.pipemidrowN + 1) + design.baffle.S - design.botvedgeD; //spacing from midpoint of bottom pipe
+        design.piperowS = (design.bafflebottomL - design.baffleS) / (design.pipemidrowN + 1) + design.baffleS - design.botvedgeD; //spacing from midpoint of bottom pipe
 
         //washers
         design.washerID = design.pipeOD; 
@@ -116,7 +116,7 @@ export const bafflePreDesigner = function(design) returns map
             }
         else
             {
-                design.washerS = -design.baffle.T;
+                design.washerS = -design.baffleT;
             }
             
         return design;
