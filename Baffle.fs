@@ -124,6 +124,10 @@ export const bafflePreDesigner = function(design) returns map
                 design.washer.tobaffleS = -design.baffleT;
             }
             
+        //pipes
+        design.pipe.L = design.channelL;
+        
+            
         return design;
 
     };
@@ -151,11 +155,11 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 
 //to do list
 //1. holes into baffle (based on sedimentation)
-//what is the edge distance? distance from top/bottom for top/bottom?
-//top/bottom holes a function of the width of the baffles
-//need variables for distance to edge and bottom/top, hole size (from 1/2")
-//what is the distance between holes?
-//how many rows of spacers? 0 or 1 for now, function of height and spacings
+    //what is the edge distance? distance from top/bottom for top/bottom?
+    //top/bottom holes a function of the width of the baffles
+    //need variables for distance to edge and bottom/top, hole size (from 1/2")
+    //what is the distance between holes?
+    //how many rows of spacers? 0 or 1 for now, function of height and spacings
 //2. washers into baffle (make out of sheets, remove/extrude)
     //only put upstream
 //3. pipes that go through baffles
@@ -166,4 +170,4 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 // - is there a way to make the option of a superderive item not exist (for the case of N = 0?)
     //maybe a parameter that has the option of exists/not exists for sheet
 // - overrides not working
-// - can you do super part pattern in a third direction?
+// - can you do super part pattern in a third direction? or can we code that to exist?
