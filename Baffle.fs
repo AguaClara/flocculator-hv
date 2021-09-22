@@ -173,8 +173,10 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 
 
 //questions
+// - SPP not patterning features
+
+
+
 // - is there a way to make the option of a superderive item not exist (for the case of N = 0?)
     //maybe a parameter that has the option of exists/not exists for sheet
-// - can you do super part pattern in a third direction? or can we code that to exist?
-    //composite selected
-// - pipeline fitting error?
+    //this will be a pending question
