@@ -100,7 +100,12 @@ export const bafflePreDesigner = function(design) returns map
 
         //holes - top & bottom
         design.pipe = {};
-        design.pipe.OD = 0.048 * meter; //sedimentor -> manifold -> line 134 (ask monroe about this!)
+        design.pipe.ND = 0.5;
+        
+        const pipe = pipeofD(design.pipe.ND, 26, PipeSelectionType.ND); //to be updated
+        design.pipe.ID = pipe.ID;
+        design.pipe.OD = pipe.OD;
+        
         design.pipe.colN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns
         design.pipe.hedgeD = 0.1 * meter; //horizontal edge distance from middle of hole
         design.pipe.colS = (design.channelW - 2 * design.pipe.hedgeD) / (design.pipe.colN - 1); //pipe column spacing
@@ -170,7 +175,6 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 //questions
 // - is there a way to make the option of a superderive item not exist (for the case of N = 0?)
     //maybe a parameter that has the option of exists/not exists for sheet
-// - overrides not working
 // - can you do super part pattern in a third direction? or can we code that to exist?
     //composite selected
 // - pipeline fitting error?
