@@ -171,4 +171,5 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
     //maybe a parameter that has the option of exists/not exists for sheet
 // - overrides not working
 // - can you do super part pattern in a third direction? or can we code that to exist?
+    //composite selected
 // - pipeline fitting error?
