@@ -164,5 +164,6 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 
 //questions
 // - is there a way to make the option of a superderive item not exist (for the case of N = 0?)
+    //maybe a parameter that has the option of exists/not exists for sheet
 // - overrides not working
 // - can you do super part pattern in a third direction?
