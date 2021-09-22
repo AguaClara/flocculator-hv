@@ -160,3 +160,8 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
     //only put upstream
 //3. pipes that go through baffles
 //4. spacer half pipes
+
+
+//questions
+// - is there a way to make the option of a superderive item not exist (for the case of N = 0?)
+// - overrides not working
