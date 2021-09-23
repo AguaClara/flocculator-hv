@@ -75,7 +75,7 @@ export const bafflePreDesigner = function(design) returns map
         //sheet
         design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle
         design.baffletopL = design.tankH - design.FB / 2; //length of top baffle
-        design.baffleN = floor(design.channelL / design.baffleS); //total number of baffles
+        design.baffleN = floor(design.channelL / design.baffleS) - 1; //total number of baffles
 
         if (design.lastchannel == true)
         {
