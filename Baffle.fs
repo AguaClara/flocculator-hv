@@ -73,6 +73,7 @@ export const bafflePreDesigner = function(design) returns map
     {
 
         //sheet
+        design.baffle = {};
         design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle
         design.baffletopL = design.tankH - design.FB / 2; //length of top baffle
         design.baffle.D = design.baffleS + baffleT;
