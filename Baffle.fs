@@ -123,7 +123,7 @@ export const bafflePreDesigner = function(design) returns map
         design.washerOD = design.washer.ID + design.washer.ID*0.5; //ADJUST
         
         //spacers
-        design.spacer:  {};
+        design.spacer = {};
         
         design.spacer.ND = 0.75;
         
