@@ -19,7 +19,7 @@ export const baffleTree =
         params : {
             rep : true,
             ip : "app",
-            flowfront: true, //if water comes in at the bottom and moves from to back, hitting the baffles at the front
+            flowfront: false, //if water comes in at the bottom and moves from to back, hitting the baffles at the front
             lastchannel : false,
             tankH : [1, 2, 200], //height of tank... will be defined in parent via tank info
             channelW : [0.05, 0.5, 100], //width of channel, will be defined in parent via tank info
@@ -171,9 +171,6 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 //3. pipes that go through baffles
 //4. spacer half pipes
 
-
-//questions
-// - SPP not patterning features
 
 
 
