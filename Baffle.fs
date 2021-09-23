@@ -131,14 +131,17 @@ export const bafflePreDesigner = function(design) returns map
         design.spacer.ID = pipe.ID;
         design.spacer.OD = pipe.OD;
         design.spacer.L = design.baffleS - design.washerT;
+
         
         if (design.flowfront == true)
             { 
                design.washer.tobaffleS = design.washerT; //placement of washer against baffle
+               design.spacer.tobaffleS = design.washerT; //placement of spacer against baffle
             }
         else
             {
                 design.washer.tobaffleS = -design.baffleT;
+                design.spacer.tobaffleS = 0*meter;
             }
         
         
