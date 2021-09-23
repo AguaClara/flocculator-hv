@@ -129,8 +129,7 @@ export const bafflePreDesigner = function(design) returns map
         design.spacer.ND = 0.75;
         
         const spacer = pipeofD(design.spacer.ND, 26, PipeSelectionType.ND); //to be updated
-        design.spacer.ID = pipe.ID;
-        design.spacer.OD = pipe.OD;
+        design.spacer.ID = spacer.ID;
         design.spacer.L = design.baffleS - design.washerT;
 
         
