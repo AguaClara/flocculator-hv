@@ -141,7 +141,7 @@ export const bafflePreDesigner = function(design) returns map
         else
             {
                 design.washer.tobaffleS = -design.baffleT;
-                design.spacer.tobaffleS = 0*meter;
+                design.spacer.tobaffleS = 0;
             }
         
         
