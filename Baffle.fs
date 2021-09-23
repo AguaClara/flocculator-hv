@@ -105,6 +105,7 @@ export const bafflePreDesigner = function(design) returns map
         const pipe = pipeofD(design.pipe.ND, 26, PipeSelectionType.ND); //to be updated
         design.pipe.ID = pipe.ID;
         design.pipe.OD = pipe.OD;
+        design.pipe.L = design.channelL;
         
         design.pipe.colN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns
         design.pipe.hedgeD = 0.1 * meter; //horizontal edge distance from middle of hole
@@ -121,6 +122,16 @@ export const bafflePreDesigner = function(design) returns map
         design.washer.ID = design.pipe.OD; 
         design.washerOD = design.washer.ID + design.washer.ID*0.5; //ADJUST
         
+        //spacers
+        design.spacer: {};
+        
+        design.spacer.ND = 0.75;
+        
+        const spacer = pipeofD(design.pipe.ND, 26, PipeSelectionType.ND); //to be updated
+        design.spacer.ID = pipe.ID;
+        design.spacer.OD = pipe.OD;
+        design.spacerL: design.baffleS;
+        
         if (design.flowfront == true)
             { 
                design.washer.tobaffleS = design.washerT; //placement of washer against baffle
@@ -129,9 +140,8 @@ export const bafflePreDesigner = function(design) returns map
             {
                 design.washer.tobaffleS = -design.baffleT;
             }
-            
-        //pipes
-        design.pipe.L = design.channelL;
+        
+        
         
             
         return design;
