@@ -130,7 +130,7 @@ export const bafflePreDesigner = function(design) returns map
         const spacer = pipeofD(design.pipe.ND, 26, PipeSelectionType.ND); //to be updated
         design.spacer.ID = pipe.ID;
         design.spacer.OD = pipe.OD;
-        design.spacerL: design.baffleS;
+        design.spacer.L: design.baffleS;
         
         if (design.flowfront == true)
             { 
