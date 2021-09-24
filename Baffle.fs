@@ -108,7 +108,7 @@ export const bafflePreDesigner = function(design) returns map
         design.pipe.ID = pipe.ID;
         design.pipe.OD = pipe.OD;
         design.pipe.L = design.channelL;
-        design.pipe.SDR = 17;
+        design.pipe.SDR = ;
 
         design.pipe.colN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns
         design.pipe.hedgeD = 0.1 * meter; //horizontal edge distance from middle of hole
@@ -136,6 +136,7 @@ export const bafflePreDesigner = function(design) returns map
         design.spacer.upperL = design.baffleS + design.baffleD - design.washerT;
         // design.spacer.upperN = design.top.N - 1;
         design.spacer.lowerN = design.baffleN - 1;
+        design.spacer.SDR = 17;
 
 
 
