@@ -110,20 +110,20 @@ export const bafflePreDesigner = function(design) returns map
         design.pipe.OD = pipe.OD; //outer diameter
         design.pipe.L = design.channelL; //length of pipe
 
-        design.pipe.colN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns
+        design.pipe.colN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns, TBD
         design.pipe.hedgeB = 0.1 * meter; //horizontal edge distance from middle of hole
         design.pipe.colS = (design.channelW - 2 * design.pipe.hedgeB) / (design.pipe.colN - 1); //pipe column spacing
         design.pipe.topvedgeB = 0.1 * meter; //vertical edge distance from middle of top hole
         design.pipe.botvedgeB = 0.15 * meter; //vertical edge distance from middle of bottom hole
 
         //holes & pipe - middle
-        design.pipe.midrowN = 1; //number of middle spacer rows dependent on spacing & height
+        design.pipe.midrowN = 1; //number of middle spacer rows dependent on spacing & height, TBD
         design.pipe.rowB = (design.bafflebottomL - design.baffleS) / (design.pipe.midrowN + 1) + design.baffleS - design.pipe.botvedgeB; //spacing from midpoint of bottom pipe
 
         //washers
         design.washer = {};
         design.washer.ID = design.pipe.OD;
-        design.washerOD = design.washer.ID*3; //ADJUST
+        design.washerOD = design.washer.ID*3; //TBD
 
         //spacers
         design.spacer = {};
@@ -181,23 +181,6 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 
 
 //to do list
-//1. holes into baffle (based on sedimentation)
-//what is the edge distance? distance from top/bottom for top/bottom?
-//top/bottom holes a function of the width of the baffles
-//need variables for distance to edge and bottom/top, hole size (from 1/2")
-//what is the distance between holes?
-//how many rows of spacers? 0 or 1 for now, function of height and spacings
-//2. washers into baffle (make out of sheets, remove/extrude)
-//only put upstream
-//3. pipes that go through baffles
-//4. spacers
-    //add spacers at the end based on pipe fitting size
-//5. half pipes
-//6. check if I'm using S & B correctly in all cases
-    //change from D to B in some places
+// - half pipes
+// - bring superderive into code so that it can sometimes not exist depending on the length of the tank (N = O case)
 
-
-
-// - is there a way to make the option of a superderive item not exist (for the case of N = 0?)
-//maybe a parameter that has the option of exists/not exists for sheet
-//this will be a pending question
