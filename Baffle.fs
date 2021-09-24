@@ -19,7 +19,7 @@ export const baffleTree =
         params : {
             rep : true,
             ip : "app",
-            flowfront: false, //if water comes in at the bottom and moves from to back, hitting the baffles at the front
+            flowfront : false, //if water comes in at the bottom and moves from to back, hitting the baffles at the front
             lastchannel : false,
             tankH : [1, 2, 200], //height of tank... will be defined in parent via tank info
             channelW : [0.05, 0.5, 100], //width of channel, will be defined in parent via tank info
@@ -29,7 +29,8 @@ export const baffleTree =
             baffleS : [0.01, 0.1, 10], //baffle spacing, will be calculated in parent
             HL_bod : [0, 0.4, 1], //head loss, defined in parent
             washerT : [0.001, 0.003175, 0.2], //washer thickness
-            washerOD : [0.125, 1, 3], //washer diameter
+            washerOD : [0.125, 1, 3],
+        //washer diameter
 
         },
         children : {
@@ -48,11 +49,11 @@ export const baffleTree =
                 tree : sheetTree,
                 inputs : {
                     T : "$.baffleT",
-                    L : "$.baffletopL", 
-                    W : "$.channelW", 
-                    t : "corrugated", 
+                    L : "$.baffletopL",
+                    W : "$.channelW",
+                    t : "corrugated",
                     mat : "PC",
-                    ip : "$.ip", 
+                    ip : "$.ip",
                 },
             },
             "washer" : {
@@ -73,8 +74,8 @@ export const bafflePreDesigner = function(design) returns map
     {
 
         //sheet
-        design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle
-        design.baffletopL = design.tankH - design.FB / 2; //length of top baffle
+        design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle.. will have to look into if we have to subtract the thickness of the bottom of the tank
+        design.baffletopL = design.tankH - design.FB / 2; //length of top baffle, ""
         design.baffleD = design.baffleS + design.baffleT;
         design.baffleN = floor(design.channelL / design.baffleD) - 1; //total number of baffles
 
@@ -102,12 +103,12 @@ export const bafflePreDesigner = function(design) returns map
         //holes - top & bottom
         design.pipe = {};
         design.pipe.ND = 0.5;
-        
+
         const pipe = pipeofD(design.pipe.ND, 26, PipeSelectionType.ND); //to be updated
         design.pipe.ID = pipe.ID;
         design.pipe.OD = pipe.OD;
         design.pipe.L = design.channelL;
-        
+
         design.pipe.colN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns
         design.pipe.hedgeD = 0.1 * meter; //horizontal edge distance from middle of hole
         design.pipe.colS = (design.channelW - 2 * design.pipe.hedgeD) / (design.pipe.colN - 1); //pipe column spacing
@@ -120,34 +121,34 @@ export const bafflePreDesigner = function(design) returns map
 
         //washers
         design.washer = {};
-        design.washer.ID = design.pipe.OD; 
-        design.washerOD = design.washer.ID + design.washer.ID*0.5; //ADJUST
-        
+        design.washer.ID = design.pipe.OD;
+        design.washerOD = design.washer.ID + design.washer.ID * 0.5; //ADJUST
+
         //spacers
         design.spacer = {};
-        
+
         design.spacer.ND = 0.75;
-        
+
         const spacer = pipeofD(design.spacer.ND, 26, PipeSelectionType.ND); //to be updated
         design.spacer.ID = spacer.ID;
         design.spacer.lowerL = design.baffleS - design.washerT;
         design.spacer.upperL = design.baffleS + design.baffleD - design.washerT;
 
-        
+
         if (design.flowfront == true)
-            { 
-               design.washer.tobaffleS = design.washerT; //placement of washer against baffle
-               design.spacer.tobaffleS = design.washerT; //placement of spacer against baffle
-            }
+        {
+            design.washer.tobaffleS = design.washerT; //placement of washer against baffle
+            design.spacer.tobaffleS = design.washerT; //placement of spacer against baffle
+        }
         else
-            {
-                design.washer.tobaffleS = -design.baffleT;
-                design.spacer.tobaffleS = 0 * meter;
-            }
-        
-        
-        
-            
+        {
+            design.washer.tobaffleS = -design.baffleT;
+            design.spacer.tobaffleS = 0 * meter;
+        }
+
+
+
+
         return design;
 
     };
@@ -174,18 +175,18 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 
 
 
-//ASK MONROE ABOUT CONCENTRIC PIPE 
+//ASK MONROE ABOUT CONCENTRIC PIPE
 
 
 //to do list
 //1. holes into baffle (based on sedimentation)
-    //what is the edge distance? distance from top/bottom for top/bottom?
-    //top/bottom holes a function of the width of the baffles
-    //need variables for distance to edge and bottom/top, hole size (from 1/2")
-    //what is the distance between holes?
-    //how many rows of spacers? 0 or 1 for now, function of height and spacings
+//what is the edge distance? distance from top/bottom for top/bottom?
+//top/bottom holes a function of the width of the baffles
+//need variables for distance to edge and bottom/top, hole size (from 1/2")
+//what is the distance between holes?
+//how many rows of spacers? 0 or 1 for now, function of height and spacings
 //2. washers into baffle (make out of sheets, remove/extrude)
-    //only put upstream
+//only put upstream
 //3. pipes that go through baffles
 //4. spacer half pipes
 //5. check if I'm using S & D correctly in all cases
@@ -193,5 +194,5 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 
 
 // - is there a way to make the option of a superderive item not exist (for the case of N = 0?)
-    //maybe a parameter that has the option of exists/not exists for sheet
-    //this will be a pending question
+//maybe a parameter that has the option of exists/not exists for sheet
+//this will be a pending question
