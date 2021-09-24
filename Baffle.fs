@@ -192,8 +192,9 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 //2. washers into baffle (make out of sheets, remove/extrude)
 //only put upstream
 //3. pipes that go through baffles
-//4. spacer half pipes
-//5. check if I'm using S & D correctly in all cases
+//4. spacers
+//5. half pipes
+//6. check if I'm using S & D correctly in all cases
 
 
 
