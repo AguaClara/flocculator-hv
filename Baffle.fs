@@ -100,7 +100,7 @@ export const bafflePreDesigner = function(design) returns map
         design.top.floorS = design.baffleS; //distance between bottom of baffle and top of tank floor (top baffle)
 
 
-        //holes - top & bottom
+        //holes & pipe - top & bottom
         design.pipe = {};
         design.pipe.ND = 0.5; //nominal diameter
         design.pipe.SDR = 26; //standard diameter ratio
@@ -111,14 +111,14 @@ export const bafflePreDesigner = function(design) returns map
         design.pipe.L = design.channelL; //length of pipe
 
         design.pipe.colN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns
-        design.pipe.hedgeD = 0.1 * meter; //horizontal edge distance from middle of hole
+        design.pipe.hedgeB = 0.1 * meter; //horizontal edge distance from middle of hole
         design.pipe.colS = (design.channelW - 2 * design.pipe.hedgeD) / (design.pipe.colN - 1); //pipe column spacing
-        design.pipe.topvedgeD = 0.1 * meter; //vertical edge distance from middle of top hole
-        design.pipe.botvedgeD = 0.15 * meter; //vertical edge distance from middle of bottom hole
+        design.pipe.topvedgeB = 0.1 * meter; //vertical edge distance from middle of top hole
+        design.pipe.botvedgeB = 0.15 * meter; //vertical edge distance from middle of bottom hole
 
-        //holes - middle
+        //holes & pipe - middle
         design.pipe.midrowN = 1; //number of middle spacer rows dependent on spacing & height
-        design.pipe.rowS = (design.bafflebottomL - design.baffleS) / (design.pipe.midrowN + 1) + design.baffleS - design.pipe.botvedgeD; //spacing from midpoint of bottom pipe
+        design.pipe.rowB = (design.bafflebottomL - design.baffleS) / (design.pipe.midrowN + 1) + design.baffleS - design.pipe.botvedgeD; //spacing from midpoint of bottom pipe
 
         //washers
         design.washer = {};
