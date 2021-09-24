@@ -74,8 +74,8 @@ export const bafflePreDesigner = function(design) returns map
     {
 
         //sheet
-        design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle.. will have to look into if we have to subtract the thickness of the bottom of the tank
-        design.baffletopL = design.tankH - design.FB / 2; //length of top baffle, ""
+        design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle
+        design.baffletopL = design.tankH - design.FB / 2; //length of top baffle
         design.baffleD = design.baffleS + design.baffleT;
         design.baffleN = floor(design.channelL / design.baffleD) - 1; //total number of baffles
 
