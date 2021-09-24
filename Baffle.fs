@@ -112,13 +112,13 @@ export const bafflePreDesigner = function(design) returns map
 
         design.pipe.colN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns
         design.pipe.hedgeB = 0.1 * meter; //horizontal edge distance from middle of hole
-        design.pipe.colS = (design.channelW - 2 * design.pipe.hedgeD) / (design.pipe.colN - 1); //pipe column spacing
+        design.pipe.colS = (design.channelW - 2 * design.pipe.hedgeB) / (design.pipe.colN - 1); //pipe column spacing
         design.pipe.topvedgeB = 0.1 * meter; //vertical edge distance from middle of top hole
         design.pipe.botvedgeB = 0.15 * meter; //vertical edge distance from middle of bottom hole
 
         //holes & pipe - middle
         design.pipe.midrowN = 1; //number of middle spacer rows dependent on spacing & height
-        design.pipe.rowB = (design.bafflebottomL - design.baffleS) / (design.pipe.midrowN + 1) + design.baffleS - design.pipe.botvedgeD; //spacing from midpoint of bottom pipe
+        design.pipe.rowB = (design.bafflebottomL - design.baffleS) / (design.pipe.midrowN + 1) + design.baffleS - design.pipe.botvedgeB; //spacing from midpoint of bottom pipe
 
         //washers
         design.washer = {};
@@ -160,7 +160,7 @@ export const bafflePostDesigner = function(design) returns map
     {
 
         design.spacer.upperN = design.top.N - 1;
-        design.pipe.toptobotD = design.top.L - design.pipe.topvedgeD - design.pipe.botvedgeD + design.baffleS;
+        design.pipe.toptobotD = design.top.L - design.pipe.topvedgeB - design.pipe.botvedgeB + design.baffleS;
         
          return design;
 
