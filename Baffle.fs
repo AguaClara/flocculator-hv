@@ -120,24 +120,23 @@ export const bafflePreDesigner = function(design) returns map
         design.pipe.midrowN = 1; //number of middle spacer rows dependent on spacing & height, TBD
         design.pipe.rowB = (design.bafflebottomL - design.baffleS) / (design.pipe.midrowN + 1) + design.baffleS - design.pipe.botvedgeB; //spacing from midpoint of bottom pipe
 
-        //washers
+        //washers & spacers
         design.washer = {};
         design.washer.ID = design.pipe.OD;
         design.washerOD = design.washer.ID*3; //TBD
 
-        //spacers
+
         design.spacer = {};
 
         design.spacer.ND = 0.75;
         design.spacer.SDR = 26;
 
-        const spacer = pipeofD(design.spacer.ND, design.spacer.SDR, PipeSelectionType.ND); //to be updated
+        const spacer = pipeofD(design.spacer.ND, design.spacer.SDR, PipeSelectionType.ND); //TBD
         design.spacer.ID = spacer.ID;
-        design.spacer.lowerL = design.baffleS - design.washerT;
-        design.spacer.upperL = design.baffleS + design.baffleB - design.washerT;
-        design.spacer.lowerN = design.baffleN - 1;
-
-
+        
+        design.spacer.lowerL = design.baffleS - design.washerT; //length of lower spacer
+        design.spacer.upperL = design.baffleS + design.baffleB - design.washerT; //length of upper spacer
+        design.spacer.lowerN = design.baffleN - 1; //number of lower spacers
 
         if (design.flowfront == true)
         {
@@ -158,8 +157,8 @@ export const bafflePreDesigner = function(design) returns map
 export const bafflePostDesigner = function(design) returns map
     {
 
-        design.spacer.upperN = design.top.N - 1;
-        design.pipe.toptobotB = design.top.L - design.pipe.topvedgeB - design.pipe.botvedgeB + design.baffleS;
+        design.spacer.upperN = design.top.N - 1; //number of upper spacers
+        design.pipe.toptobotB = design.top.L - design.pipe.topvedgeB - design.pipe.botvedgeB + design.baffleS; //distance from top to bottom pipe/hole/washers
         
          return design;
 
