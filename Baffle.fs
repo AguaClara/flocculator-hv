@@ -102,13 +102,13 @@ export const bafflePreDesigner = function(design) returns map
 
         //holes - top & bottom
         design.pipe = {};
-        design.pipe.ND = 0.5;
-        design.pipe.SDR = 26;
+        design.pipe.ND = 0.5; //nominal diameter
+        design.pipe.SDR = 26; //standard diameter ratio
 
         const pipe = pipeofD(design.pipe.ND, design.pipe.SDR, PipeSelectionType.ND); //to be updated
-        design.pipe.ID = pipe.ID;
-        design.pipe.OD = pipe.OD;
-        design.pipe.L = design.channelL;
+        design.pipe.ID = pipe.ID; //inner diameter
+        design.pipe.OD = pipe.OD; //outer diameter
+        design.pipe.L = design.channelL; //length of pipe
 
         design.pipe.colN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns
         design.pipe.hedgeD = 0.1 * meter; //horizontal edge distance from middle of hole
