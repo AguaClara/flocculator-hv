@@ -123,7 +123,7 @@ export const bafflePreDesigner = function(design) returns map
         //washers
         design.washer = {};
         design.washer.ID = design.pipe.OD;
-        design.washerOD = design.washer.ID + design.washer.ID * 0.5; //ADJUST
+        design.washerOD = design.washer.ID*3; //ADJUST
 
         //spacers
         design.spacer = {};
@@ -192,7 +192,7 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 //only put upstream
 //3. pipes that go through baffles
 //4. spacers
-    //add spacers at the end
+    //add spacers at the end based on pipe fitting size
 //5. half pipes
 //6. check if I'm using S & B correctly in all cases
     //change from D to B in some places
