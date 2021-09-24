@@ -135,7 +135,6 @@ export const bafflePreDesigner = function(design) returns map
         design.spacer.ID = spacer.ID;
         design.spacer.lowerL = design.baffleS - design.washerT;
         design.spacer.upperL = design.baffleS + design.baffleB - design.washerT;
-        // design.spacer.upperN = design.top.N - 1;
         design.spacer.lowerN = design.baffleN - 1;
 
 
