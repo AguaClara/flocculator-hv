@@ -160,7 +160,7 @@ export const bafflePostDesigner = function(design) returns map
     {
 
         design.spacer.upperN = design.top.N - 1;
-        design.pipe.toptobotD = design.top.L - design.pipe.topvedgeB - design.pipe.botvedgeB + design.baffleS;
+        design.pipe.toptobotB = design.top.L - design.pipe.topvedgeB - design.pipe.botvedgeB + design.baffleS;
         
          return design;
 
