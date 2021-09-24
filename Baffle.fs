@@ -76,8 +76,8 @@ export const bafflePreDesigner = function(design) returns map
         //sheet
         design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle
         design.baffletopL = design.tankH - design.FB / 2; //length of top baffle
-        design.baffleD = design.baffleS + design.baffleT;
-        design.baffleN = floor(design.channelL / design.baffleD) - 1; //total number of baffles
+        design.baffleB = design.baffleS + design.baffleT;
+        design.baffleN = floor(design.channelL / design.baffleB) - 1; //total number of baffles
 
         if (design.lastchannel == true)
         {
@@ -134,7 +134,7 @@ export const bafflePreDesigner = function(design) returns map
         const spacer = pipeofD(design.spacer.ND, design.spacer.SDR, PipeSelectionType.ND); //to be updated
         design.spacer.ID = spacer.ID;
         design.spacer.lowerL = design.baffleS - design.washerT;
-        design.spacer.upperL = design.baffleS + design.baffleD - design.washerT;
+        design.spacer.upperL = design.baffleS + design.baffleB - design.washerT;
         // design.spacer.upperN = design.top.N - 1;
         design.spacer.lowerN = design.baffleN - 1;
 
