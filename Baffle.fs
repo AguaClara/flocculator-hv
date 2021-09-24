@@ -195,8 +195,10 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 //only put upstream
 //3. pipes that go through baffles
 //4. spacers
+    //add spacers at the end
 //5. half pipes
-//6. check if I'm using S & D correctly in all cases
+//6. check if I'm using S & B correctly in all cases
+    //change from D to B in some places
 
 
 
