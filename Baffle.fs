@@ -141,8 +141,8 @@ export const bafflePreDesigner = function(design) returns map
 
         if (design.flowfront == true)
         {
-            design.washer.tobaffleS = design.washerT; //placement of washer against baffle
-            design.spacer.tobaffleS = design.washerT; //placement of spacer against baffle
+            design.washer.tobaffleS = design.washerT; //spacing between washer & baffle
+            design.spacer.tobaffleS = design.washerT; //spacing between spacer & baffle
         }
         else
         {
