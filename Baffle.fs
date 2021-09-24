@@ -76,10 +76,10 @@ export const bafflePreDesigner = function(design) returns map
         //sheet
         design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle
         design.baffletopL = design.tankH - design.FB / 2; //length of top baffle
-        design.baffleB = design.baffleS + design.baffleT;
+        design.baffleB = design.baffleS + design.baffleT; //center to center spacing between baffles
         design.baffleN = floor(design.channelL / design.baffleB) - 1; //total number of baffles
 
-        if (design.lastchannel == true)
+        if (design.lastchannel == true) //odd/even number of baffles depending on if last channel or not
         {
             design.baffleN = floor(design.baffleN / 2) * 2;
         }
@@ -96,8 +96,8 @@ export const bafflePreDesigner = function(design) returns map
 
         design.bottom.N = ceil(design.baffleN / 2); //number of bottom baffles
         design.top.N = floor(design.baffleN / 2); //number of top baffles
-        design.bottom.floorS = 0 * meter; //distance between bottom of baffle and tank bottom (bottom baffle)
-        design.top.floorS = design.baffleS; //distance between bottom of baffle and tank bottom (top baffle)
+        design.bottom.floorS = 0 * meter; //distance between bottom of baffle and top of tank floor (bottom baffle)
+        design.top.floorS = design.baffleS; //distance between bottom of baffle and top of tank floor (top baffle)
 
 
         //holes - top & bottom
