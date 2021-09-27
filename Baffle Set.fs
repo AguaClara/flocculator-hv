@@ -21,6 +21,7 @@ export const bafflesetTree =
             rep : true,
             ip : "app",
             N: [0, 5, 100], //number of baffle sets
+            channelB: [0, 8, 200], //center to center distance between channels 
             flowfront : "false",
             lastchannel : "false",
             tankH : [1, 2, 200], 
@@ -61,6 +62,8 @@ export const bafflesetTree =
 export const bafflesetPreDesigner = function(design) returns map
     {
 
+
+
         return design;
 
     };
@@ -91,9 +94,9 @@ export const bafflesetFeature = defineFeature(function(context is Context, id is
     // - define inputs
     // - throw in superderive! 
         // - it will have to be iterative
-        // - if n = odd, flowfront = true
+        // - if n = odd, flowfront = true (might not be relevant)
         // - if n = N, lastchannel = true
-        // - could choose to rotate the entire baffle module
+        // - could choose to rotate the entire baffle module and place at channelB
             // keeps the beginning spacing at baffleS
             // flowfront will always be true, that can be deleted from baffle
     
