@@ -111,7 +111,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
     {
 
         superDerive(context, id, {
-                    "partStudio" : { buildFunction : star::build, configuration : {} } as PartStudioData,
+                    "partStudio" : { buildFunction : baffleModue::build, configuration : {} } as PartStudioData,
                     location : definition.location
                 });
 
