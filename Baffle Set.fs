@@ -116,11 +116,11 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
         println(qlocation);
        // println(evaluateQuery(context, qlocation));
         design.location = WORLD_ORIGIN;
-        //design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
-        // superDerive(context, id, {
-        //             "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
-        //             location : design.location
-        //         });
+        design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
+        superDerive(context, id, {
+                    "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
+                    location : design.location
+                });
         return design;
 
     };
