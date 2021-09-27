@@ -120,11 +120,11 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
 
 
         opMateConnector(context, id, { 'coordSystem' : qlocation, owner : WORLD_ORIGIN }); 
-        qCreatedBy(featureId is Id, entityType is EntityType);
+        const mateQ = qCreatedBy(id, EntityType.VERTEX);
 
         superDerive(context, id, {
                     "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
-                    location : design.location
+                    location : mateQ
                 });
         return design;
 
