@@ -115,7 +115,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
         var qlocation = coordSystem(WORLD_ORIGIN, vector(1,0,0) * meter , vector(0,0,1) * meter);
         println(qlocation);
        // println(evaluateQuery(context, qlocation));
-        design.location = WORLD_ORIGIN;
+        design.location = qlocation
         design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
         superDerive(context, id, {
                     "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
