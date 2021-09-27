@@ -115,12 +115,12 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
         var qlocation = qEverything(EntityType.VERTEX);
         println(qlocation);
        // println(evaluateQuery(context, qlocation));
-        design.location = vector(1, 1, 1) * inch;
+        design.location = WORLD_ORIGIN;
         //design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
-        superDerive(context, id, {
-                    "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
-                    location : design.location
-                });
+        // superDerive(context, id, {
+        //             "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
+        //             location : design.location
+        //         });
 
     };
 
