@@ -90,7 +90,12 @@ export const bafflesetFeature = defineFeature(function(context is Context, id is
     // - define params
     // - define inputs
     // - throw in superderive! 
-    // - 
+        // - it will have to be iterative
+        // - if n = odd, flowfront = true
+        // - if n = N, lastchannel = true
+        // - could choose to rotate the entire baffle module
+            // keeps the beginning spacing at baffleS
+            // flowfront will always be true, that can be deleted from baffle
     
     //questions
     // -  if an input below is going to be defined in the next parent, does it still need to be defined in params?
