@@ -112,7 +112,7 @@ export const baffleSetPostDesigner = function(design) returns map
 
 export const baffleSetGeometry = function(context is Context, id is Id, design is map) returns map
     {
-       qlocation = qEverything(EntityType.VERTEX);
+       var qlocation = qEverything(EntityType.VERTEX);
        println(qlocation);
         design.location = vector(1, 1, 1) * inch;
         //design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
