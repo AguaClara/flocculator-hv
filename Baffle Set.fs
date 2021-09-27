@@ -20,7 +20,7 @@ export const bafflesetTree =
         params : {
             rep : true,
             ip : "app",
-            N: [0, 5, 100], //number of baffle sets
+            channelN: [0, 5, 100], //number of baffle sets
             channelB: [0, 8, 200], //center to center distance between channels 
             flowfront : "false",
             lastchannel : "false",
@@ -71,6 +71,30 @@ export const bafflesetPreDesigner = function(design) returns map
 export const bafflesetPostDesigner = function(design) returns map
     {
 
+        for (var n in [1, design.channelN]) //for every discrete number from 1 to N
+            
+            if ((n == N) == true) //last channel?
+                {
+                    design.lastchannel: "true";
+                }
+            else
+            {
+                design.lastchannel: "false";
+            }
+            
+            
+            if ((floor(design.channelN / 2) == ceil(design.channelN / 2)) == true) //if even, rotation of baffle
+            {
+                //variable for top or bottom insertion & rotation
+            }
+            else
+            {
+                //same variable as above
+            }
+            
+            design.bafflesetB: design.channelB*(n - 1); //placement horizontally assuming placement at n=1 is 0
+            
+            ; //insert superderive            
 
 
         return design;
