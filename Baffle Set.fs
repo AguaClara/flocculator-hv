@@ -90,7 +90,7 @@ export const baffleSetPostDesigner = function(design) returns map
 
             if ((floor(design.channelN / 2) == ceil(design.channelN / 2)) == true) //if even, rotation of baffle
             {
-                //variable for top or bottom insertion & rotation
+                //variable for top or bottom insertion (vertical insertion) & rotation
             }
 
             else
