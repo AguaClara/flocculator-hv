@@ -112,17 +112,16 @@ export const baffleSetPostDesigner = function(design) returns map
 
 export const baffleSetGeometry = function(context is Context, id is Id, design is map) returns map
     {
-        var qlocation = coordSystem(WORLD_ORIGIN, vector(1,0,0) * meter , vector(0,0,1) * meter);
-        q
+        var qlocation = coordSystem(WORLD_ORIGIN, vector(1, 0, 0) * meter, vector(0, 0, 1) * meter);
         println(qlocation);
-       // println(evaluateQuery(context, qlocation));
+        // println(evaluateQuery(context, qlocation));
         design.location = qlocation;
         design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
-        
-        design.coords = coordSystem (0, 0, 0);
-        opMateConnector(context, id, {coordSystem:design.coords, owner:some_owner}); //what would owner be?
-        qCreatedBy (featureId is Id, entityType is EntityType);
-        
+
+
+        opMateConnector(context, id, { coordSystem : qlocation, owner : some_owner }); //what would owner be?
+        qCreatedBy(featureId is Id, entityType is EntityType);
+
         superDerive(context, id, {
                     "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
                     location : design.location
