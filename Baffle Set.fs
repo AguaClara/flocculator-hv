@@ -22,8 +22,6 @@ export const bafflesetTree =
             ip : "app",
             channelN: [0, 5, 100], //number of baffle sets
             channelB: [0, 8, 200], //center to center distance between channels 
-            flowfront : "false",
-            lastchannel : "false",
             tankH : [1, 2, 200], 
             channelW : [0.05, 0.5, 100], 
             channelL : [0, 7, 200], 
@@ -126,6 +124,5 @@ export const bafflesetFeature = defineFeature(function(context is Context, id is
     
     //questions
     // -  if an input below is going to be defined in the next parent, does it still need to be defined in params?
-    // - where in the code in superderive inserted?
-    // - how do you insert superderive? 
+    // - how/where do you insert superderive? 
     
