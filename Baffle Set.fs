@@ -76,7 +76,7 @@ export const baffleSetPostDesigner = function(design) returns map
         {
 
 
-            if ((i == channelN) == true) //last channel?
+            if ((i == design.channelN) == true) //last channel?
             {
                 design.lastchannel = true;
             }
@@ -111,7 +111,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
     {
 
         superDerive(context, id, {
-                    "partStudio" : { buildFunction : baffleModue::build, configuration : {} } as PartStudioData,
+                    "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
                     location : definition.location
                 });
 
