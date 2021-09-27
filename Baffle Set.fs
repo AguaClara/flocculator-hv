@@ -3,19 +3,22 @@ import(path : "onshape/std/geometry.fs", version : "1589.0");
 
 import(path : "2fa81f50be25609bc956cd5f/9315fcf8489f0c0cc1a06a01/40a6bde79e4081741060af59", version : "24d9ce4bf05b3add5d64a574");
 import(path : "ff0f26334dc9ed5e1dbbc027", version : "73ef3187c0c0c31743c8266c");
+baffleModule::import(path : "c2f4584cf9d8b1114f7ff5b4", version : "c3aac59959c3a7d35b257c07");
 
 
-export const bafflesetTree =
+
+export const baffleSetTree =
 {
-        name : "baffleset",
+        name : "baffleSet",
         notes : {
             description : "",
             imagelink : "",
             textbooklink : "",
         },
         designers : {
-            pre : bafflesetPreDesigner,
-            post : bafflesetPostDesigner,
+            pre : baffleSetPreDesigner,
+            post : baffleSetPostDesigner,
+            geometry: baffleSetGeometry,
         },
         params : {
             rep : true,
@@ -57,7 +60,7 @@ export const bafflesetTree =
         },
     };
 
-export const bafflesetPreDesigner = function(design) returns map
+export const baffleSetPreDesigner = function(design) returns map
     {
 
 
@@ -66,18 +69,20 @@ export const bafflesetPreDesigner = function(design) returns map
 
     };
 
-export const bafflesetPostDesigner = function(design) returns map
+export const baffleSetPostDesigner = function(design) returns map
     {
 
-        for (var n in [1: design.channelN]) //for every discrete number from 1 to N
+for (var i = 1; i < design.channelN; i += 1) //for every discrete number from 1 to N
+{
+
             
             if ((n == N) == true) //last channel?
                 {
-                    design.lastchannel: "true";
+                    design.lastchannel= true;
                 }
             else
             {
-                design.lastchannel: "false";
+                design.lastchannel = false;
             }
             
             
@@ -85,28 +90,34 @@ export const bafflesetPostDesigner = function(design) returns map
             {
                 //variable for top or bottom insertion & rotation
             }
+
             else
             {
                 //same variable as above
             }
             
-            design.bafflesetB: design.channelB*(n - 1); //placement horizontally assuming placement at n=1 is 0
-            
-            ; //insert superderive            
+            design.baffleSetB: design.channelB*(n - 1); //placement horizontally assuming placement at n=1 is 0
 
+            //insert superderive            
 
+}
         return design;
 
     };
 
 
+export const baffleSetGeometry = function(context is Context, id is Id, design is map) returns map
+{
+    
+};
+
 annotation { "Feature Type Name" : "Baffle Set" }
-export const bafflesetFeature = defineFeature(function(context is Context, id is Id, definition is map)
+export const baffleSetFeature = defineFeature(function(context is Context, id is Id, definition is map)
     precondition
     {
     }
     {
-        treeInstantiatorFeature(context, id, bafflesetTree as InputTree);
+        treeInstantiatorFeature(context, id, baffleSetTree as InputTree);
     });
 
     
