@@ -111,10 +111,10 @@ export const baffleSetPostDesigner = function(design) returns map
 
 export const baffleSetGeometry = function(context is Context, id is Id, design is map) returns map
     {
-
+        design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
         superDerive(context, id, {
                     "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
-                    location : definition.location
+                    location : design.location
                 });
 
     };
