@@ -110,6 +110,11 @@ export const baffleSetPostDesigner = function(design) returns map
 export const baffleSetGeometry = function(context is Context, id is Id, design is map) returns map
     {
 
+        superDerive(context, id, {
+                    "partStudio" : { buildFunction : star::build, configuration : {} } as PartStudioData,
+                    location : definition.location
+                });
+
     };
 
 annotation { "Feature Type Name" : "Baffle Set" }
