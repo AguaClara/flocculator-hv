@@ -76,7 +76,7 @@ export const baffleSetPostDesigner = function(design) returns map
         {
 
 
-            if ((i == N) == true) //last channel?
+            if ((i == channelN) == true) //last channel?
             {
                 design.lastchannel = true;
             }
