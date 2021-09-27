@@ -19,6 +19,9 @@ export const bafflesetTree =
         params : {
             rep : true,
             ip : "app",
+            N: [0, 5, 100]; //number of baffle sets
+            
+            
 
 
         },
@@ -32,21 +35,21 @@ export const bafflesetTree =
                     // t : "corrugated", //type
                     // mat : "PC", //material
                     // ip : "$.ip",
-                    // //implementation partner
+            
                     
                     // rep : "$.rep",
                     // ip : "$.ip",
-                    // flowfront : false, //if water comes in at the bottom and moves from to back, hitting the baffles at the front
-                    // lastchannel : false,
-                    // tankH : [1, 2, 200], //height of tank, will be defined in parent via tank info
-                    // channelW : [0.05, 0.5, 100], //width of channel, will be defined in parent via tank info
-                    // channelL : [0, 7, 200], //length of channel, will be defined in parent via tank info
-                    // FB : [0, 0.1, 1], //free board, will be defined in parent generally
-                    // baffleT : [0, 0.0008, 2], //baffle thickness, will be defined in parent generally
-                    // baffleS : [0.01, 0.1, 10], //baffle spacing, will be calculated in parent
-                    // HL_bod : [0, 0.4, 1], //head loss, defined in parent
-                    // washerT : [0.001, 0.003175, 0.2], //washer thickness
-                    // washerOD : [0.125, 1, 3],
+                    // flowfront : "false",
+                    // lastchannel : "false",
+                    // tankH : "$.tankH",
+                    // channelW : ,
+                    // channelL : ,
+                    // FB : ,
+                    // baffleT :,
+                    // baffleS : ,
+                    // HL_bod : ,
+                    // washerT : ,
+                    // washerOD : ,
 
                 },
             },
@@ -76,3 +79,9 @@ export const bafflesetFeature = defineFeature(function(context is Context, id is
     {
         treeInstantiatorFeature(context, id, bafflesetTree as InputTree);
     });
+    
+    
+    
+    //to do list
+    // - define params
+    // - define inputs
