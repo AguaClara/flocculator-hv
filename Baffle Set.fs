@@ -121,6 +121,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
         //             "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
         //             location : design.location
         //         });
+        return design;
 
     };
 
