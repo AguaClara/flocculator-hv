@@ -19,10 +19,7 @@ export const bafflesetTree =
         params : {
             rep : true,
             ip : "app",
-            N: [0, 5, 100]; //number of baffle sets
-            
-            
-
+            N: [0, 5, 100], //number of baffle sets
 
         },
         children : {
@@ -85,3 +82,8 @@ export const bafflesetFeature = defineFeature(function(context is Context, id is
     //to do list
     // - define params
     // - define inputs
+    
+    //questions
+    // -  if an input below is going to be defined in the next parent, does it still need to be defined in params?
+    //  - where in the code in superderive inserted?
+    
