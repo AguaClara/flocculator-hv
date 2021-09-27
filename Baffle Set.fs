@@ -20,7 +20,7 @@ export const baffleSetTree =
         },
         designers : {
             pre : baffleSetPreDesigner,
-            post : baffleSetPostDesigner,
+            //post : baffleSetPostDesigner,
             geometry : baffleSetGeometry,
         },
         params : {
