@@ -119,7 +119,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
         design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
 
 
-        opMateConnector(context, id, { 'coordSystem' : qlocation, owner : WORLD_ORIGIN }); 
+        opMateConnector(context, id, { 'coordSystem' : qlocation }); //, owner : WORLD_ORIGIN
         const mateQ = qCreatedBy(id, EntityType.VERTEX);
 
         superDerive(context, id, {
