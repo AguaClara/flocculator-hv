@@ -39,19 +39,19 @@ export const bafflesetTree =
                 tree : baffleTree,
                 inputs : {
 
-                    rep : "$.rep",
+                    rep : "$.rep", 
                     ip : "$.ip",
-                    flowfront : "false",
-                    lastchannel : "false",
+                    flowfront : "false", //diff
+                    lastchannel : "false", //diff
                     tankH : "$.tankH",
-                    channelW : "$.channelW",
-                    channelL : "$.channelL",
-                    FB : "$.FB",
-                    baffleT :"$.baffleT",
-                    baffleS : "$.baffleS",
-                    HL_bod : "$.HL_bod",
-                    washerT : "$.washerT",
-                    washerOD : "$.washerOD",
+                    channelW : "$.channelW", 
+                    channelL : "$.channelL", 
+                    FB : "$.FB", 
+                    baffleT :"$.baffleT", 
+                    baffleS : "$.baffleS", 
+                    HL_bod : "$.HL_bod", 
+                    washerT : "$.washerT", 
+                    washerOD : "$.washerOD", 
 
                 },
             },
@@ -67,6 +67,8 @@ export const bafflesetPreDesigner = function(design) returns map
 
 export const bafflesetPostDesigner = function(design) returns map
     {
+
+
 
         return design;
 
@@ -87,6 +89,8 @@ export const bafflesetFeature = defineFeature(function(context is Context, id is
     //to do list
     // - define params
     // - define inputs
+    // - throw in superderive! 
+    // - 
     
     //questions
     // -  if an input below is going to be defined in the next parent, does it still need to be defined in params?
