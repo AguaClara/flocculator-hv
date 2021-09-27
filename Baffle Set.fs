@@ -18,21 +18,21 @@ export const baffleSetTree =
         designers : {
             pre : baffleSetPreDesigner,
             post : baffleSetPostDesigner,
-            geometry: baffleSetGeometry,
+            geometry : baffleSetGeometry,
         },
         params : {
             rep : true,
             ip : "app",
-            channelN: [0, 5, 100], //number of baffle sets
-            channelB: [0, 8, 200], //center to center distance between channels 
-            tankH : [1, 2, 200], 
-            channelW : [0.05, 0.5, 100], 
-            channelL : [0, 7, 200], 
-            FB : [0, 0.1, 1], 
-            baffleT : [0, 0.0008, 2], 
-            baffleS : [0.01, 0.1, 10], 
-            HL_bod : [0, 0.4, 1], 
-            washerT : [0.001, 0.003175, 0.2], 
+            channelN : [0, 5, 100], //number of baffle sets
+            channelB : [0, 8, 200], //center to center distance between channels
+            tankH : [1, 2, 200],
+            channelW : [0.05, 0.5, 100],
+            channelL : [0, 7, 200],
+            FB : [0, 0.1, 1],
+            baffleT : [0, 0.0008, 2],
+            baffleS : [0.01, 0.1, 10],
+            HL_bod : [0, 0.4, 1],
+            washerT : [0.001, 0.003175, 0.2],
             washerOD : [0.0002, 1, 3],
 
         },
@@ -41,19 +41,19 @@ export const baffleSetTree =
                 tree : baffleTree,
                 inputs : {
 
-                    rep : "$.rep", 
+                    rep : "$.rep",
                     ip : "$.ip",
                     flowfront : "false", //diff
                     lastchannel : "false", //diff
                     tankH : "$.tankH",
-                    channelW : "$.channelW", 
-                    channelL : "$.channelL", 
-                    FB : "$.FB", 
-                    baffleT :"$.baffleT", 
-                    baffleS : "$.baffleS", 
-                    HL_bod : "$.HL_bod", 
-                    washerT : "$.washerT", 
-                    washerOD : "$.washerOD", 
+                    channelW : "$.channelW",
+                    channelL : "$.channelL",
+                    FB : "$.FB",
+                    baffleT : "$.baffleT",
+                    baffleS : "$.baffleS",
+                    HL_bod : "$.HL_bod",
+                    washerT : "$.washerT",
+                    washerOD : "$.washerOD",
 
                 },
             },
@@ -72,20 +72,20 @@ export const baffleSetPreDesigner = function(design) returns map
 export const baffleSetPostDesigner = function(design) returns map
     {
 
-for (var i = 1; i < design.channelN; i += 1) //for every discrete number from 1 to N
-{
+        for (var i = 1; i < design.channelN; i += 1) //for every discrete number from 1 to N
+        {
 
-            
-            if ((n == N) == true) //last channel?
-                {
-                    design.lastchannel= true;
-                }
+
+            if ((i == N) == true) //last channel?
+            {
+                design.lastchannel = true;
+            }
             else
             {
                 design.lastchannel = false;
             }
-            
-            
+
+
             if ((floor(design.channelN / 2) == ceil(design.channelN / 2)) == true) //if even, rotation of baffle
             {
                 //variable for top or bottom insertion & rotation
@@ -95,21 +95,22 @@ for (var i = 1; i < design.channelN; i += 1) //for every discrete number from 1 
             {
                 //same variable as above
             }
-            
-            design.baffleSetB: design.channelB*(n - 1); //placement horizontally assuming placement at n=1 is 0
 
-            //insert superderive            
+            design.baffleSetB = design.channelB * (i - 1);
+            //placement horizontally assuming placement at n=1 is 0
 
-}
+            //insert superderive
+
+        }
         return design;
 
     };
 
 
 export const baffleSetGeometry = function(context is Context, id is Id, design is map) returns map
-{
-    
-};
+    {
+
+    };
 
 annotation { "Feature Type Name" : "Baffle Set" }
 export const baffleSetFeature = defineFeature(function(context is Context, id is Id, definition is map)
@@ -120,20 +121,20 @@ export const baffleSetFeature = defineFeature(function(context is Context, id is
         treeInstantiatorFeature(context, id, baffleSetTree as InputTree);
     });
 
-    
-    
-    //to do list
-    // - define params
-    // - define inputs
-    // - throw in superderive! 
-        // - it will have to be iterative
-        // - if n = odd, flowfront = true (might not be relevant)
-        // - if n = N, lastchannel = true
-        // - could choose to rotate the entire baffle module and place at channelB
-            // keeps the beginning spacing at baffleS
-            // flowfront will always be true, that can be deleted from baffle
-    
-    //questions
-    // -  if an input below is going to be defined in the next parent, does it still need to be defined in params?
-    // - how/where do you insert superderive? 
-    
+
+
+//to do list
+// - define params
+// - define inputs
+// - throw in superderive!
+// - it will have to be iterative
+// - if n = odd, flowfront = true (might not be relevant)
+// - if n = N, lastchannel = true
+// - could choose to rotate the entire baffle module and place at channelB
+// keeps the beginning spacing at baffleS
+// flowfront will always be true, that can be deleted from baffle
+
+//questions
+// -  if an input below is going to be defined in the next parent, does it still need to be defined in params?
+// - how/where do you insert superderive?
+
