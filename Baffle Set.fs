@@ -49,7 +49,7 @@ export const bafflesetTree =
                     FB : "$.FB",
                     baffleT :"$.baffleT",
                     baffleS : "$.baffleS",
-                    HL_bod : "$.HL_bod,
+                    HL_bod : "$.HL_bod",
                     washerT : "$.washerT",
                     washerOD : "$.washerOD",
 
