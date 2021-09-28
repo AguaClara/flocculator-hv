@@ -169,5 +169,4 @@ export const baffleSetFeature = defineFeature(function(context is Context, id is
 
 //questions
 // -  if an input below is going to be defined in the next parent, does it still need to be defined in params?
-// - how/where do you insert superderive?
 
