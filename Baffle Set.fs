@@ -114,7 +114,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
         {
 
 
-            if ((i == design.channelN) == true) //last channel?
+            if (i == design.channelN)  //last channel?
             {
                 design.lastchannel = true;
             }
