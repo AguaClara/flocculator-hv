@@ -18,7 +18,7 @@ export const baffleTree =
         },
         params : {
             rep : true,
-            ip : "app",
+            ip : "GENERIC",
             flowfront : false, //if water comes in at the bottom and moves from to back, hitting the baffles at the front
             lastchannel : false,
             tankH : [1, 2, 200], //height of tank, will be defined in parent via tank info
