@@ -19,7 +19,6 @@ export const baffleTree =
         params : {
             rep : true,
             ip : "GENERIC",
-            flowfront : false, //if water comes in at the bottom and moves from to back, hitting the baffles at the front
             lastchannel : false,
             tankH : [1, 2, 200], //height of tank, will be defined in parent via tank info
             channelW : [0.05, 0.5, 100], //width of channel, will be defined in parent via tank info
@@ -124,7 +123,7 @@ export const bafflePreDesigner = function(design) returns map
         design.washer = {};
         design.washer.ID = design.pipe.OD;
         design.washerOD = design.washer.ID*3; //TBD
-
+        design.washer.tobaffleS = design.washerT; //spacing between washer & baffle
 
         design.spacer = {};
 
@@ -137,17 +136,8 @@ export const bafflePreDesigner = function(design) returns map
         design.spacer.lowerL = design.baffleS - design.washerT; //length of lower spacer
         design.spacer.upperL = design.baffleS + design.baffleB - design.washerT; //length of upper spacer
         design.spacer.lowerN = design.baffleN - 1; //number of lower spacers
+        design.spacer.tobaffleS = design.washerT; //spacing between spacer & baffle
 
-        if (design.flowfront == true)
-        {
-            design.washer.tobaffleS = design.washerT; //spacing between washer & baffle
-            design.spacer.tobaffleS = design.washerT; //spacing between spacer & baffle
-        }
-        else
-        {
-            design.washer.tobaffleS = -design.baffleT;
-            design.spacer.tobaffleS = 0 * meter;
-        }
 
 
         return design;
