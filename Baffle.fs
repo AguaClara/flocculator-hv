@@ -140,9 +140,8 @@ export const bafflePreDesigner = function(design) returns map
         design.fittingL = 0.05*meter; //length of fitting, TBD
         design.spacer.topbackL = design.baffleS*2 - design.fittingL; //length of top back spacers
         design.spacer.botbackL = design.baffleS - design.fittingL; //length of bottom back spacers
-        design.spacer.topfront1D = design.channelL - 2*design.baffleB - design.fittingL;
+        design.spacer.front1D = design.channelL - 2*design.baffleB - design.fittingL;
         design.spacer.topfront2D = design.baffleB*(design.baffleN - 3) + design.washerT;
-        design.spacer.botfront1D = design.channelL - 2*design.baffleB - design.fittingL;
         design.spacer.botfront2D = design.baffleB*(design.baffleN - 3) + design.washerT;
 
 
