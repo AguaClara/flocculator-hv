@@ -102,9 +102,8 @@ export const baffleSetPostDesigner = function(design) returns map
             design.baffleSetB = design.channelB * (i - 1);
             //placement horizontally assuming placement at n=1 is 0
 
-                    });
-
-                        var qlocation = coordSystem(WORLD_ORIGIN, vector(1, 0, 0) * meter, vector(0, 0, 1) * meter);
+}
+            var qlocation = coordSystem(WORLD_ORIGIN, vector(1, 0, 0) * meter, vector(0, 0, 1) * meter);
             println(qlocation);
             // println(evaluateQuery(context, qlocation));
             design.location = qlocation;
@@ -117,8 +116,7 @@ export const baffleSetPostDesigner = function(design) returns map
             superDerive(context, id, {
                         "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
                         location : mateQ
-
-        }
+            });
         return design;
 
     };
