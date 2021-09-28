@@ -83,7 +83,8 @@ export const bafflePreDesigner = function(design) returns map
         }
         else
         {
-            if ((floor(design.baffleN / 2) == ceil(design.baffleN / 2)) == true)
+            //if ((floor(design.baffleN / 2) == ceil(design.baffleN / 2)) == true)
+            if (design.baffleN%2 == 0)
             {
                 design.baffleN = design.baffleN - 1;
             }
