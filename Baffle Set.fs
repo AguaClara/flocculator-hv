@@ -79,6 +79,41 @@ export const baffleSetPostDesigner = function(design) returns map
         {
 
 
+            // if ((i == design.channelN) == true) //last channel?
+            // {
+            //     design.lastchannel = true;
+            // }
+            // else
+            // {
+            //     design.lastchannel = false;
+            // }
+
+
+            // if ((floor(design.channelN / 2) == ceil(design.channelN / 2)) == true) //if even, rotation of baffle
+            // {
+            //     //variable for top or bottom insertion (vertical insertion) & rotation
+            // }
+
+            // else
+            // {
+            //     //same variable as above
+            // }
+
+            // design.baffleSetB = design.channelB * (i - 1);
+            // //placement horizontally assuming placement at n=1 is 0
+
+        }
+        return design;
+
+    };
+
+
+export const baffleSetGeometry = function(context is Context, id is Id, design is map) returns map
+    {
+        for (var i = 1; i < design.channelN; i += 1) //for every discrete number from 1 to N
+        {
+
+
             if ((i == design.channelN) == true) //last channel?
             {
                 design.lastchannel = true;
@@ -102,42 +137,23 @@ export const baffleSetPostDesigner = function(design) returns map
             design.baffleSetB = design.channelB * (i - 1);
             //placement horizontally assuming placement at n=1 is 0
 
-}
-            var qlocation = coordSystem(WORLD_ORIGIN, vector(1, 0, 0) * meter, vector(0, 0, 1) * meter);
-            println(qlocation);
-            // println(evaluateQuery(context, qlocation));
-            design.location = qlocation;
-            design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
+        }
 
 
-            opMateConnector(context, id, { 'coordSystem' : qlocation });
-            const mateQ = qCreatedBy(id, EntityType.VERTEX);
-
-            superDerive(context, id, {
-                        "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
-                        location : mateQ
-            });
-        return design;
-
-    };
+        var qlocation = coordSystem(WORLD_ORIGIN, vector(-1, 0, 0) * meter, vector(0, 0, 1) * meter);
+        println(qlocation);
+        // println(evaluateQuery(context, qlocation));
+        design.location = qlocation;
+        design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
 
 
-export const baffleSetGeometry = function(context is Context, id is Id, design is map) returns map
-    {
-        // var qlocation = coordSystem(WORLD_ORIGIN, vector(-1, 0, 0) * meter, vector(0, 0, 1) * meter);
-        // println(qlocation);
-        // // println(evaluateQuery(context, qlocation));
-        // design.location = qlocation;
-        // design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
+        opMateConnector(context, id, { 'coordSystem' : qlocation });
+        const mateQ = qCreatedBy(id, EntityType.VERTEX);
 
-
-        // opMateConnector(context, id, { 'coordSystem' : qlocation });
-        // const mateQ = qCreatedBy(id, EntityType.VERTEX);
-
-        // superDerive(context, id, {
-        //             "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
-        //             location : mateQ
-                // });
+        superDerive(context, id, {
+                    "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
+                    location : mateQ
+                });
         return design;
 
     };
