@@ -94,7 +94,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
 
             if (floor(i / 2) == ceil(i / 2)) //if even, rotation of baffle
             {
-                design.originY = (-design.channelL + design.baffleS) / meter; //location of origin
+                design.originY = (-design.channelL) / meter; //location of origin, ADJUST
                 design.originV1 = vector(-1, 0, 0) * meter; //new rotation
                 design.originV2 = vector(0, 0, 1) * meter;
                 design.originX = (-design.channelB * (i - 1) - design.channelW) / meter;
