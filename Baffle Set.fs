@@ -127,7 +127,7 @@ export const baffleSetPostDesigner = function(design) returns map
 
 export const baffleSetGeometry = function(context is Context, id is Id, design is map) returns map
     {
-        var qlocation = coordSystem(WORLD_ORIGIN, vector(1, 0, 0) * meter, vector(0, 0, 1) * meter);
+        var qlocation = coordSystem(WORLD_ORIGIN, vector(-1, 0, 0) * meter, vector(0, 0, -1) * meter);
         println(qlocation);
         // println(evaluateQuery(context, qlocation));
         design.location = qlocation;
