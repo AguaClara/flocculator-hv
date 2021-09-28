@@ -153,7 +153,6 @@ export const bafflePreDesigner = function(design) returns map
             design.spacer.topfront2D = design.baffleB*(design.baffleN - 3) + design.washerT;
         
         }
-    
 
 
         return design;
@@ -192,4 +191,3 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 
 //questions
 // - will I have to adjust for the part of the fitting that goes past the node?
-
