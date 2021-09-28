@@ -115,7 +115,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
             var qlocation = coordSystem(vector(design.originX, design.originY, 0) * meter, design.originV1, design.originV2); //these are vectors, they do intersect at a certain point (rn it is the origin)
 
             opMateConnector(context, id + i, { 'coordSystem' : qlocation });
-            const mateQ = qCreatedBy(id, EntityType.VERTEX);
+            const mateQ = qCreatedBy(id + i, EntityType.VERTEX);
 
             superDerive(context, id + i, {
                         "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
