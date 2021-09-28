@@ -26,7 +26,7 @@ export const baffleSetTree =
         params : {
             rep : true,
             ip : "app",
-            channelN : [0, 5, 100], //number of baffle sets
+            channelN : [0, 1, 100], //number of baffle sets
             channelB : [0, 8, 200], //center to center distance between channels
             tankH : [1, 2, 200],
             channelW : [0.05, 0.5, 100],
