@@ -31,7 +31,6 @@ export const baffleSetTree =
             tankH : [1, 2, 200],
             channelW : [0.05, 0.5, 100],
             channelL : [0, 7, 200],
-            channelT : [0, 0.2, 1],
             FB : [0, 0.1, 1],
             baffleT : [0, 0.0008, 2],
             baffleS : [0.01, 0.1, 10],
