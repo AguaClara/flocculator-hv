@@ -124,7 +124,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
             }
 
 
-            if ((floor(design.channelN / 2) == ceil(design.channelN / 2)) == true) //if even, rotation of baffle
+            if (floor(design.channelN / 2) == ceil(design.channelN / 2)) //if even, rotation of baffle
             {
                design.originY = 0;
                //rotate
