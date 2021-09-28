@@ -137,10 +137,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
             design.baffleSetB = design.channelB * (i - 1);
             //placement horizontally assuming placement at n=1 is 0
 
-        }
-
-
-        var qlocation = coordSystem(WORLD_ORIGIN, vector(-1, 0, 0) * meter, vector(0, 0, 1) * meter);
+        var qlocation = coordSystem(vector(design.baffleSetB, 0, 0) * meter, vector(-1, 0, 0) * meter, vector(0, 0, 1) * meter); //these are vectors, they do intersect at a certain point (rn it is the origin)
         println(qlocation);
         // println(evaluateQuery(context, qlocation));
         design.location = qlocation;
@@ -154,6 +151,8 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
                     "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
                     location : mateQ
                 });
+                
+        }
         return design;
 
     };
