@@ -27,10 +27,11 @@ export const baffleSetTree =
             rep : true,
             ip : "app",
             channelN : [0, 5, 100], //number of baffle sets
-            channelB : [0, 8, 200], //center to center distance between channels
+            channelT : [0, 0.2, 1], //thickness of channel
             tankH : [1, 2, 200],
             channelW : [0.05, 0.5, 100],
             channelL : [0, 7, 200],
+            channelT : [0, 0.2, 1],
             FB : [0, 0.1, 1],
             baffleT : [0, 0.0008, 2],
             baffleS : [0.01, 0.1, 10],
@@ -66,7 +67,7 @@ export const baffleSetTree =
 export const baffleSetPreDesigner = function(design) returns map
     {
 
-
+    design.channelB = design.channelW + design.channelT;
 
         return design;
 
