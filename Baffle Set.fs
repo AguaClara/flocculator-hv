@@ -97,20 +97,22 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
 
             if (floor(design.channelN / 2) == ceil(design.channelN / 2)) //if even, rotation of baffle
             {
-               design.originY = 0;
-               //rotate
+                design.originY = 0;
+                design.originV1 = vector(0, 0, 1) * meter;
+                design.originV2 = vector(1, 0, 0) * meter;
             }
 
             else
             {
-               design.originY = -design.channelL / meter;
-               //do not rotate
+                design.originY = -design.channelL / meter;
+                design.originV1 = vector(1, 0, 0) * meter;
+                design.originV2 = vector(0, 0, 1) * meter;
             }
 
             design.originX = -design.channelB * (i - 1) / meter;
             //placement horizontally assuming placement at n=1 is 0
 
-        var qlocation = coordSystem(vector(design.originX, design.originY, 0) * meter, vector(1, 0, 0) * meter, vector(0, 0, 1) * meter); //these are vectors, they do intersect at a certain point (rn it is the origin)
+        var qlocation = coordSystem(vector(design.originX, design.originY, 0) * meter, design.originV1, design.originV2); //these are vectors, they do intersect at a certain point (rn it is the origin)
 
         opMateConnector(context, id, { 'coordSystem' : qlocation });
         const mateQ = qCreatedBy(id, EntityType.VERTEX);
