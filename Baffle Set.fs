@@ -113,10 +113,12 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
             opMateConnector(context, id + i, { 'coordSystem' : qlocation });
             const mateQ = qCreatedBy(id + i, EntityType.VERTEX);
             print(mateQ);
-            superDerive(context, id + i, {
+            const args = { mcName : "", includeVariables : false, variablePrefix : "", variableSuffix : "", suppressGeometry : false, operationType : NewBodyOperationType.NEW, customConfiguration : false, configEntries : configEntriesDefault, configurationString : configurationStringDefault, useOverrides : false };
+            const customArgs = {
                         "partStudio" : { buildFunction : baffleModule::build, configuration : {"overrides": mapToJSON(serializer(design.baffle)) } } as PartStudioData,
                         location : mateQ
-                    });
+                    };
+            superDerive(context, id + i, mergeMaps(args, customArgs));
 
         }
         return design;
@@ -132,5 +134,5 @@ export const baffleSetFeature = defineFeature(function(context is Context, id is
         treeInstantiatorFeature(context, id, baffleSetTree as InputTree);
     });
 
-//QUESTIONS
-    //how come putting "rep" : true into overrides doesn't make the rep false for the children?
+//to do:
+// - for last channel, make sure that the last spacer accounts for the different number of baffles
