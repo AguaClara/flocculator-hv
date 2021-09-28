@@ -146,25 +146,5 @@ export const baffleSetFeature = defineFeature(function(context is Context, id is
         treeInstantiatorFeature(context, id, baffleSetTree as InputTree);
     });
 
-
-
-//to do list
-// - define params
-// - define inputs
-// - throw in superderive!
-// - it will have to be iterative
-// - if n = odd, flowfront = true (might not be relevant)
-// - if n = N, lastchannel = true
-// - could choose to rotate the entire baffle module and place at channelB
-// keeps the beginning spacing at baffleS
-// flowfront will always be true, that can be deleted from baffle
-
-//questions
-// -  if an input below is going to be defined in the next parent, does it still need to be defined in params?
-
-
-
-// println(qlocation);
-// // println(evaluateQuery(context, qlocation));
-// design.location = qlocation;
-// design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
+//QUESTIONS
+    //how come putting "rep" : true into overrides doesn't make the rep false for the children?
