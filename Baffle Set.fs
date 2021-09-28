@@ -133,6 +133,3 @@ export const baffleSetFeature = defineFeature(function(context is Context, id is
     {
         treeInstantiatorFeature(context, id, baffleSetTree as InputTree);
     });
-
-//to do:
-// - for last channel, make sure that the last spacer accounts for the different number of baffles
