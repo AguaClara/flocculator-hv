@@ -100,6 +100,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
                 design.originY = -design.channelL / meter; //location of origin
                 design.originV1 = vector(-1, 0, 0) * meter; //new rotation
                 design.originV2 = vector(0, 0, 1) * meter;
+                design.originX = -design.channelB * (i - 1) / meter;
             }
 
             else
@@ -107,10 +108,9 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
                 design.originY = 0; //location of origin
                 design.originV1 = vector(1, 0, 0) * meter; //original rotation
                 design.originV2 = vector(0, 0, 1) * meter;
+                design.originX = -design.channelB * (i - 1) / meter; //horizontal placement
             }
 
-            design.originX = -design.channelB * (i - 1) / meter;
-            //placement horizontally assuming placement at n=1 is 0
 
             var qlocation = coordSystem(vector(design.originX, design.originY, 0) * meter, design.originV1, design.originV2); //these are vectors, they do intersect at a certain point (rn it is the origin)
 
