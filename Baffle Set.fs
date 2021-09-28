@@ -74,35 +74,6 @@ export const baffleSetPreDesigner = function(design) returns map
 
 export const baffleSetPostDesigner = function(design) returns map
     {
-
-        // for (var i = 1; i < design.channelN; i += 1) //for every discrete number from 1 to N
-        // {
-
-
-            // if ((i == design.channelN) == true) //last channel?
-            // {
-            //     design.lastchannel = true;
-            // }
-            // else
-            // {
-            //     design.lastchannel = false;
-            // }
-
-
-            // if ((floor(design.channelN / 2) == ceil(design.channelN / 2)) == true) //if even, rotation of baffle
-            // {
-            //     //variable for top or bottom insertion (vertical insertion) & rotation
-            // }
-
-            // else
-            // {
-            //     //same variable as above
-            // }
-
-            // design.baffleSetB = design.channelB * (i - 1);
-            // //placement horizontally assuming placement at n=1 is 0
-
-        // }
         return design;
 
     };
