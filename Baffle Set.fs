@@ -138,11 +138,6 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
             //placement horizontally assuming placement at n=1 is 0
 
         var qlocation = coordSystem(vector(design.baffleSetB, 0, 0) * meter, vector(1, 0, 0) * meter, vector(0, 0, 1) * meter); //these are vectors, they do intersect at a certain point (rn it is the origin)
-        // println(qlocation);
-        // // println(evaluateQuery(context, qlocation));
-        // design.location = qlocation;
-        // design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
-
 
         opMateConnector(context, id, { 'coordSystem' : qlocation });
         const mateQ = qCreatedBy(id, EntityType.VERTEX);
@@ -182,3 +177,9 @@ export const baffleSetFeature = defineFeature(function(context is Context, id is
 //questions
 // -  if an input below is going to be defined in the next parent, does it still need to be defined in params?
 
+
+
+        // println(qlocation);
+        // // println(evaluateQuery(context, qlocation));
+        // design.location = qlocation;
+        // design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
