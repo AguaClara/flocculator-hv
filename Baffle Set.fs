@@ -46,7 +46,6 @@ export const baffleSetTree =
 
                     rep : "$.rep",
                     ip : "$.ip",
-                    flowfront : "false", //diff
                     lastchannel : "false", //diff
                     tankH : "$.tankH",
                     channelW : "$.channelW",
