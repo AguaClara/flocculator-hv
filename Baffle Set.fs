@@ -75,8 +75,8 @@ export const baffleSetPreDesigner = function(design) returns map
 export const baffleSetPostDesigner = function(design) returns map
     {
 
-        for (var i = 1; i < design.channelN; i += 1) //for every discrete number from 1 to N
-        {
+        // for (var i = 1; i < design.channelN; i += 1) //for every discrete number from 1 to N
+        // {
 
 
             // if ((i == design.channelN) == true) //last channel?
