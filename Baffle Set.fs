@@ -137,7 +137,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
         // superDerive(context, id, {
         //             "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
         //             location : mateQ
-                });
+                // });
         return design;
 
     };
