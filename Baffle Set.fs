@@ -166,7 +166,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
     };
 
 annotation { "Feature Type Name" : "Baffle Set" }
-export const baffleSetFeature = defineFeature(function(context is Context, id is id, definition is map)
+export const baffleSetFeature = defineFeature(function(context is Context, id is Id1, definition is map)
     precondition
     {
     }
