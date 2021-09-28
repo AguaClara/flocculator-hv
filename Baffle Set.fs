@@ -36,7 +36,6 @@ export const baffleSetTree =
             baffleS : [0.01, 0.1, 10],
             HL_bod : [0, 0.4, 1],
             washerT : [0.001, 0.003175, 0.2],
-            washerOD : [0.0002, 1, 3],
 
         },
         children : {
@@ -55,7 +54,6 @@ export const baffleSetTree =
                     baffleS : "$.baffleS",
                     HL_bod : "$.HL_bod",
                     washerT : "$.washerT",
-                    washerOD : "$.washerOD",
 
                 },
             },
