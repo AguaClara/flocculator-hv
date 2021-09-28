@@ -104,7 +104,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
 
             else
             {
-                design.originY = o; //location of origin
+                design.originY = 0; //location of origin
                 design.originV1 = vector(1, 0, 0) * meter; //original rotation
                 design.originV2 = vector(0, 0, 1) * meter;
             }
