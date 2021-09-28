@@ -85,7 +85,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
         {
 
 
-            if (i == design.channelN)  //last channel?
+            if (i == design.channelN) //last channel?
             {
                 design.lastchannel = true;
             }
@@ -112,19 +112,19 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
             design.originX = -design.channelB * (i - 1) / meter;
             //placement horizontally assuming placement at n=1 is 0
 
-        var qlocation = coordSystem(vector(design.originX, design.originY, 0) * meter, design.originV1, design.originV2); //these are vectors, they do intersect at a certain point (rn it is the origin)
+            var qlocation = coordSystem(vector(design.originX, design.originY, 0) * meter, design.originV1, design.originV2); //these are vectors, they do intersect at a certain point (rn it is the origin)
 
-        opMateConnector(context, id + "Mate", { 'coordSystem' : qlocation });
-        const mateQ = qCreatedBy(id, EntityType.VERTEX);
+            opMateConnector(context, id + i, { 'coordSystem' : qlocation });
+            const mateQ = qCreatedBy(id, EntityType.VERTEX);
 
-        superDerive(context, id, {
-                    "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
-                    location : mateQ
-                });
-                
+            superDerive(context, id, {
+                        "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
+                        location : mateQ
+                    });
+
         }
-        
-        
+
+
         // var qlocation = coordSystem(vector(0, 0, 0) * meter, vector(1, 0, 0) * meter, vector(0, 0, 1) * meter); //these are vectors, they do intersect at a certain point (rn it is the origin)
 
         // opMateConnector(context, id, { 'coordSystem' : qlocation });
@@ -165,7 +165,7 @@ export const baffleSetFeature = defineFeature(function(context is Context, id is
 
 
 
-        // println(qlocation);
-        // // println(evaluateQuery(context, qlocation));
-        // design.location = qlocation;
-        // design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
+// println(qlocation);
+// // println(evaluateQuery(context, qlocation));
+// design.location = qlocation;
+// design.location = [line(vector(-1, -1, 0) * inch, vector(0, 0, -1)), line(vector(1, 1, 0) * inch, vector(0, 0, -1))];
