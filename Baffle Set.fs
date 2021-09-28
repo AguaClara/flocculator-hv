@@ -114,7 +114,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
             const mateQ = qCreatedBy(id + i, EntityType.VERTEX);
             print(mateQ);
             superDerive(context, id + i, {
-                        "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
+                        "partStudio" : { buildFunction : baffleModule::build, configuration : {"overrides": mapToJSON(serializer(design.baffle)) } } as PartStudioData,
                         location : mateQ
                     });
 
