@@ -102,7 +102,7 @@ export const baffleSetPostDesigner = function(design) returns map
             // design.baffleSetB = design.channelB * (i - 1);
             // //placement horizontally assuming placement at n=1 is 0
 
-        }
+        // }
         return design;
 
     };
