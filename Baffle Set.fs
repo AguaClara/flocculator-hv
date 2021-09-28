@@ -81,7 +81,7 @@ export const baffleSetPostDesigner = function(design) returns map
 
 export const baffleSetGeometry = function(context is Context, id is Id, design is map) returns map
     {
-        for (var i = 1; i < design.channelN; i += 1) //for every discrete number from 1 to N
+        for (var i = 1; i <= design.channelN; i += 1) //for every discrete number from 1 to N
         {
 
 
@@ -116,7 +116,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
 
             opMateConnector(context, id + i, { 'coordSystem' : qlocation });
             const mateQ = qCreatedBy(id + i, EntityType.VERTEX);
-print(mateQ);
+            print(mateQ);
             superDerive(context, id + i, {
                         "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
                         location : mateQ
