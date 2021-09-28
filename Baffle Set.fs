@@ -113,7 +113,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
             opMateConnector(context, id + i, { 'coordSystem' : qlocation });
             const mateQ = qCreatedBy(id + i, EntityType.VERTEX);
             print(mateQ);
-            const args = { mcName : "", includeVariables : false, variablePrefix : "", variableSuffix : "", suppressGeometry : false, operationType : NewBodyOperationType.NEW, customConfiguration : false, configEntries : configEntriesDefault, configurationString : configurationStringDefault, useOverrides : false };
+            const args = { useOverrides : true };
             const customArgs = {
                         "partStudio" : { buildFunction : baffleModule::build, configuration : {"overrides": mapToJSON(serializer(design.baffle)) } } as PartStudioData,
                         location : mateQ
