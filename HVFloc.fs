@@ -43,6 +43,7 @@ export const hvFlocTree = {
             "G_max" : [1, 200, 50000],
             "etWall" : false,
             "channelT": [0, 0.15, 2],
+            "tankH": [0, 2, 4],
 
         },
         execution : { order : ["tank", "baffleSet"] },
@@ -77,7 +78,7 @@ export const hvFlocTree = {
                     channelT : "$.channelT", //not defined in this FS, just reference?? Also, check out the diff between interior and exterior wall thicknesses
                     channelW : "$.channelW",
                     channelL : "$.L",
-                    tankH : "", //TBD
+                    tankH : "$.tankH", //TBD
                     FB : "$.FB",
                     baffleT : "$.baffle.T",
                     "baffleS" : "$.baffle.S",
