@@ -35,7 +35,6 @@ export const baffleSetTree =
             baffleT : [0, 0.0008, 2],
             baffleS : [0.01, 0.1, 10],
             HL_bod : [0, 0.4, 1],
-            washerT : [0.001, 0.003175, 0.2],
 
         },
         children : {
