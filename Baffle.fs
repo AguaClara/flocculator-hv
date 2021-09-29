@@ -1,7 +1,8 @@
 FeatureScript 1576;
 import(path : "onshape/std/geometry.fs", version : "1576.0");
 import(path : "2fa81f50be25609bc956cd5f/9315fcf8489f0c0cc1a06a01/40a6bde79e4081741060af59", version : "24d9ce4bf05b3add5d64a574");
-import(path : "de0b979bd2526029daafe060/ac05d0191cd608f3f6495d31/c83b1d53201b9ea21c42cafd", version : "3b27a2b0a12fe3ecbdf5ec1f");
+import(path : "94569ca95d5169b5296f9bc5/7dbe9973de11a9b4bbe0f062/c882e1f8dacf21f3b9627ed5", version : "7a77f775c5b4872b7c189f0b");
+
 
 
 import(path : "c0af0d6b5703e7a8fb53f53f/ca3f04e79a55cdd9fedd1ad1/0f7fbd6e5e57d50d045b4ccd", version : "507858454a86a1de9513585e");
@@ -109,7 +110,7 @@ export const bafflePreDesigner = function(design) returns map
         design.pipe.ID = pipe.ID; //inner diameter
         design.pipe.OD = pipe.OD; //outer diameter
     
-        design.pipe.fittingR = queryFittingDim(ND is design.pipe.ND, fittingType is FittingType, fittingShape is FittingShape, connectionStyle is ConnectionStyle, returnKeys is "OD"); //distance from node to outer cap, TBD
+        design.pipe.fittingR = queryFittingDim(design.pipe.ND, design.ip, FittingShape, ConnectionStyle, "OD"); //distance from node to outer cap, TBD
         design.pipe.L = design.channelL; //length of pipe (node to node)
         design.pipe.colN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns, TBD
         design.pipe.hedgeB = 0.1 * meter; //horizontal edge distance from middle of hole
