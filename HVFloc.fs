@@ -40,7 +40,7 @@ export const hvFlocTree = {
             "FB" : [0.05, 0.1, 0.5],
             "G_max" : [1, 200, 50000],
             "etWall" : false,
-            // T : [0, 0.1, 2], //thickness of baffle
+        // T : [0, 0.1, 2], //thickness of baffle
         },
         execution : { order : ["tank"] },
         children : {
@@ -65,24 +65,23 @@ export const hvFlocTree = {
                     portSwap : false,
                 },
             },
-
-            tank : {
-                tree : tankTree,
-                inputs :
-                {
-            rep : true,
-            ip : "app",
-            channelN : [0, 4, 100], //number of baffle sets
-            channelT : [0, 0.2, 1], //thickness of channel
-            channelW : [0.05, 0.5, 100],
-            channelL : [0, 7, 200],
-            tankH : [1, 2, 200],
-            FB : [0, 0.1, 1],
-            baffleT : [0, 0.0008, 2],
-            baffleS : [0.01, 0.1, 10],
-            HL_bod : [0, 0.4, 1],
-            washerT : [0.001, 0.003175, 0.2],
-                }
+            baffleSet : {
+                tree : baffleSetTree,
+                inputs : {
+                    rep : "$.rep",
+                    ip : "$.ip",
+                    channelN : "",
+                    channelT : "", 
+                    channelW : "",
+                    channelL : "$.L",
+                    tankH : "",
+                    FB : "$.FB",
+                    baffleT : "",
+                    baffleS : "",
+                    HL_bod : "$.HL_bod",
+                    washerT : "",
+                },
+            },
         },
     };
 
