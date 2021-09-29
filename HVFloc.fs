@@ -43,7 +43,7 @@ export const hvFlocTree = {
             "etWall" : false,
 
         },
-        execution : { order : ["tank"] },
+        execution : { order : ["tank", "baffleSet"] },
         children : {
             tank : {
                 tree : tankTree,
