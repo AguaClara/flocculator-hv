@@ -52,7 +52,6 @@ export const baffleSetTree =
                     baffleT : "$.baffleT",
                     baffleS : "$.baffleS",
                     HL_bod : "$.HL_bod",
-                    // washerT : "$.washerT",
 
                 },
             },
