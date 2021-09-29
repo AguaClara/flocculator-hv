@@ -137,7 +137,7 @@ export const bafflePreDesigner = function(design) returns map
         design.spacer.lowerN = design.baffleN - 1; //number of lower spacers
         design.spacer.tobaffleS = design.washerT; //spacing between spacer & baffle
         
-        design.fittingL = 0.05*meter; //length of fitting, TBD
+        design.fittingL = 0.05*meter; //length of fitting, socketL, TBD
         design.spacer.topbackL = design.baffleS*2 - design.fittingL; //length of top back spacers
         design.spacer.botbackL = design.baffleS - design.fittingL; //length of bottom back spacers
         design.spacer.front1D = design.channelL - 2*design.baffleB - design.fittingL;
@@ -190,4 +190,4 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 // - update length of fitting
 
 //questions
-// - will I have to adjust for the part of the fitting that goes past the node?
+// - how do we access a variable from the pipeline geometry?
