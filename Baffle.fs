@@ -48,22 +48,22 @@ export const baffleTree =
             "top" : {
                 tree : sheetTree,
                 inputs : {
-                    T : "$.baffleT",
+                    T_min : "$.baffleT",
                     L : "$.baffletopL",
                     W : "$.channelW",
-                    t : "corrugated",
-                    mat : "PC",
+                    sheetType : "corrugated",
+                    sheetMaterial : "PC",
                     ip : "$.ip",
                 },
             },
             "washer" : {
                 tree : sheetTree,
                 inputs : {
-                    T : "$.washerT", //thickness
+                    T_min : "$.washerT", //thickness
                     L : "$.washerOD", //outer washer width
                     W : "$.washerOD", //outer washer width
-                    t : "sheet", //type
-                    mat : "PVC", //material
+                    sheetType : "sheet", //type
+                    sheetMaterial : "PVC", //material
                     ip : "$.ip", //implementation partner
                 },
             },
