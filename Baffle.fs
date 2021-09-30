@@ -102,9 +102,9 @@ export const bafflePreDesigner = function(design) returns map
 
         //holes & pipe - top & bottom
         design.pipe = queryPipeDim(0.5, design.ip, true, 26, ["ND", "ID", "OD", "schedule"]);
-    
-        //design.pipe.fittingR = 0.02 * meter; //later delete    
+       
         design.pipe.fittingR = (queryFittingDim(design.pipe.ND, design.ip, FittingType.CAP, FittingShape.CAP, ConnectionStyle.SOCKET_CONNECT, ["OD"])).OD / 2; //distance from node to outer cap, TBD
+        print(design.pipe.fittingR);
         design.pipe.L = design.channelL - 2*design.pipe.fittingR; //length of pipe (node to node)
         design.pipe.colN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns, TBD
         design.pipe.hedgeB = 0.1 * meter; //horizontal edge distance from middle of hole
@@ -129,7 +129,8 @@ export const bafflePreDesigner = function(design) returns map
         design.spacer.lowerN = design.baffleN - 1; //number of lower spacers
         design.spacer.tobaffleS = design.washerT; //spacing between spacer & baffle
         
-        design.fittingL = queryFittingDim(design.pipe.ND, design.ip, FittingType.CAP, FittingShape.CAP, ConnectionStyle.SOCKET_CONNECT, ["socketL"]).socketL; //length of fitting, socketL, TBD
+        design.pipe.fittingL = queryFittingDim(design.pipe.ND, design.ip, FittingType.CAP, FittingShape.CAP, ConnectionStyle.SOCKET_CONNECT, ["socketL"]).socketL; //length of fitting, socketL, TBD
+        print(design.fittingL);
         design.spacer.topbackL = design.baffleS*2 - design.fittingL; //length of top back spacers
         design.spacer.botbackL = design.baffleS - design.fittingL; //length of bottom back spacers
         design.spacer.front1D = design.channelL - 2*design.baffleB - design.fittingL;
