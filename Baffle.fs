@@ -101,7 +101,7 @@ export const bafflePreDesigner = function(design) returns map
 
 
         //holes & pipe - top & bottom
-        design.pipe = queryPipeDim(0.5, design.ip, true, 26, []);
+        design.pipe = queryPipeDim(0.5, design.ip, true, 26, ["ND", "ID", "OD", "schedule"]);
     
         design.pipe.fittingR = 0.02 * meter; //later delete    
         //design.pipe.fittingR = (queryFittingDim(design.pipe.ND, design.ip, FittingType.CAP, FittingShape.CAP, ConnectionStyle.SOCKET_CONNECT, "OD")) / 2; //distance from node to outer cap, TBD
@@ -121,12 +121,8 @@ export const bafflePreDesigner = function(design) returns map
         design.washer.ID = design.pipe.OD;
         design.washerOD = design.washer.ID*3; //TBD
         design.washer.tobaffleS = design.washerT; //spacing between washer & baffle
-
-        // design.spacer = {};
-        // design.spacer.SDR = 26;
-        // design.spacer = mergeMaps(queryPipeDim(0.75, design.ip, true, design.spacer.SDR, []), design.spacer);
         
-        design.spacer = queryPipeDim(0.75, design.ip, true, 26, ["ND", "ID", "OD", "schedule"]);
+        design.spacer = queryPipeDim(0.75, design.ip, true, 26, ["ND", "ID", "OD", "schedule"]);//these all have to be things that are in obtained by the query. HMMM... Maybe I should make a "return everything" option.
         
         design.spacer.lowerL = design.baffleS - design.washerT; //length of lower spacer
         design.spacer.upperL = design.baffleS + design.baffleB - design.washerT; //length of upper spacer
