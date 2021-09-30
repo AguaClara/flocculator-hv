@@ -130,7 +130,6 @@ export const bafflePreDesigner = function(design) returns map
         design.washer.tobaffleS = design.washerT; //spacing between washer & baffle
 
         design.spacer = {};
-
         design.spacer = queryPipeDim(0.75, design.ip, true, 26, []);
         
         design.spacer.lowerL = design.baffleS - design.washerT; //length of lower spacer
