@@ -26,7 +26,7 @@ export const baffleTree =
             channelW : [0.05, 0.5, 100], //width of channel, will be defined in parent via tank info
             channelL : [0, 7, 200], //length of channel, will be defined in parent via tank info
             FB : [0, 0.1, 1], //free board, will be defined in parent generally
-            baffleT : [0, 0.0008, 2], //baffle thickness, will be defined in parent generally
+            baffleT : [0, 0.0008, 1], //baffle thickness, will be defined in parent generally
             baffleS : [0.01, 0.1, 10], //baffle spacing, will be calculated in parent
             HL_bod : [0, 0.4, 1], //head loss, defined in parent
             washerT : [0.001, 0.003175, 0.2], //washer thickness
