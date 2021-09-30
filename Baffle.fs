@@ -40,8 +40,8 @@ export const baffleTree =
                     T_min : "$.baffleT", //thickness
                     L : "$.bafflebottomL", //length
                     W : "$.channelW", //width, sheet width same as channel width
-                    t : "corrugated", //type
-                    mat : "PC", //material
+                    sheetType : "corrugated", //type
+                    sheetMaterial : "PC", //material
                     ip : "$.ip", //implementation partner
                 },
             },
