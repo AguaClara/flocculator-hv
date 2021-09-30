@@ -105,7 +105,6 @@ export const bafflePreDesigner = function(design) returns map
         design.pipe.ND = 0.5; //nominal diameter
         design.pipe.SDR = 26; //standard diameter ratio
 
-        const pipe0 = pipeofD(design.pipe.ND, design.pipe.SDR, PipeSelectionType.ND); //to be updated
         const pipe = queryPipeDim(design.pipe.ND, design.ip, true, design.pipe.SDR, []);
         
         design.pipe.ID = pipe.ID; //inner diameter
