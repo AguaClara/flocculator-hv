@@ -78,7 +78,7 @@ export const hvFlocTree = {
                     channelT : "$.channelT", //not defined in this FS, just reference?? Also, check out the diff between interior and exterior wall thicknesses
                     channelW : "$.channelW",
                     channelL : "$.L",
-                    tankH : "$.tankH", //TBD
+                    tankH : "$.H",
                     FB : "$.FB",
                     baffleT : "$.baffle.T",
                     "baffleS" : "$.baffle.S",
