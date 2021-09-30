@@ -59,12 +59,12 @@ export const baffleTree =
             "washer" : {
                 tree : sheetTree,
                 inputs : {
-                    T_min : "$.washerT", //thickness
+                    T_min : "$.washerT",
                     L : "$.washerOD", //outer washer width
                     W : "$.washerOD", //outer washer width
-                    sheetType : "SHEET", //type
-                    sheetMaterial : "PVC_GRAY", //material
-                    ip : "$.ip", //implementation partner
+                    sheetType : "SHEET", 
+                    sheetMaterial : "PVC_GRAY",
+                    ip : "$.ip", 
                 },
             },
         },
