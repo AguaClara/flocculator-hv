@@ -176,10 +176,6 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 
 
 
-
 //to do list
 // - half pipes
 // - bring superderive into code so that it can sometimes not exist depending on the length of the tank (N = O case)
-
-//questions
-// - part found from any implementation partner for pipes. is this ok?
