@@ -37,7 +37,7 @@ export const baffleTree =
             "bottom" : {
                 tree : sheetTree,
                 inputs : {
-                    T : "$.baffleT", //thickness
+                    "T" : "$.baffleT", //thickness
                     L : "$.bafflebottomL", //length
                     W : "$.channelW", //width, sheet width same as channel width
                     t : "corrugated", //type
