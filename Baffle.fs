@@ -131,12 +131,7 @@ export const bafflePreDesigner = function(design) returns map
 
         design.spacer = {};
 
-        // design.spacer.ND = 0.75;
-        // design.spacer.SDR = 26;
-
-        // const spacer = pipeofD(design.spacer.ND, design.spacer.SDR, PipeSelectionType.ND); //TBD
         design.spacer = queryPipeDim(0.75, design.ip, true, 26, []);
-        // design.spacer.ID = spacer.ID;
         
         design.spacer.lowerL = design.baffleS - design.washerT; //length of lower spacer
         design.spacer.upperL = design.baffleS + design.baffleB - design.washerT; //length of upper spacer
