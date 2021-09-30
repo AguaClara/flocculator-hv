@@ -126,7 +126,7 @@ export const bafflePreDesigner = function(design) returns map
         // design.spacer.SDR = 26;
         // design.spacer = mergeMaps(queryPipeDim(0.75, design.ip, true, design.spacer.SDR, []), design.spacer);
         
-        design.spacer = queryPipeDim(0.75, design.ip, true, 26, ["OD", "schedule"]);
+        design.spacer = queryPipeDim(0.75, design.ip, true, 26, ["ND", "ID", "OD", "schedule"]);
         
         design.spacer.lowerL = design.baffleS - design.washerT; //length of lower spacer
         design.spacer.upperL = design.baffleS + design.baffleB - design.washerT; //length of upper spacer
