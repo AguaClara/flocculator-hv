@@ -133,7 +133,3 @@ export const baffleSetFeature = defineFeature(function(context is Context, id is
     {
         treeInstantiatorFeature(context, id, baffleSetTree as InputTree);
     });
-
-
-//question
-// - serializer?
