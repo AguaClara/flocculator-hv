@@ -90,7 +90,7 @@ export const bafflePreDesigner = function(design) returns map
                 design.baffleN = design.baffleN - 1;
             }
         }
-
+        
         design.bottom = {};
         design.top = {};
 
