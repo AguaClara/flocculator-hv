@@ -53,8 +53,8 @@ export const hvFlocTree = {
                 inputs :
                 {
                     ip : "$.ip",
-                    "FB" : "$.FB",
-                    H : "$.H",
+                    "H" : "$.H",
+                    HW : "$.inletHW",
                     L : "$.L",
                     "W" : "$.channelW",
                     N : "$.channelN",
