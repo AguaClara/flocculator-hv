@@ -105,7 +105,6 @@ export const bafflePreDesigner = function(design) returns map
     
         //design.pipe.fittingR = 0.02 * meter; //later delete    
         design.pipe.fittingR = (queryFittingDim(design.pipe.ND, design.ip, "CAP", "CAP", "SOCKET_CONNECT", ["sOD"])) / 2; //distance from node to outer cap, TBD
-        queryFittingDim(ND, ip, FittingType.AUTO, FittingShape.AUTO, ConnectionStyle.AUTO, returnKeys);
         design.pipe.L = design.channelL - 2*design.pipe.fittingR; //length of pipe (node to node)
         design.pipe.colN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns, TBD
         design.pipe.hedgeB = 0.1 * meter; //horizontal edge distance from middle of hole
