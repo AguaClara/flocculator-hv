@@ -3,7 +3,7 @@ import(path : "onshape/std/geometry.fs", version : "1589.0");
 
 import(path : "2fa81f50be25609bc956cd5f/8447782876cbe95a017e2753/40a6bde79e4081741060af59", version : "8aa9c6c4240674e319355626");
 import(path : "ff0f26334dc9ed5e1dbbc027", version : "8930daa407e7139292457dfa");
-baffleModule::import(path : "c2f4584cf9d8b1114f7ff5b4", version : "8c582b2a1cb17b9e7b8f4771");
+baffleModule::import(path : "c2f4584cf9d8b1114f7ff5b4", version : "edf3b653917c6f430fdb3204");
 import(path : "c81fce53dede81ef89860aa3/bb45cd3912709c587e62e7fb/b453944163f91ccf1477e3f0", version : "d3e1c56c5ddb796b94cd62ce");
 
 
