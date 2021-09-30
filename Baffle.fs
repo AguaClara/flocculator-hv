@@ -181,4 +181,4 @@ export const baffleFeature = defineFeature(function(context is Context, id is Id
 // - bring superderive into code so that it can sometimes not exist depending on the length of the tank (N = O case)
 
 //questions
-// - how do we access a variable from the pipeline geometry?
+// - part found from any implementation partner for pipes. is this ok?
