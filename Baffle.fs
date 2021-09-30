@@ -40,7 +40,7 @@ export const baffleTree =
                     T_min : "$.baffleT", //thickness
                     L : "$.bafflebottomL", //length
                     W : "$.channelW", //width, sheet width same as channel width
-                    sheetType : "corrugated", //type
+                    sheetType : "CORRUGATED", //type
                     sheetMaterial : "PC", //material
                     ip : "$.ip", //implementation partner
                 },
@@ -51,7 +51,7 @@ export const baffleTree =
                     T_min : "$.baffleT",
                     L : "$.baffletopL",
                     W : "$.channelW",
-                    sheetType : "corrugated",
+                    sheetType : "CORRUGATED",
                     sheetMaterial : "PC",
                     ip : "$.ip",
                 },
@@ -62,7 +62,7 @@ export const baffleTree =
                     T_min : "$.washerT", //thickness
                     L : "$.washerOD", //outer washer width
                     W : "$.washerOD", //outer washer width
-                    sheetType : "sheet", //type
+                    sheetType : "SHEET", //type
                     sheetMaterial : "PVC", //material
                     ip : "$.ip", //implementation partner
                 },
