@@ -41,7 +41,7 @@ export const baffleTree =
                     L : "$.bafflebottomL", //length
                     W : "$.channelW", //width, sheet width same as channel width
                     sheetType : "CORRUGATED", //type
-                    sheetMaterial : "PC", //material
+                    sheetMaterial : "POLYCARBONATE", //material
                     ip : "$.ip", //implementation partner
                 },
             },
@@ -52,7 +52,7 @@ export const baffleTree =
                     L : "$.baffletopL",
                     W : "$.channelW",
                     sheetType : "CORRUGATED",
-                    sheetMaterial : "PC",
+                    sheetMaterial : "POLYCARBONATE",
                     ip : "$.ip",
                 },
             },
