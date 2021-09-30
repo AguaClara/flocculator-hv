@@ -27,7 +27,7 @@ export const hvFlocTree = {
         },
         params : {
             ip : "GENERIC",
-            rep : true,
+            rep : false,
             "Qm_max" : [1, 30, 200],
             "Q_pi" : [0, 1, 2],
             "L" : [1, 7, 20],
@@ -42,8 +42,8 @@ export const hvFlocTree = {
             "FB" : [0.05, 0.1, 0.5],
             "G_max" : [1, 200, 50000],
             "etWall" : false,
-            "channelT": [0, 0.15, 2],
-            "tankH": [0, 2, 4],
+            "channelT" : [0, 0.15, 2],
+            "tankH" : [0, 2, 4],
 
         },
         execution : { order : ["tank", "baffleSet"] },
@@ -54,7 +54,7 @@ export const hvFlocTree = {
                 {
                     ip : "$.ip",
                     "FB" : "$.FB",
-                    HW : "$.inletHW",
+                    H : "$.H",
                     L : "$.L",
                     "W" : "$.channelW",
                     N : "$.channelN",
@@ -143,7 +143,7 @@ export const hvFlocPreDesigner = function(design) returns map
         design.HL_max = FlocHL(design);
         // actual inlet water level
         design.inletHW = design.outletHW + design.HL_max;
-
+        design.H = design.inletHW + design.FB;
         // design.tank.inletHW = design.inletHW;
         // design.tank.channelW = design.channelW;
         // design.tank.channelN = design.channelN;
