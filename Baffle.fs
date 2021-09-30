@@ -123,7 +123,7 @@ export const bafflePreDesigner = function(design) returns map
         design.washer.tobaffleS = design.washerT; //spacing between washer & baffle
         
         design.spacer = queryPipeDim(0.75, design.ip as ImplementationPartner, true, 26, ["ND", "ID", "OD", "schedule"]);//these all have to be things that are in obtained by the query. HMMM... Maybe I should make a "return everything" option.
-        
+
         design.spacer.lowerL = design.baffleS - design.washerT; //length of lower spacer
         design.spacer.upperL = design.baffleS + design.baffleB - design.washerT; //length of upper spacer
         design.spacer.lowerN = design.baffleN - 1; //number of lower spacers
