@@ -101,14 +101,14 @@ export const bafflePreDesigner = function(design) returns map
 
 
         //holes & pipe - top & bottom
-        design.pipe = {};
-        design.pipe.ND = 0.5; //nominal diameter
-        design.pipe.SDR = 26; //standard diameter ratio
+        // design.pipe = {};
+        // design.pipe.ND = 0.5; //nominal diameter
+        // design.pipe.SDR = 26; //standard diameter ratio
 
-        const pipe = queryPipeDim(design.pipe.ND, design.ip, true, design.pipe.SDR, []);
+        design.pipe = queryPipeDim(0.5, design.ip, true, 26, []);
         
-        design.pipe.ID = pipe.ID; //inner diameter
-        design.pipe.OD = pipe.OD; //outer diameter
+        // design.pipe.ID = pipe.ID; //inner diameter
+        // design.pipe.OD = pipe.OD; //outer diameter
     
         design.pipe.fittingR = 0.02 * meter; //later delete    
         //design.pipe.fittingR = (queryFittingDim(design.pipe.ND, design.ip, FittingType.CAP, FittingShape.CAP, ConnectionStyle.SOCKET_CONNECT, "OD")) / 2; //distance from node to outer cap, TBD
@@ -131,11 +131,12 @@ export const bafflePreDesigner = function(design) returns map
 
         design.spacer = {};
 
-        design.spacer.ND = 0.75;
-        design.spacer.SDR = 26;
+        // design.spacer.ND = 0.75;
+        // design.spacer.SDR = 26;
 
-        const spacer = pipeofD(design.spacer.ND, design.spacer.SDR, PipeSelectionType.ND); //TBD
-        design.spacer.ID = spacer.ID;
+        // const spacer = pipeofD(design.spacer.ND, design.spacer.SDR, PipeSelectionType.ND); //TBD
+        design.spacer = queryPipeDim(0.75, design.ip, true, 26, []);
+        // design.spacer.ID = spacer.ID;
         
         design.spacer.lowerL = design.baffleS - design.washerT; //length of lower spacer
         design.spacer.upperL = design.baffleS + design.baffleB - design.washerT; //length of upper spacer
