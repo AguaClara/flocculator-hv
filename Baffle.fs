@@ -101,7 +101,7 @@ export const bafflePreDesigner = function(design) returns map
 
 
         //holes & pipe - top & bottom
-        design.pipe = queryPipeDim(0.5, design.ip, true, 26, ["ND", "ID", "OD", "schedule"]);
+        design.pipe = queryPipeDim(0.5, design.ip as ImplementationPartner, true, 26, ["ND", "ID", "OD", "schedule"]);
        
         design.fitting = queryFittingDim(design.pipe.ND, design.ip, FittingType.CAP, FittingShape.CAP, ConnectionStyle.SOCKET_CONNECT, ["OD", "socketL"]);
         
