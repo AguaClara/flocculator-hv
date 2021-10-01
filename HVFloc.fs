@@ -43,7 +43,6 @@ export const hvFlocTree = {
             "G_max" : [1, 200, 50000],
             "etWall" : false,
             "channelT" : [0, 0.15, 2],
-            "tankH" : [0, 2, 4],
 
         },
         execution : { order : ["tank", "baffleSet"] },
@@ -53,7 +52,7 @@ export const hvFlocTree = {
                 inputs :
                 {
                     ip : "$.ip",
-                    "H" : "$.tankH",
+                    "H" : "$.H",
                     HW : "$.inletHW",
                     L : "$.L",
                     "W" : "$.channelW",
@@ -78,7 +77,7 @@ export const hvFlocTree = {
                     channelT : "$.channelT", //not defined in this FS, just reference?? Also, check out the diff between interior and exterior wall thicknesses
                     channelW : "$.channelW",
                     channelL : "$.L",
-                    tankH : "$.tankH",
+                    tankH : "$.H",
                     FB : "$.FB",
                     //baffleT : "$.baffle.T",
                     "baffleS" : "$.baffle.S",
@@ -311,4 +310,5 @@ function ChannelHW(design is map)
 
 //IM - to fix
     // - height is not correct (see if tank height is what I think it is)
-    // - channel length
+    // - channel length not matching with pipe length (maybe it is more about placement
+    // - channel width is not aligning with baffles
