@@ -309,3 +309,6 @@ function ChannelHW(design is map)
 }
 
 
+//IM - to fix
+    // - height is not correct (see if tank height is what I think it is)
+    // - channel length
