@@ -169,6 +169,8 @@ export const hvFlocPostDesigner = function(design) returns map
             design.OW = design.OW + design.tank.wall.T;
         }
         design.channelEven = floor(design.channelN / 2) == ceil(design.channelN / 2);
+        
+        design.channelT = civilQ.T;
         return design;
     };
 
