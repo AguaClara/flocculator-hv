@@ -170,7 +170,7 @@ export const hvFlocPostDesigner = function(design) returns map
         }
         design.channelEven = floor(design.channelN / 2) == ceil(design.channelN / 2);
         
-        design.channelT = design.civilQ.T;
+        design.channelT = civilQ.T; //calling upon child to output civilQ.T
         return design;
     };
 
