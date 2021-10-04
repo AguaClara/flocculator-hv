@@ -310,6 +310,5 @@ function ChannelHW(design is map)
 
 //IM - to fix
     // - channel length not matching with pipe length (why is it not perfectly aligned?)
-    // - channel width is not aligning with baffles - pending (channelT needs adjustment)
     // - awk amount of end baffles
     // - extra washers - will middle washers always go through both?
