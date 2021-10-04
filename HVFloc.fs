@@ -74,7 +74,7 @@ export const hvFlocTree = {
                     rep : "$.rep",
                     ip : "$.ip",
                     channelN : "$.channelN",
-                    channelT : "$.channelT", //not defined in this FS, just reference?? Also, check out the diff between interior and exterior wall thicknesses
+                    channelT : "$.tank.wall.T", 
                     channelW : "$.channelW",
                     channelL : "$.L",
                     tankH : "$.H",
@@ -170,7 +170,7 @@ export const hvFlocPostDesigner = function(design) returns map
         }
         design.channelEven = floor(design.channelN / 2) == ceil(design.channelN / 2);
         
-        // design.channelT = civilQ.T; //calling upon child to output civilQ.T
+        design.channelT = civilQ.T; //calling upon child to output civilQ.T
         return design;
     };
 
