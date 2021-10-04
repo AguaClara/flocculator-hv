@@ -63,7 +63,7 @@ export const baffleSetTree =
 export const baffleSetPreDesigner = function(design) returns map
     {
 
-    design.channelB = design.channelW + 2 * design.channelT;
+    design.channelB = design.channelW + design.channelT;
 
         return design;
 
