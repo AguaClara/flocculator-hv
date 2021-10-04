@@ -311,7 +311,7 @@ function ChannelHW(design is map)
 
 
 //IM - to fix
-    // - channel length not matching with pipe length (maybe it is more about placement?)
+    // - channel length not matching with pipe length (why is it not perfectly aligned?)
     // - channel width is not aligning with baffles - pending (channelT needs adjustment)
     // - awk amount of end baffles
     // - extra washers
