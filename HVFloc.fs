@@ -309,7 +309,7 @@ function ChannelHW(design is map)
 
 
 //IM - to fix
-    // - channel length not matching with pipe length (maybe it is more about placement
+    // - channel length not matching with pipe length (maybe it is more about placement?)
     // - channel width is not aligning with baffles
     // - awk amount of end baffles
     // - extra washers
