@@ -309,6 +309,6 @@ function ChannelHW(design is map)
 
 
 //IM - to fix
-    // - height is not correct (see if tank height is what I think it is)
     // - channel length not matching with pipe length (maybe it is more about placement
     // - channel width is not aligning with baffles
+    // - awk amount of end baffles
