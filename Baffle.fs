@@ -120,7 +120,7 @@ export const bafflePreDesigner = function(design) returns map
         }
         
         design.pipe.topvedgeB = 0.1 * meter; //vertical edge distance from middle of top hole
-        design.pipe.botvedgeB = 0.15 * meter; //vertical edge distance from middle of bottom hole
+        design.pipe.botvedgeB = design.baffleS + 0.1 * meter; //vertical edge distance from middle of bottom hole
 
         //holes & pipe - middle
         design.pipe.midrowN = 1; //number of middle spacer rows dependent on spacing & height, TBD
