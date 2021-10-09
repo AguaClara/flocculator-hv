@@ -1,7 +1,6 @@
-FeatureScript 1605;
-import(path : "2fa81f50be25609bc956cd5f/bbdfcd94cf0ba1f62aa60b22/40a6bde79e4081741060af59", version : "974cfa08700945e0e87b1bbb");
-import(path : "c0af0d6b5703e7a8fb53f53f/326fa0b26f11f231441a91b8/0f7fbd6e5e57d50d045b4ccd", version : "682bf7abb27c3acb2e600b82");
-import(path : "94569ca95d5169b5296f9bc5/3b90ffb4dcc2744e90d81555/c882e1f8dacf21f3b9627ed5", version : "0e59a966d0380e5474fe7aa9");
+FeatureScript 1576;
+import(path : "onshape/std/geometry.fs", version : "1576.0");
+import(path : "2fa81f50be25609bc956cd5f/818b7dee375f1bc9bcc87be6/40a6bde79e4081741060af59", version : "f6009dd864bdb2390dd1205d");
 
 
 
@@ -30,8 +29,7 @@ export const baffleTree =
             baffleT : [0, 0.0008, 1], //baffle thickness, will be defined in parent generally
             baffleS : [0.01, 0.1, 10], //baffle spacing, will be calculated in parent
             HL_bod : [0, 0.4, 1], //head loss, defined in parent
-            washerT : [0.001, 0.003175, 0.2],
-        //washer thickness
+            washerT : [0.001, 0.003175, 0.2], //washer thickness
 
 
         },
@@ -64,9 +62,9 @@ export const baffleTree =
                     T_min : "$.washerT",
                     L : "$.washerOD", //outer washer width
                     W : "$.washerOD", //outer washer width
-                    sheetType : "SHEET",
+                    sheetType : "SHEET", 
                     sheetMaterial : "PVC_GRAY",
-                    ip : "$.ip",
+                    ip : "$.ip", 
                 },
             },
         },
@@ -74,7 +72,7 @@ export const baffleTree =
 
 export const bafflePreDesigner = function(design) returns map
     {
-        design.ip = design.ip as ImplementationPartner;
+
         //sheet
         design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle
         design.baffletopL = design.tankH - (design.FB / 2) - design.baffleS; //length of top baffle
@@ -87,12 +85,12 @@ export const bafflePreDesigner = function(design) returns map
         }
         else
         {
-            if (design.baffleN % 2 == 0) //if even
+            if (design.baffleN%2 == 0) //if even
             {
                 design.baffleN = design.baffleN - 1;
             }
         }
-
+        
         design.bottom = {};
         design.top = {};
 
@@ -103,24 +101,24 @@ export const bafflePreDesigner = function(design) returns map
 
 
         //holes & pipe - top & bottom
-        design.pipe = queryPipeDim(0.5, design.ip, 26, ["ND", "ID", "OD", "schedule"]);
-
+        design.pipe = queryPipeDim(0.5, design.ip, true, 26, ["ND", "ID", "OD", "schedule"]);
+       
         design.fitting = queryFittingDim(design.pipe.ND, design.ip, FittingType.CAP, FittingShape.CAP, ConnectionStyle.SOCKET_CONNECT, ["OD", "socketL"]);
-
+        
         design.fitting.R = design.fitting.OD / 2; //distance from node to outer cap, TBD
-        design.pipe.L = design.channelL - 2 * design.fitting.R; //length of pipe (node to node)
+        design.pipe.L = design.channelL - 2*design.fitting.R; //length of pipe (node to node)
         design.pipe.colN = ceil(design.channelW / (0.25 * meter)); //random equation for number of pipe columns, TBD
         design.pipe.hedgeB = 0.1 * meter; //horizontal edge distance from middle of hole
-
+        
         if (design.pipe.colN == 1) //this is to ensure we aren't dividing something by zero for the colN=1 case
-        {
-            design.pipe.colS = 0 * meter;
+        { 
+            design.pipe.colS = 0*meter;
         }
         else
         {
-            design.pipe.colS = (design.channelW - 2 * design.pipe.hedgeB) / (design.pipe.colN - 1); //pipe column spacing
+            design.pipe.colS = (design.channelW - 2 * design.pipe.hedgeB) / (design.pipe.colN - 1); //pipe column spacing 
         }
-
+        
         design.pipe.topvedgeB = 0.1 * meter; //vertical edge distance from middle of top hole
         design.pipe.botvedgeB = design.baffleS + 0.1 * meter; //vertical edge distance from middle of bottom hole
 
@@ -131,31 +129,31 @@ export const bafflePreDesigner = function(design) returns map
         //washers & spacers
         design.washer = {};
         design.washer.ID = design.pipe.OD;
-        design.washerOD = design.washer.ID * 3; //TBD
+        design.washerOD = design.washer.ID*3; //TBD
         design.washer.tobaffleS = design.washerT; //spacing between washer & baffle
-
-        design.spacer = queryPipeDim(0.75, design.ip, 26, ["ND", "ID", "OD", "schedule"]); //these all have to be things that are in obtained by the query. HMMM... Maybe I should make a "return everything" option.
+        
+        design.spacer = queryPipeDim(0.75, design.ip, true, 26, ["ND", "ID", "OD", "schedule"]);//these all have to be things that are in obtained by the query. HMMM... Maybe I should make a "return everything" option.
 
         design.spacer.lowerL = design.baffleS - design.washerT; //length of lower spacer
         design.spacer.upperL = design.baffleS + design.baffleB - design.washerT; //length of upper spacer
         design.spacer.lowerN = design.baffleN - 1; //number of lower spacers
         design.spacer.tobaffleS = design.washerT; //spacing between spacer & baffle
+        
 
-
-        design.spacer.topbackL = design.baffleS * 2 - design.fitting.socketL - design.fitting.R + design.baffleT; //length of top back spacers
+        design.spacer.topbackL = design.baffleS*2 - design.fitting.socketL - design.fitting.R + design.baffleT; //length of top back spacers
         design.spacer.botbackL = design.baffleS - design.fitting.socketL - design.fitting.R; //length of bottom back spacers
-        design.spacer.front1D = design.channelL - 2 * design.baffleB - design.fitting.socketL - design.fitting.R;
-        design.spacer.botfront2D = design.baffleB * (design.baffleN - 2) + design.washerT;
-
+        design.spacer.front1D = design.channelL - 2*design.baffleB - design.fitting.socketL - design.fitting.R;
+        design.spacer.botfront2D = design.baffleB*(design.baffleN - 2) + design.washerT ;
+        
         if (design.lastchannel == true) //length of top front spacers depending on if last channel or not
         {
             design.spacer.topfront2D = design.spacer.botfront2D;
         }
         else
         {
-
-            design.spacer.topfront2D = design.baffleB * (design.baffleN - 3) + design.washerT;
-
+            
+            design.spacer.topfront2D = design.baffleB*(design.baffleN - 3) + design.washerT;
+        
         }
 
 
@@ -168,8 +166,8 @@ export const bafflePostDesigner = function(design) returns map
 
         design.spacer.upperN = design.top.N - 1; //number of upper spacers
         design.pipe.toptobotB = design.top.L - design.pipe.topvedgeB - design.pipe.botvedgeB + design.baffleS; //distance from top to bottom pipe/hole/washers
-
-        return design;
+        
+         return design;
 
     };
 
