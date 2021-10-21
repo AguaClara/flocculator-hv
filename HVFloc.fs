@@ -60,6 +60,7 @@ export const hvFlocTree = {
                     left : "$.etWall",
                     right : true,
                     front : true,
+                    suppressFront  : false,
                     back : true,
                     bottom : true,
                     top : false,
