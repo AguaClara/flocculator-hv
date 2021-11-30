@@ -73,7 +73,7 @@ export const baffleTree =
 
 export const bafflePreDesigner = function(design) returns map
     {
-        design.ip = design.ip as ImplementationPartner;
+        design.ip = design.ip;
         //sheet
         design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle
         design.baffletopL = design.tankH - (design.FB / 2) - design.baffleS; //length of top baffle
