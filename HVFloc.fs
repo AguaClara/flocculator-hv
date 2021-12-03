@@ -64,6 +64,7 @@ export const hvFlocTree = {
                     back : true,
                     bottom : true,
                     top : false,
+                    hasPort : true,
                     portH : "$.channelW",
                     portW : "$.baffle.S",
                     portSwap : false,
