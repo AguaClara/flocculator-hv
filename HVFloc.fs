@@ -82,7 +82,7 @@ export const hvFlocTree = {
                     channelL : "$.L",
                     tankH : "$.H",
                     FB : "$.FB",
-                    //baffleT : "$.baffle.T",
+                    baffleT : "$.baffle.T",
                     "baffleS" : "$.baffle.S",
                     HL_bod : "$.HL_bod",
                 },
