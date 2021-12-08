@@ -108,7 +108,7 @@ export const baffleSetGeometry = function(context is Context, id is Id, design i
 
             opMateConnector(context, id + i, { 'coordSystem' : qlocation });
             const mateQ = qCreatedBy(id + i, EntityType.VERTEX);
-            print(mateQ);
+            // print(mateQ);
             const args = { useOverrides : true, customConfiguration:true, configurationString: mapToJSON(serializer(design.baffle))};
             const customArgs = {
                         "partStudio" : { buildFunction : baffleModule::build, configuration : {} } as PartStudioData,
