@@ -43,6 +43,7 @@ export const hvFlocTree = {
             "G_max" : [1, 200, 50000],
             "etWall" : false,
             "channelT" : [0, 0.15, 2],
+            "baffleT_min" : [0, 0.0008, 0.5],
 
         },
         execution : { order : ["tank", "baffleSet"] },
@@ -135,7 +136,8 @@ export const hvFlocPreDesigner = function(design) returns map
         // find the maximum number of baffles spaces in each channel assuming that we need an even number in each channell
         // except the last channel where the inlet is low and the outlet is high and thus we need an odd number\
         // we will figure out the last channel by simply deleting the last baffle
-        design.baffle.T = 0.003 * meter;
+        
+        design.baffle.T = querySheetDim(design.ip, SheetType.CORRUGATED, SheetMaterial.AUTO, T_min, returnKeys)
         design.baffle.spacesN = floor(design.L / (design.baffle.S + design.baffle.T) / 2) * 2;
 
 
