@@ -137,7 +137,7 @@ export const hvFlocPreDesigner = function(design) returns map
         // except the last channel where the inlet is low and the outlet is high and thus we need an odd number\
         // we will figure out the last channel by simply deleting the last baffle
         
-        design.baffle.T = querySheetDim(design.ip, SheetType.CORRUGATED, SheetMaterial.AUTO, T_min, returnKeys)
+        design.baffle.T = querySheetDim(design.ip, SheetType.CORRUGATED, SheetMaterial.AUTO, design.baffleT_min, ["factoryT"]).factoryT;
         design.baffle.spacesN = floor(design.L / (design.baffle.S + design.baffle.T) / 2) * 2;
 
 
