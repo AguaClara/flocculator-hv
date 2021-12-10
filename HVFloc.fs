@@ -138,6 +138,7 @@ export const hvFlocPreDesigner = function(design) returns map
         // we will figure out the last channel by simply deleting the last baffle
         
         design.baffle.T = querySheetDim(design.ip, SheetType.CORRUGATED, SheetMaterial.AUTO, design.baffleT_min, ["factoryT"]).factoryT;
+        println(design.baffle.T);
         design.baffle.spacesN = floor(design.L / (design.baffle.S + design.baffle.T) / 2) * 2;
 
 
