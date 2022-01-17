@@ -30,7 +30,7 @@ export const hvFlocTree = {
             rep : false,
             "Qm_max" : [1, 30, 500],
             "Q_pi" : [0, 1, 2],
-            "L" : [1, 7, 20],
+            "L" : [1, 7, 100],
             "humanChannelW_min" : [0.3, 0.45, 1],
             "baffleChannelW_max" : [1, 1.08, 2],
             "TEMP_min" : [0, 15, 40],
