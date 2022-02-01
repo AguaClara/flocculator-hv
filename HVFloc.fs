@@ -45,7 +45,7 @@ export const hvFlocTree = {
             "etWall" : false,
             "channelT" : [0, 0.15, 2],
             "baffleT_min" : [0, 0.0008, 0.5],
-            "drainTI" : [300, 600, 1200],
+            "drainTI" : [600, 900, 1200],
             "componentS" : [0.01, 0.05, 0.1],
         },
         execution : { order : ["tank", "baffleSet", "drain"] },
