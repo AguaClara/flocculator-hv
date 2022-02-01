@@ -171,7 +171,7 @@ export const hvFlocPreDesigner = function(design) returns map
 
         design.channelHW = ChannelHW(design);
         //each drain will cover at most two channels. The max flow is double the average
-        design.drainQm_max = 2 * max(design.channelN, 2) * design.channelW * design.L * design.inletHW / design.drainTI;
+        design.drainQm_max = 2 * min(design.channelN, 2) * design.channelW * design.L * design.inletHW / design.drainTI;
         // design.drain.S = design.baffle.S;
         // design.drain.HE = design.baffle.HE;
         // design.drain.HW = design.inletHW;
