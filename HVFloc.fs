@@ -2,6 +2,7 @@ FeatureScript 1605;
 import(path : "2fa81f50be25609bc956cd5f/ac24c704e85312328739061b/40a6bde79e4081741060af59", version : "6ad9b97eafdf34fd39553cd2");
 import(path : "2dbacff0d2cf5928d7043f72", version : "d6af6a18105da734ba99aeb3");
 import(path : "c0af0d6b5703e7a8fb53f53f/f0c0101d467535157a71ef31/2b514867aec34e779649c734", version : "87df7d5ac8680621c9e11852");
+import(path : "630baca1742eab8e31b42441/329173e0083882874241389d/828bc2e47f531cfe2ad5aebe", version : "a2aa72b53ae5ac6c69452c3f");
 
 
 //import(path : "3859f0116fbf2e199237ee59/3278c45cbd9cd1a648cbbdcf/db7cf0a0f695f2c4e1854d8c", version : "d43640e55104cc3a1d55eabe");
@@ -44,9 +45,9 @@ export const hvFlocTree = {
             "etWall" : false,
             "channelT" : [0, 0.15, 2],
             "baffleT_min" : [0, 0.0008, 0.5],
-
+            "drainTI" : [300, 600, 1200],
         },
-        execution : { order : ["tank", "baffleSet"] },
+        execution : { order : ["tank", "baffleSet", "drain"] },
         children : {
             tank : {
                 tree : tankTree,
@@ -61,7 +62,7 @@ export const hvFlocTree = {
                     left : "$.etWall",
                     right : true,
                     front : true,
-                    suppressFront  : false,
+                    suppressFront : false,
                     back : true,
                     bottom : true,
                     top : false,
@@ -77,7 +78,7 @@ export const hvFlocTree = {
                     rep : "$.rep",
                     ip : "$.ip",
                     channelN : "$.channelN",
-                    channelT : "$.tank.wall.T", 
+                    channelT : "$.tank.wall.T",
                     channelW : "$.channelW",
                     channelL : "$.L",
                     tankH : "$.H",
@@ -85,6 +86,17 @@ export const hvFlocTree = {
                     baffleT : "$.baffle.T",
                     "baffleS" : "$.baffle.S",
                     HL_bod : "$.HL_bod",
+                },
+            },
+            drain : {
+                tree : elbowDrainPipeStubTree,
+                inputs : {
+                    rep : "$.rep",
+                    ip : "$.ip",
+                    FB : "$.FB",
+                    "Qm_max" : "$.drainQm_max",
+                    "HW" : "$.outletHW",
+                    "ND_min" : 2,
                 },
             },
         },
@@ -136,7 +148,7 @@ export const hvFlocPreDesigner = function(design) returns map
         // find the maximum number of baffles spaces in each channel assuming that we need an even number in each channell
         // except the last channel where the inlet is low and the outlet is high and thus we need an odd number\
         // we will figure out the last channel by simply deleting the last baffle
-        
+
         design.baffle.T = querySheetDim(design.ip, SheetType.CORRUGATED, SheetMaterial.AUTO, design.baffleT_min, ["factoryT"]).factoryT;
         design.baffle.spacesN = floor(design.L / (design.baffle.S + design.baffle.T) / 2) * 2;
 
@@ -157,7 +169,8 @@ export const hvFlocPreDesigner = function(design) returns map
 
 
         design.channelHW = ChannelHW(design);
-
+        //each drain will cover at most two channels. The max flow is double the average
+        design.drainQm_max = 2 * max(design.channelN, 2) * design.channelW * design.L * design.outletHW / design.drainTI;
         // design.drain.S = design.baffle.S;
         // design.drain.HE = design.baffle.HE;
         // design.drain.HW = design.inletHW;
@@ -309,6 +322,6 @@ function ChannelHW(design is map)
 
 
 //IM - to fix
-    // - awk amount of end baffles
-    // - extra washers - will middle washers always go through both?
-    // - consider having thru pipes run through all baffles for small S
+// - awk amount of end baffles
+// - extra washers - will middle washers always go through both?
+// - consider having thru pipes run through all baffles for small S
