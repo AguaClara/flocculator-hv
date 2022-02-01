@@ -100,6 +100,7 @@ export const hvFlocTree = {
                     "ND_min" : 2,
                     "slabT" : "$.tank.slab.T",
                     "componentS" : "$.componentS",
+                    "horizontalL" : "$.tank.wall.T",
                 },
             },
         },
@@ -187,7 +188,6 @@ export const hvFlocPostDesigner = function(design) returns map
     {
         design.OW = design.tank.OW;
         design.channelEven = floor(design.channelN / 2) == ceil(design.channelN / 2);
-        design.drainL = design.componentS + design.tank.wall.T;
         return design;
     };
 
