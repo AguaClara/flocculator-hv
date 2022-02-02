@@ -118,7 +118,7 @@ export const hvFlocTree = {
  * outletHW: maximum height of water at the outlet (meter)
  * GT_min: collision potential (dimensionless)
  * FB: freeboard (meter)
- * G_max: maximum velocity gradient (second ^ -1)
+ * G_bod:  maximum velocity gradient allowed (second ^ -1) at lowest temperature
  * slabT: slab thickness (meter)
  * wallT: exterior wall thickness (meter)
  * channelWallT: interior wall thickness (meter)
