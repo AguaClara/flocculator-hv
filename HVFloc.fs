@@ -41,7 +41,7 @@ export const hvFlocTree = {
             "outletHW" : [0, 2, 5],
             "GT_min" : [0, 35000, 100000],
             "FB" : [0.05, 0.1, 0.5],
-            "G_max" : [1, 200, 50000],
+            "G_bod" : [1, 100, 500],
             "etWall" : false,
             "channelT" : [0, 0.15, 2],
             "baffleT_min" : [0, 0.0008, 0.5],
@@ -131,7 +131,7 @@ export const hvFlocPreDesigner = function(design) returns map
         design.NU = viscosityKinematic(design.TEMP_min);
 
         // Use the minimum of the velocity gradient set as the max for the sed tank to work and the value set by the max head loss.
-        design.G = min((gravity * design.HL_bod / (design.NU * design.GT_min)), design.G_max);
+        design.G = min((gravity * design.HL_bod / (design.NU * design.GT_min)), design.G_bod);
         design.TI = design.GT_min / design.G;
         design.VOL = design.Qm_max * design.TI;
         design.W_total = design.VOL / (design.L * design.outletHW);
