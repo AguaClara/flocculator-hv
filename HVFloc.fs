@@ -41,7 +41,7 @@ export const hvFlocTree = {
             "outletHW" : [0, 2, 5],
             "GT_min" : [0, 35000, 100000],
             "FB" : [0.05, 0.1, 0.5],
-            "G_bod" : [1, 100, 500],
+            "G_bod" : [20, 50, 100],
             "etWall" : false,
             "channelT" : [0, 0.15, 2],
             "baffleT_min" : [0, 0.0008, 0.5],
