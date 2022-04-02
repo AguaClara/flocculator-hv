@@ -28,7 +28,7 @@ export const hvFlocTree = {
         },
         params : {
             ip : "GENERIC",
-            rep : false,
+            rep : true,
             "Qm_max" : [1, 30, 500],
             "Q_pi" : [0, 1, 2],
             "L" : [1, 7, 100],
