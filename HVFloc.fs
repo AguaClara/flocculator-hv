@@ -155,9 +155,7 @@ export const hvFlocPreDesigner = function(design) returns map
 
         design.baffle.T = querySheetDim(design.ip, SheetType.CORRUGATED, SheetMaterial.AUTO, design.baffleT_min, ["factoryT"]).factoryT;
         design.baffle.spacesN = floor(design.L / (design.baffle.S + design.baffle.T) / 2) * 2;
-        design.L_optimal = design.baffle.spacesN * (design.baffle.S + design.baffle.T) - design.baffle.T;
-
-        //design.outletHW = design.baffle.spacesN * (design.baffle.S + design.baffle.T) - design.baffle.T;
+       
         // actual head loss given actual number of baffles
         design.HL_max = FlocHL(design);
         // actual inlet water level
