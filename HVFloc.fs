@@ -188,7 +188,7 @@ export const hvFlocPostDesigner = function(design) returns map
     {
         design.OW = design.tank.OW;
         design.channelEven = floor(design.channelN / 2) == ceil(design.channelN / 2);
-        design.drainWallB = design.channelW/design.baffleSet.baffle.pipe.colN;
+        design.drainWallB = design.baffleSet.baffle.pipe.hedgeB + design.baffleSet.baffle.pipe.colS/2;
         return design;
     };
 
