@@ -11,38 +11,13 @@ export enum mateName
     sed
 }
 
-export type FlocHVParams typecheck canBeFlocHVParams;
 
-export predicate canBeFlocHVParams(definition)
+export type DemoParams typecheck canBeDemoParams;
+
+export predicate canBeDemoParams(definition)
 {
-    annotation { "Name" : "Flow rate (L/s)", "Default" : "30" }
-    isAnything(definition.Qm_max);
 
-    annotation { "Name" : "Minimum Temperature (C)" }
-    isReal(definition.TEMP_min, { (unitless) : [0, 5, 20] } as RealBoundSpec);
-
-    annotation { "Name" : "Channel length" }
-    isLength(definition.L, { (meter) : [3, 7, 40] } as LengthBoundSpec);
-
-    annotation { "Name" : "Outlet water depth" }
-    isLength(definition.outletHW, { (meter) : [1, 2, 5] } as LengthBoundSpec);
-
-    annotation { "Name" : "Collision Potential (Gt)" }
-    isReal(definition.GT_min, { (unitless) : [20000, 35000, 100000] } as RealBoundSpec);
-
-    annotation { "Name" : "Velocity Gradient (1/s)" }
-    isReal(definition.G_bod, { (unitless) : [20, 50, 80] } as RealBoundSpec);
-}
-
-annotation { "Feature Type Name" : "Flocculator HV" }
-export const flocculatorHV = defineFeature(function(context is Context, id is Id, definition is map)
-    precondition
-    {
-
-        canBeFlocHVParams(definition);
-
-
-        annotation { "Name" : "Use configuration for booleans", "Default" : false }
+ annotation { "Name" : "Use configuration for booleans", "Default" : false }
         definition.configBooleans is boolean;
 
         if (definition.configBooleans)
@@ -83,6 +58,40 @@ export const flocculatorHV = defineFeature(function(context is Context, id is Id
             annotation { "Name" : "sub map name", "Default" : "flocHV" }
             definition.submap is string;
         }
+}
+
+export type FlocHVParams typecheck canBeFlocHVParams;
+
+export predicate canBeFlocHVParams(definition)
+{
+    annotation { "Name" : "Flow rate (L/s)", "Default" : "30" }
+    isAnything(definition.Qm_max);
+
+    annotation { "Name" : "Minimum Temperature (C)" }
+    isReal(definition.TEMP_min, { (unitless) : [0, 5, 20] } as RealBoundSpec);
+
+    annotation { "Name" : "Channel length" }
+    isLength(definition.L, { (meter) : [3, 7, 40] } as LengthBoundSpec);
+
+    annotation { "Name" : "Outlet water depth" }
+    isLength(definition.outletHW, { (meter) : [1, 2, 5] } as LengthBoundSpec);
+
+    annotation { "Name" : "Collision Potential (Gt)" }
+    isReal(definition.GT_min, { (unitless) : [20000, 35000, 100000] } as RealBoundSpec);
+
+    annotation { "Name" : "Velocity Gradient (1/s)" }
+    isReal(definition.G_bod, { (unitless) : [20, 50, 80] } as RealBoundSpec);
+}
+
+annotation { "Feature Type Name" : "Flocculator HV" }
+export const flocculatorHV = defineFeature(function(context is Context, id is Id, definition is map)
+    precondition
+    {
+
+        canBeFlocHVParams(definition);
+
+canBeDemoParams(definition);
+       
 
     }
     {
