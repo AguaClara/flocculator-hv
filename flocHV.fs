@@ -13,8 +13,6 @@ export enum mateName
 const demoPS = demo::build;
 
 
-
-
 export type FlocHVParams typecheck canBeFlocHVParams;
 
 export predicate canBeFlocHVParams(definition)
