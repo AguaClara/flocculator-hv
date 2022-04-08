@@ -40,8 +40,7 @@ export predicate canBeDemoParams(definition)
     annotation { "Name" : "Location(s)", "Filter" : BodyType.MATE_CONNECTOR, "MaxNumberOfPicks" : 1 }
     definition.location is Query;
 
-    annotation { "Name" : "From Mate Connector Name" }
-    definition.mcName is mateName;
+    
 
     annotation { "Name" : "Place design variables in context", "Default" : true }
     definition.mapToContext is boolean;
