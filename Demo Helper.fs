@@ -5,7 +5,7 @@ import(path : "7a761c68d676ecc96febcf73/5624cb713c5f29310271a543/a35ab6b5b6eee35
 import(path : "1802d3650943f2f88dc71465/83125b65cf8a9d930d4d9ad1/42a93e7d952620cd5e4b9afd", version : "6467c2f0ae8ebe529adedab5");
 import(path : "6750b53736b16374e515f93d/f4da4f3aa1b4adb72228ca1c/181382047f743bb3a87d8136", version : "e4647ddcdc54cbe2bb793255");
 
-function opMakeDemo(context is Context, id is Id, definition is map, demoPS)
+export function opMakeDemo(context is Context, id is Id, definition is map, demoPS)
 {
      if (definition.configBooleans)
         {
