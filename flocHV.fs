@@ -12,7 +12,6 @@ export enum mateName
 
 const demoPS = demo::build;
 
-export type DemoParams typecheck canBeDemoParams;
 
 
 
