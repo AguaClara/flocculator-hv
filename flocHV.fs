@@ -36,6 +36,9 @@ export predicate canBeFlocHVParams(definition)
 
     annotation { "Name" : "Velocity Gradient (1/s)" }
     isReal(definition.G_bod, { (unitless) : [20, 50, 80] } as RealBoundSpec);
+    
+    annotation { "Name" : "From Mate Connector Name" }
+    definition.mcName is mateName;
 }
 
 annotation { "Feature Type Name" : "Flocculator HV" }
