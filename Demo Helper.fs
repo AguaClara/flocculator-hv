@@ -94,7 +94,6 @@ export const opMakeDemoGeometry = function(context is Context, id is Id, definit
         {
             definition[definition.submap] = getVariable(context, definition.submap);
         }
-
         definition.qPartBody = qCreatedBy(id, EntityType.BODY);
         return definition;
     };
