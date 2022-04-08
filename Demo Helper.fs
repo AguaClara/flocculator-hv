@@ -35,13 +35,6 @@ export predicate canBeDemoParams(definition)
         annotation { "Name" : "Replicate all components", "Default" : true }
         definition.rep is boolean;
     }
-
-
-    annotation { "Name" : "Location(s)", "Filter" : BodyType.MATE_CONNECTOR, "MaxNumberOfPicks" : 1 }
-    definition.location is Query;
-
-    
-
     annotation { "Name" : "Place design variables in context", "Default" : true }
     definition.mapToContext is boolean;
 
@@ -50,6 +43,8 @@ export predicate canBeDemoParams(definition)
         annotation { "Name" : "sub map name", "Default" : "demo" }
         definition.submap is string;
     }
+    annotation { "Name" : "Location(s)", "Filter" : BodyType.MATE_CONNECTOR, "MaxNumberOfPicks" : 1 }
+    definition.location is Query;
 }
 
 export function opMakeDemo(context is Context, id is Id, definition is map, demoPS)
