@@ -180,6 +180,7 @@ export const hvFlocPreDesigner = function(design) returns map
         // design.drain.HW = design.inletHW;
 
         design.drainHorizontalL = queryCivilDim(design.ip, SheetType.WALL, SheetMaterial.AUTO, design.inletHW, ["factoryT"]).factoryT + design.componentS;
+        design.drainWallB = design.channelW/design.baffleSet.baffle.pipe.colN;
         return design;
     };
 
