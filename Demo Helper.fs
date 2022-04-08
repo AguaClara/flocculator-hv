@@ -37,7 +37,7 @@ export const opMakeDemoGeometry = function(context is Context, id is Id, definit
 
 
         superDerive(context, id, {
-                    "partStudio" : { buildFunction : demoPS::build, configuration : {} } as PartStudioData,
+                    "partStudio" : { buildFunction : demoPS, configuration : {} } as PartStudioData,
                     "location" : mateQ, //has to be query
                     "useOverrides" : true,
                     "customConfiguration" : true,
