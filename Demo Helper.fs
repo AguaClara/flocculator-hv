@@ -5,6 +5,52 @@ import(path : "7a761c68d676ecc96febcf73/5624cb713c5f29310271a543/a35ab6b5b6eee35
 import(path : "1802d3650943f2f88dc71465/83125b65cf8a9d930d4d9ad1/42a93e7d952620cd5e4b9afd", version : "6467c2f0ae8ebe529adedab5");
 import(path : "6750b53736b16374e515f93d/f4da4f3aa1b4adb72228ca1c/181382047f743bb3a87d8136", version : "e4647ddcdc54cbe2bb793255");
 
+export predicate canBeDemoParams(definition)
+{
+
+    annotation { "Name" : "Use configuration for booleans", "Default" : false }
+    definition.configBooleans is boolean;
+
+    if (definition.configBooleans)
+    {
+        annotation { "Name" : "Print map of inputs in FeatureScript notices", "Default" : "false" }
+        isAnything(definition.configprintParams);
+
+        annotation { "Name" : "Show internal components", "Default" : "true" }
+        isAnything(definition.configplastic);
+
+        annotation { "Name" : "Replicate all components", "Default" : "true" }
+        isAnything(definition.configrep);
+    }
+    else
+    {
+        annotation { "Name" : "Print map of inputs in FeatureScript notices", "Default" : false }
+        definition.printParams is boolean;
+
+        annotation { "Name" : "Show internal components", "Default" : true }
+        definition.plastic is boolean;
+
+        annotation { "Name" : "Replicate all components", "Default" : true }
+        definition.rep is boolean;
+    }
+
+
+    annotation { "Name" : "Location(s)", "Filter" : BodyType.MATE_CONNECTOR, "MaxNumberOfPicks" : 1 }
+    definition.location is Query;
+
+    annotation { "Name" : "From Mate Connector Name" }
+    definition.mcName is mateName;
+
+    annotation { "Name" : "Place design variables in context", "Default" : true }
+    definition.mapToContext is boolean;
+
+    if (definition.mapToContext)
+    {
+        annotation { "Name" : "sub map name", "Default" : "demo" }
+        definition.submap is string;
+    }
+}
+
 export function opMakeDemo(context is Context, id is Id, definition is map, demoPS)
 {
      if (definition.configBooleans)
