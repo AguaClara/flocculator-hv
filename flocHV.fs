@@ -91,14 +91,20 @@ export const flocculatorHV = defineFeature(function(context is Context, id is Id
         canBeDemoParams(definition);
     }
     {
-        if (definition.configBooleans)
+       opMakeDemo(context, id, definition);
+    });
+
+
+function opMakeDemo(context is Context, id is Id, definition is map)
+{
+     if (definition.configBooleans)
         {
             definition.printParams = definition.configprintParams;
             definition.plastic = definition.configplastic;
             definition.rep = definition.configrep;
         }
 
-        definition = opMakeflocHVGeometry(context, id, definition);
+        definition = opMakeDemoGeometry(context, id, definition);
         if (definition.mapToContext)
         {
             definition[definition.submap].mapToContext = undefined;
@@ -111,11 +117,10 @@ export const flocculatorHV = defineFeature(function(context is Context, id is Id
             definition[definition.submap] = {};
         }
         moveAndMap(context, id, definition, definition.qPartBody, definition[definition.submap]);
-    });
+}
 
 
-
-export const opMakeflocHVGeometry = function(context is Context, id is Id, definition is map) returns map
+export const opMakeDemoGeometry = function(context is Context, id is Id, definition is map) returns map
     {
         opMateConnector(context, id, { 'coordSystem' : coordSystem(vector(0 * meter, 0 * meter, 0 * meter), vector([1, 0, 0]), vector([0, 0, 1])) });
         const mateQ = qCreatedBy(id, EntityType.VERTEX);
