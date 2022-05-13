@@ -257,7 +257,7 @@ function baffleS(design)
         design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
         design.baffle.expH = design.outletHW / design.expN; //distance between expansions
         design.HS_pi = design.baffle.expH / design.baffle.S;
-        design = baffleK(design);
+        design = Kbaffle(design.HS_pi);
         design.baffle.S = (design.baffleK / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
         // println("S is " ~ design.baffle.S);
         // println("H/S is " ~ design.baffle.expH / design.baffle.S);
@@ -267,29 +267,29 @@ function baffleS(design)
     design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
     design.baffle.expH = design.outletHW / design.expN; //distance between expansions
     design.HS_pi = design.baffle.expH / design.baffle.S;
-    design = baffleK(design);
+    design.baffleK = Kbaffle(design.HS_pi);
     design.V = design.Qm_max / (design.baffle.S * design.channelW);
     design.expHL = design.baffleK * design.V ^ 2 / (2 * gravity);
     return design;
 }
 
 
-const baffleVC_pi = 0.61 ^ 2; // based on Andrew Pennock's research
-const ratioBaffleJetExpansion = 0.077; // based on Andrew Pennock's research (0.116 * 0.67)
+// const baffleVC_pi = 0.61 ^ 2; // based on Andrew Pennock's research
+// const ratioBaffleJetExpansion = 0.077; // based on Andrew Pennock's research (0.116 * 0.67)
 
-// estimating the baffle loss coefficient using jet expansion rate and the vena contracta
-function baffleK(design is map)
-{
-    if (design.HS_pi < design.minHS_pi)
-    {
-        design.HS_pi = design.minHS_pi;
-    }
-    const baffleK_min = (1 / baffleVC_pi - 1) ^ 2;
+// // estimating the baffle loss coefficient using jet expansion rate and the vena contracta
+// function baffleK(design is map)
+// {
+//     if (design.HS_pi < design.minHS_pi)
+//     {
+//         design.HS_pi = design.minHS_pi;
+//     }
+//     const baffleK_min = (1 / baffleVC_pi - 1) ^ 2;
     
-    const unboundedExpansionK = ((1 - baffleVC_pi) ^ 2 / (baffleVC_pi * ratioBaffleJetExpansion * (design.HS_pi + 2))) ^ 2;
-    design.baffleK = max(unboundedExpansionK, baffleK_min);
-    return design;
-}
+//     const unboundedExpansionK = ((1 - baffleVC_pi) ^ 2 / (baffleVC_pi * ratioBaffleJetExpansion * (design.HS_pi + 2))) ^ 2;
+//     design.baffleK = max(unboundedExpansionK, baffleK_min);
+//     return design;
+// }
 
 function channelW_min(design is map)
 {
