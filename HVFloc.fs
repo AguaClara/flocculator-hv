@@ -11,8 +11,8 @@ import(path : "630baca1742eab8e31b42441/2c25b32503d1846e0869fbd1/828bc2e47f531cf
 
 // constants
 const ratioPlaneJetExpansion = 0.116; //expansion ratio for plane jets
-const baffleVC_pi = 0.6 ^ 2; // give a little factor of safety on head loss
-
+const baffleVC_pi = 0.61 ^ 2; // based on Andrew Pennock's research
+const ratioBaffleJetExpansion = 0.077; // based on Andrew Pennock's research (0.116 * 0.67)
 
 export const hvFlocTree = {
         name : "hvFloc",
@@ -283,7 +283,7 @@ function baffleK(design is map)
         design.HS_pi = design.minHS_pi;
     }
     const baffleK_min = (1 / baffleVC_pi - 1) ^ 2;
-    const ratioBaffleJetExpansion = 0.077;
+    
     const unboundedExpansionK = ((1 - baffleVC_pi) ^ 2 / (baffleVC_pi * ratioBaffleJetExpansion * (design.HS_pi + 2))) ^ 2;
     design.baffleK = max(unboundedExpansionK, baffleK_min);
     return design;
