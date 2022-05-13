@@ -302,7 +302,7 @@ function channelW_min(design is map)
 function expH_min(design is map)
 {
     design.HS_pi = design.minHS_pi;
-    design = baffleK(design);
+    design = Kbaffle(design);
     design.baffle.expH_min = (((design.minHS_pi ^ 2 * design.Qm_max) ^ 3 * design.baffleK / (2 * design.G ^ 2 * design.NU))) ^ (1 / 7);
     return design;
 }
