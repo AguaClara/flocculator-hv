@@ -144,12 +144,6 @@ export const hvFlocPreDesigner = function(design) returns map
 
         design.channelW = design.W_total / design.channelN;
         design = baffleS(design);
-        //design.tankW = (design.channelW + design.channelWallT) * design.channelN - design.channelWallT;
-        //rework everything below
-
-        // find the maximum number of baffles spaces in each channel assuming that we need an even number in each channell
-        // except the last channel where the inlet is low and the outlet is high and thus we need an odd number\
-        // we will figure out the last channel by simply deleting the last baffle
 
         design.baffle.T = querySheetDim(design.ip, SheetType.CORRUGATED, SheetMaterial.AUTO, design.baffleT_min, ["factoryT"]).factoryT;
         design.baffle.spacesN = floor(design.L / (design.baffle.S + design.baffle.T) / 2) * 2;
@@ -159,23 +153,15 @@ export const hvFlocPreDesigner = function(design) returns map
         // actual inlet water level
         design.inletHW = design.outletHW + design.HL_max;
         design.H = design.inletHW + design.FB;
-        // design.tank.inletHW = design.inletHW;
-        // design.tank.channelW = design.channelW;
-        // design.tank.channelN = design.channelN;
+       
         design.portS = design.baffle.S;
 
         //actual collision potential
         design.GT = sqrt(gravity * design.HL_max * design.TI / design.NU);
-
-
         design.channelHW = ChannelHW(design);
         //each drain will cover at most two channels. The max flow is double the average
         design.drainQm_max = 2 * min(design.channelN, 2) * design.channelW * design.L * design.inletHW / design.drainTI;
         design.drainN = ceil(design.channelN / 2);
-
-        // design.drain.S = design.baffle.S;
-        // design.drain.HE = design.baffle.HE;
-        // design.drain.HW = design.inletHW;
 
         design.drainHorizontalL = queryCivilDim(design.ip, SheetType.WALL, SheetMaterial.AUTO, design.inletHW, ["factoryT"]).factoryT + design.componentS;
         
@@ -238,16 +224,8 @@ export const hvFlocFeature = defineFeature(function(context is Context, id is Id
 function baffleS(design)
 {
     design.baffle = {};
-    //design.baffleK = baffleKE(design.maxHS_pi);
     var err = 1.0;
-
-    // design = expH_min(design);
-    // design.expN = max(floor(design.outletHW / design.baffle.expH_min), 1); // expansions per baffle
-    // design.baffle.expH = design.outletHW / ceil(design.outletHW / (design.baffle.S * design.maxHS_pi)); //distance between expansions
     design.baffle.S = 0.01 * meter; //first guess
-
-    //println("S is " ~ design.S);
-    //println("H/S is" ~ design.baffle.expH / design.S);
     var prevS = design.baffle.S;
     var count = 0;
     while ((err > 0.0001) && (count < 200))
@@ -259,9 +237,6 @@ function baffleS(design)
         design.HS_pi = design.baffle.expH / design.baffle.S;
         design.baffleK = Kbaffle(design.HS_pi);
         design.baffle.S = (design.baffleK / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
-        // println("S is " ~ design.baffle.S);
-        // println("H/S is " ~ design.baffle.expH / design.baffle.S);
-        // println("baffleK is " ~ design.baffleK);
         err = abs((design.baffle.S - prevS) / (design.baffle.S + prevS));
     }
     design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
@@ -274,23 +249,6 @@ function baffleS(design)
 }
 
 
-// const baffleVC_pi = 0.61 ^ 2; // based on Andrew Pennock's research
-// const ratioBaffleJetExpansion = 0.077; // based on Andrew Pennock's research (0.116 * 0.67)
-
-// // estimating the baffle loss coefficient using jet expansion rate and the vena contracta
-// function baffleK(design is map)
-// {
-//     if (design.HS_pi < design.minHS_pi)
-//     {
-//         design.HS_pi = design.minHS_pi;
-//     }
-//     const baffleK_min = (1 / baffleVC_pi - 1) ^ 2;
-    
-//     const unboundedExpansionK = ((1 - baffleVC_pi) ^ 2 / (baffleVC_pi * ratioBaffleJetExpansion * (design.HS_pi + 2))) ^ 2;
-//     design.baffleK = max(unboundedExpansionK, baffleK_min);
-//     return design;
-// }
-
 function channelW_min(design is map)
 {
     const a = (1 - baffleVC_pi) ^ 4 * design.minHS_pi;
@@ -299,13 +257,6 @@ function channelW_min(design is map)
 }
 
 
-function expH_min(design is map)
-{
-    design.HS_pi = design.minHS_pi;
-    design = Kbaffle(design);
-    design.baffle.expH_min = (((design.minHS_pi ^ 2 * design.Qm_max) ^ 3 * design.baffleK / (2 * design.G ^ 2 * design.NU))) ^ (1 / 7);
-    return design;
-}
 
 function FlocHL(design is map)
 {
