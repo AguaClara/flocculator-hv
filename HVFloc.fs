@@ -257,7 +257,7 @@ function baffleS(design)
         design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
         design.baffle.expH = design.outletHW / design.expN; //distance between expansions
         design.HS_pi = design.baffle.expH / design.baffle.S;
-        design = Kbaffle(design.HS_pi);
+        design.baffleK = Kbaffle(design.HS_pi);
         design.baffle.S = (design.baffleK / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
         // println("S is " ~ design.baffle.S);
         // println("H/S is " ~ design.baffle.expH / design.baffle.S);
