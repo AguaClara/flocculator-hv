@@ -282,7 +282,7 @@ function baffleK(design is map)
     {
         design.HS_pi = design.minHS_pi;
     }
-    const baffleK_min = 2.9;
+    const baffleK_min = (1 / baffleVC_pi - 1) ^ 2;
     const ratioBaffleJetExpansion = 0.077;
     const unboundedExpansionK = ((1 - baffleVC_pi) ^ 2 / (baffleVC_pi * ratioBaffleJetExpansion * (design.HS_pi + 2))) ^ 2;
     design.baffleK = max(unboundedExpansionK, baffleK_min);
