@@ -147,13 +147,13 @@ export const hvFlocPreDesigner = function(design) returns map
 
         design.baffle.T = querySheetDim(design.ip, SheetType.CORRUGATED, SheetMaterial.AUTO, design.baffleT_min, ["factoryT"]).factoryT;
         design.baffle.spacesN = floor(design.L / (design.baffle.S + design.baffle.T) / 2) * 2;
-       
+
         // actual head loss given actual number of baffles
         design.HL_max = FlocHL(design);
         // actual inlet water level
         design.inletHW = design.outletHW + design.HL_max;
         design.H = design.inletHW + design.FB;
-       
+
         design.portS = design.baffle.S;
 
         //actual collision potential
@@ -164,7 +164,7 @@ export const hvFlocPreDesigner = function(design) returns map
         design.drainN = ceil(design.channelN / 2);
 
         design.drainHorizontalL = queryCivilDim(design.ip, SheetType.WALL, SheetMaterial.AUTO, design.inletHW, ["factoryT"]).factoryT + design.componentS;
-        
+
         return design;
     };
 
@@ -172,7 +172,7 @@ export const hvFlocPostDesigner = function(design) returns map
     {
         design.OW = design.tank.OW;
         design.channelEven = floor(design.channelN / 2) == ceil(design.channelN / 2);
-        design.drainWallB = design.baffleSet.baffle.pipe.hedgeB + design.baffleSet.baffle.pipe.colS/2;
+        design.drainWallB = design.baffleSet.baffle.pipe.hedgeB + design.baffleSet.baffle.pipe.colS / 2;
         return design;
     };
 
@@ -216,8 +216,8 @@ export const hvFlocFeature = defineFeature(function(context is Context, id is Id
     });
 
 /**
- * 
- * 
+ *
+ *
  */
 
 function baffleS(design)
@@ -239,6 +239,7 @@ function baffleS(design)
         err = abs((design.baffle.S - prevS) / (design.baffle.S + prevS));
     }
     //design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
+    design.expN = 1;
     //design.baffle.expH = design.outletHW / design.expN; //distance between expansions
     design.HS_pi = design.outletHW / design.baffle.S;
     design.baffleK = Kbaffle(design.HS_pi, 3);
@@ -260,7 +261,7 @@ function channelW_min(design is map)
 function FlocHL(design is map)
 {
 
-    return design.baffle.spacesN * design.channelN * design.expHL;
+    return design.expN * design.baffle.spacesN * design.channelN * design.expHL;
 }
 
 /**
