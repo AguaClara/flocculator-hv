@@ -30,7 +30,7 @@ export const hvFlocTree = {
             "Qm_max" : [1, 30, 500],
             "Q_pi" : [0, 1, 2],
             "L_max" : [1, 7, 100],
-            "L_min" : [1, 7, 100],
+            "L_min" : [1, 7, 100], //use to force the same length as sed tank by increasing Gt
             "humanChannelW_min" : [0.5, 0.5, 1],
             "baffleChannelW_max" : [1, 1.08, 2],
             "TEMP_min" : [0, 5, 40],
