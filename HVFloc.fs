@@ -29,7 +29,8 @@ export const hvFlocTree = {
             rep : true,
             "Qm_max" : [1, 30, 500],
             "Q_pi" : [0, 1, 2],
-            "L" : [1, 7, 100],
+            "L_max" : [1, 7, 100],
+            "L_min" : [1, 7, 100],
             "humanChannelW_min" : [0.5, 0.5, 1],
             "baffleChannelW_max" : [1, 1.08, 2],
             "TEMP_min" : [0, 5, 40],
@@ -132,7 +133,7 @@ export const hvFlocPreDesigner = function(design) returns map
         design.G = min((gravity * design.HL_bod / (design.NU * design.GT_min)), design.G_bod);
         design.TI = design.GT_min / design.G;
         design.VOL = design.Qm_max * design.TI;
-        design.W_total = design.VOL / (design.L * design.outletHW);
+        design.W_total = design.VOL / (design.L_max * design.outletHW);
         design.channelW_min = max(channelW_min(design), design.humanChannelW_min);
         if (design.W_total < design.channelW_min)
         {
@@ -160,7 +161,7 @@ export const hvFlocPreDesigner = function(design) returns map
         design.GT = sqrt(gravity * design.HL_max * design.TI / design.NU);
         design.channelHW = ChannelHW(design);
         //each drain will cover at most two channels. The max flow is double the average
-        design.drainQm_max = 2 * min(design.channelN, 2) * design.channelW * design.L * design.inletHW / design.drainTI;
+        design.drainQm_max = 2 * min(design.channelN, 2) * design.channelW * design.L_max * design.inletHW / design.drainTI;
         design.drainN = ceil(design.channelN / 2);
 
         design.drainHorizontalL = queryCivilDim(design.ip, SheetType.WALL, SheetMaterial.AUTO, design.inletHW, ["factoryT"]).factoryT + design.componentS;
