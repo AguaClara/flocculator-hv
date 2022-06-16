@@ -36,7 +36,7 @@ export const hvFlocTree = {
             "HL_bod" : [0, 0.4, 1],
             "minHS_pi" : [3, 4, 6],
             "maxHS_pi" : [6, 8, 10],
-            "outletHW" : [1, 2, 5],
+            "outletHW" : [0.3, 2, 5],
             "GT_min" : [0, 35000, 100000],
             "FB" : [0.05, 0.1, 0.5],
             "G_bod" : [20, 50, 100],
