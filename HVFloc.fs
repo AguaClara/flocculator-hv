@@ -260,7 +260,7 @@ function channelW_min(design is map)
 function FlocHL(design is map)
 {
 
-    return design.expN * design.baffle.spacesN * design.channelN * design.expHL;
+    return design.baffle.spacesN * design.channelN * design.expHL;
 }
 
 /**
