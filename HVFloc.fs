@@ -241,7 +241,8 @@ function baffleS(design)
     //design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
     design.expN = 1;
     //design.baffle.expH = design.outletHW / design.expN; //distance between expansions
-    design.HS_pi = design.outletHW / design.baffle.S;
+    design.HS_pi = min(design.outletHW / design.baffle.S, design.maxHS_pi);
+    design.outletHW = design.baffle.S * design.maxHS_pi;
     design.baffleK = Kbaffle(design.HS_pi, 3);
     design.V = design.Qm_max / (design.baffle.S * design.channelW);
     design.expHL = design.baffleK * design.V ^ 2 / (2 * gravity);
