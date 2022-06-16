@@ -22,7 +22,7 @@ export const baffleTree =
             rep : true,
             ip : "GENERIC",
             lastchannel : false,
-            tankH : [1, 2, 200], //height of tank, will be defined in parent via tank info
+            tankH : [0.3, 2, 200], //height of tank, will be defined in parent via tank info
             channelW : [0.05, 0.5, 100], //width of channel, will be defined in parent via tank info
             channelL : [0, 7, 200], //length of channel, will be defined in parent via tank info
             FB : [0, 0.1, 1], //free board, will be defined in parent generally
