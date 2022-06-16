@@ -28,7 +28,7 @@ export const baffleTree =
             FB : [0, 0.1, 1], //free board, will be defined in parent generally
             baffleT : [0, 0.0008, 1], //baffle thickness, will be defined in parent generally
             baffleS : [0.01, 0.1, 10], //baffle spacing, will be calculated in parent
-            HL_bod : [0, 0.4, 1], //head loss, defined in parent
+            HL_max : [0, 0.4, 1], //head loss, defined in parent
             washerT : [0.001, 0.003175, 0.2],
         //washer thickness
 
@@ -75,7 +75,7 @@ export const bafflePreDesigner = function(design) returns map
     {
         design.ip = design.ip;
         //sheet
-        design.bafflebottomL = design.tankH - design.FB - design.HL_bod - design.baffleS; //length of bottom baffle
+        design.bafflebottomL = design.tankH - design.FB - design.HL_max - design.baffleS; //length of bottom baffle
         design.baffletopL = design.tankH - (design.FB / 2) - design.baffleS; //length of top baffle
         design.baffleB = design.baffleS + design.baffleT; //center to center spacing between baffles
         design.baffleN = floor(design.channelL / design.baffleB) - 1; //total number of baffles
