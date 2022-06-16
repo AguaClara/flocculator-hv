@@ -30,11 +30,11 @@ export const hvFlocTree = {
             "Qm_max" : [1, 30, 500],
             "Q_pi" : [0, 1, 2],
             "L" : [1, 7, 100],
-            "humanChannelW_min" : [0.3, 0.45, 1],
+            "humanChannelW_min" : [0.5, 0.5, 1],
             "baffleChannelW_max" : [1, 1.08, 2],
             "TEMP_min" : [0, 5, 40],
             "HL_bod" : [0, 0.4, 1],
-            "minHS_pi" : [3, 4, 5],
+            "minHS_pi" : [3, 4, 6],
             "maxHS_pi" : [6, 8, 10],
             "outletHW" : [1, 2, 5],
             "GT_min" : [0, 35000, 100000],
@@ -216,9 +216,8 @@ export const hvFlocFeature = defineFeature(function(context is Context, id is Id
     });
 
 /**
- * TODO: Add comments to below code
- * const ratioPlaneJetExpansion = 0.116; //expansion ratio for plane jets
- * const baffleVC_pi = 0.6 ^ 2; // give a little factor of safety on head loss
+ * 
+ * 
  */
 
 function baffleS(design)
@@ -232,16 +231,16 @@ function baffleS(design)
     {
         count += 1;
         prevS = design.baffle.S;
-        design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
-        design.baffle.expH = design.outletHW / design.expN; //distance between expansions
-        design.HS_pi = design.baffle.expH / design.baffle.S;
+        //design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
+        //design.baffle.expH = design.outletHW / design.expN; //distance between expansions
+        design.HS_pi = design.baffle.outletHW / design.baffle.S;
         design.baffleK = Kbaffle(design.HS_pi, 3);
-        design.baffle.S = (design.baffleK / (2 * design.baffle.expH * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
+        design.baffle.S = (design.baffleK / (2 * design.baffle.outletHW * design.G ^ 2 * design.NU)) ^ (1 / 3) * design.Qm_max / design.channelW;
         err = abs((design.baffle.S - prevS) / (design.baffle.S + prevS));
     }
-    design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
-    design.baffle.expH = design.outletHW / design.expN; //distance between expansions
-    design.HS_pi = design.baffle.expH / design.baffle.S;
+    //design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
+    //design.baffle.expH = design.outletHW / design.expN; //distance between expansions
+    design.HS_pi = design.baffle.outletHW / design.baffle.S;
     design.baffleK = Kbaffle(design.HS_pi, 3);
     design.V = design.Qm_max / (design.baffle.S * design.channelW);
     design.expHL = design.baffleK * design.V ^ 2 / (2 * gravity);
