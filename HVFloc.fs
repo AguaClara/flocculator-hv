@@ -84,7 +84,7 @@ export const hvFlocTree = {
                     FB : "$.FB",
                     baffleT : "$.baffle.T",
                     "baffleS" : "$.baffle.S",
-                    HL_bod : "$.HL_bod",
+                    HL_max : "$.HL_max",
                 },
             },
             drain : {
