@@ -140,6 +140,10 @@ export const hvFlocPreDesigner = function(design) returns map
             design.W_total = design.channelW_min;
             design.L = max(design.VOL / (design.W_total * design.outletHW),design.L_min);
         }
+        else
+        {
+            design.L = design.L_max;
+        }
         // need to make sure we don't specify a channel that is wider than the polycarbonate sheets
         design.channelN = max([floor(design.W_total / design.channelW_min), ceil(design.W_total / design.baffleChannelW_max)]); //make sure we don't try zero channels
 
