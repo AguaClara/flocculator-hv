@@ -5,11 +5,10 @@ import(path : "c0af0d6b5703e7a8fb53f53f/43bf1b253212adec2f797486/2b514867aec34e7
 import(path : "630baca1742eab8e31b42441/2c25b32503d1846e0869fbd1/828bc2e47f531cfe2ad5aebe", version : "799077d9248de3d23e869047");
 
 
-//import(path : "3859f0116fbf2e199237ee59/3278c45cbd9cd1a648cbbdcf/db7cf0a0f695f2c4e1854d8c", version : "d43640e55104cc3a1d55eabe");
-//import(path : "4cc322f6b03a10200a5a6ffd/67e99e0e4769fd1af795c76a/57632593cd95821f373148c7", version : "2ca15dc2592687b811e11a87");
-
-
-// constants
+/**
+ * if floc+et=clarifier
+ * 
+ **/ 
 
 
 export const hvFlocTree = {
@@ -30,7 +29,12 @@ export const hvFlocTree = {
             "Qm_max" : [1, 30, 500],
             "Q_pi" : [0, 1, 2],
             "L_max" : [1, 7, 100],
-            "L_min" : [1, 7, 100], //use to force the same length as sed tank by increasing Gt
+            "L_min" : [1, 7, 100], //use to force the same length as clarifier by increasing Gt
+            
+            "etL" : [0, 0, 10],
+            "clarifierL" :  [1, 7, 20],
+            
+            
             "humanChannelW_min" : [0.5, 0.5, 1],
             "baffleChannelW_max" : [1, 1.08, 2],
             "TEMP_min" : [0, 5, 40],
