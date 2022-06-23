@@ -28,9 +28,9 @@ export const hvFlocTree = {
             rep : true,
             "Qm_max" : [1, 30, 500],
             "Q_pi" : [0, 1, 2],
-            "L_max" : [1, 7, 100],
-            "L_min" : [1, 7, 100], //use to force the same length as clarifier by increasing Gt
-            
+            //"L_max" : [1, 7, 100],
+            //"L_min" : [1, 7, 100], //use to force the same length as clarifier by increasing Gt
+            "increaseGTtoMatchL" : true,
             "etL" : [0, 0, 10],
             "clarifierL" :  [1, 7, 20],
             
@@ -139,14 +139,19 @@ export const hvFlocPreDesigner = function(design) returns map
         design.VOL = design.Qm_max * design.TI;
         design.W_total = design.VOL / (design.L_max * design.outletHW);
         design.channelW_min = max(channelW_min(design), design.humanChannelW_min);
+        design.L = design.clarifierL + design.etL;
         if (design.W_total < design.channelW_min)
         {
             design.W_total = design.channelW_min;
-            design.L = max(design.VOL / (design.W_total * design.outletHW),design.L_min);
-        }
-        else
-        {
-            design.L = design.L_max;
+            if (design.increaseGTtoMatchL)
+            {
+                design.L = design.clarifierL + design.etL;
+            }
+            else
+            {
+                design.L = design.VOL / (design.W_total * design.outletHW);
+            }
+            
         }
         // need to make sure we don't specify a channel that is wider than the polycarbonate sheets
         design.channelN = max([floor(design.W_total / design.channelW_min), ceil(design.W_total / design.baffleChannelW_max)]); //make sure we don't try zero channels
