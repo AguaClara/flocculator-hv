@@ -136,7 +136,8 @@ export const hvFlocPreDesigner = function(design) returns map
         // Use the minimum of the velocity gradient set as the max for the sed tank to work and the value set by the max head loss.
         design.G = min((gravity * design.HL_bod / (design.NU * design.GT_min)), design.G_bod);
         design.TI = design.GT_min / design.G;
-        design.L = design.clarifierL - design.etL - design.tank.wall.T;
+        design.wallT = queryCivilDim(design.ip, SheetType.WALL, SheetMaterial.AUTO, design.outletHW, ["factoryT"]).factoryT; //ignores extra head loss https://aguaclara.github.io/Textbook/Flocculation/Floc_Derivations.html#equation-eq-gen-g-and-hl
+        design.L = design.clarifierL - design.etL - design.wallT;
         design.VOL = design.Qm_max * design.TI;
         design.W_total = design.VOL / (design.L * design.outletHW);
         design.channelW_min = max(channelW_min(design), design.humanChannelW_min);
