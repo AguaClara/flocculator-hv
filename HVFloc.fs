@@ -31,6 +31,8 @@ export const hvFlocTree = {
             //"L_max" : [1, 7, 100],
             //"L_min" : [1, 7, 100], //use to force the same length as clarifier by increasing Gt
             "increaseGTtoMatchL" : true,
+            "drainChannel" : false,
+            "drainChannelOH" : [0, 0.4, 1], 
             "etL" : [0, 0, 10],
             "clarifierL" :  [1, 7, 20],
             
@@ -136,7 +138,10 @@ export const hvFlocPreDesigner = function(design) returns map
         // Use the minimum of the velocity gradient set as the max for the sed tank to work and the value set by the max head loss.
         design.G = min((gravity * design.HL_bod / (design.NU * design.GT_min)), design.G_bod);
         design.TI = design.GT_min / design.G;
-        
+        if (design.drainChannel)
+        {
+            design.outletHW = design.outletHW - design.drainChannelOH;
+        }
         
         if (design.etL>0*meter)
         {
