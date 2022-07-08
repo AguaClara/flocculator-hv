@@ -7,8 +7,8 @@ import(path : "630baca1742eab8e31b42441/923632ecb39da088479febd6/828bc2e47f531cf
 
 /**
  * if floc+et=clarifier
- * 
- **/ 
+ *
+ **/
 
 
 export const hvFlocTree = {
@@ -32,11 +32,11 @@ export const hvFlocTree = {
             //"L_min" : [1, 7, 100], //use to force the same length as clarifier by increasing Gt
             "increaseGTtoMatchL" : true,
             "drainChannel" : false,
-            "drainChannelOH" : [0, 0.4, 1], 
+            "drainChannelH" : [0, 0.4, 1],
             "etL" : [0, 0, 10],
-            "clarifierL" :  [1, 7, 20],
-            
-            
+            "clarifierL" : [1, 7, 20],
+
+
             "humanChannelW_min" : [0.5, 0.5, 1],
             "baffleChannelW_max" : [1, 1.08, 2],
             "TEMP_min" : [0, 5, 40],
@@ -70,7 +70,7 @@ export const hvFlocTree = {
                     front : true,
                     suppressFront : false,
                     back : true,
-                    bottom : $.bottom,
+                    bottom : "$.bottom",
                     top : false,
                     hasPort : true,
                     portH : "$.channelW",
@@ -139,12 +139,12 @@ export const hvFlocPreDesigner = function(design) returns map
         design.TI = design.GT_min / design.G;
         if (design.drainChannel)
         {
-            design.outletHW = design.outletHW - design.drainChannelOH;
-            
+            design.slab1T = queryCivilDim(design.ip, SheetType.SLAB1, SheetMaterial.AUTO, design.outletHW, ["factoryT"]).factoryT;
+            design.outletHW = design.outletHW - design.drainChannelH - design.slab1T;
         }
         design.bottom = !design.drainChannel;
-        
-        if (design.etL>0*meter)
+
+        if (design.etL > 0 * meter)
         {
             design.wallT = queryCivilDim(design.ip, SheetType.WALL, SheetMaterial.AUTO, design.outletHW, ["factoryT"]).factoryT; //ignores extra head loss https://aguaclara.github.io/Textbook/Flocculation/Floc_Derivations.html#equation-eq-gen-g-and-hl
             design.L = design.clarifierL - design.etL - design.wallT;
@@ -153,11 +153,11 @@ export const hvFlocPreDesigner = function(design) returns map
         {
             design.L = design.clarifierL;
         }
-        
+
         design.VOL = design.Qm_max * design.TI;
         design.W_total = design.VOL / (design.L * design.outletHW);
         design.channelW_min = max(channelW_min(design), design.humanChannelW_min);
-        
+
         if (design.W_total < design.channelW_min)
         {
             design.W_total = design.channelW_min;
