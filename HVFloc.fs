@@ -70,7 +70,7 @@ export const hvFlocTree = {
                     front : true,
                     suppressFront : false,
                     back : true,
-                    bottom : true,
+                    bottom : $.bottom,
                     top : false,
                     hasPort : true,
                     portH : "$.channelW",
@@ -132,7 +132,6 @@ export const hvFlocTree = {
 
 export const hvFlocPreDesigner = function(design) returns map
     {
-
         design.NU = viscosityKinematic(design.TEMP_min);
 
         // Use the minimum of the velocity gradient set as the max for the sed tank to work and the value set by the max head loss.
@@ -141,7 +140,9 @@ export const hvFlocPreDesigner = function(design) returns map
         if (design.drainChannel)
         {
             design.outletHW = design.outletHW - design.drainChannelOH;
+            
         }
+        design.bottom = !design.drainChannel;
         
         if (design.etL>0*meter)
         {
