@@ -30,7 +30,7 @@ export const hvFlocTree = {
             "Q_pi" : [0, 1, 2],
             //"L_max" : [1, 7, 100],
             //"L_min" : [1, 7, 100], //use to force the same length as clarifier by increasing Gt
-            "increaseGTtoMatchL" : true,
+            "increaseGTtoMatchL" : false, // default to not increasing flocculator length
             "drainChannel" : false,
             "drainChannelH" : [0, 0.4, 1],
             "etL" : [0, 0, 10],
