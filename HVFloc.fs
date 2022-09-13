@@ -24,6 +24,7 @@ export const hvFlocTree = {
         // geometry : flocGeometry,
         },
         params : {
+            done : false,
             ip : "GENERIC",
             rep : true,
             "Qm_max" : [1, 30, 500],
