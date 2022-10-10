@@ -68,7 +68,7 @@ export const hvFlocTree = {
                     right : true,
                     front : true,
                     suppressFront : false,
-                    back : true,
+                    back : false,
                     bottom : "$.bottom",
                     top : false,
                     hasPort : true,
