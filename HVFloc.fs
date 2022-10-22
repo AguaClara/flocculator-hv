@@ -36,7 +36,7 @@ export const hvFlocTree = {
             "drainChannelH" : [0, 0.4, 1],
             "etL" : [0, 0, 10],
             "clarifierL" : [1, 7, 20],
-            "humanChannelW_min" : [0.5, 0.5, 1],
+            "humanChannelW_min" : [0.3, 0.5, 1],
             "baffleChannelW_max" : [0.5, 1.08, 2],
             "TEMP_min" : [0, 5, 40],
             "HL_bod" : [0, 0.4, 1],
