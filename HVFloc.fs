@@ -163,7 +163,10 @@ export const hvFlocPreDesigner = function(design) returns map
             design.W_total = design.channelW_min;
             if (!design.increaseGTtoMatchL)
             {
-                design.L = design.VOL / (design.W_total * design.outletHW);
+                //design.L = design.VOL / (design.W_total * design.outletHW);
+                design.outletHW_new = design.VOL / (design.W_total *design.L);
+                design.drainChannelH += design.outletHW - design.outletHW_new;
+                design.outletHW = design.outletHW_new;
             }
         }
         // need to make sure we don't specify a channel that is wider than the polycarbonate sheets
