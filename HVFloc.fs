@@ -205,12 +205,24 @@ export const hvFlocPreDesigner = function(design) returns map
         design.channelHW = ChannelHW(design);
         //each drain will cover at most two channels. The max flow is double the average
         design.drainQm_max = 2 * min(design.channelN, 2) * design.channelW * design.L * design.inletHW / design.drainTI;
-        design.drainN = ceil(design.channelN / 2);
-        if (design.channelN == 1) //placd the first drain in the first channel at the upstream end in all cases
+        
+        if (design.channelN % 2 == 1) //odd case so put a side drain at the beginning of the first channel
         {
-            design.drainN = 0;
             design.sideDrainN = 1;
         }
+        else
+        {
+            design.sideDrainN = 0;
+        }
+        if (design.channelN == 1) // only one channel so don't add another drain at the downstream end of channel 1
+        {
+            design.drainN = 0;
+        }
+        else // put a drain at the downstream end of every odd channel 
+        {
+            design.drainN = ceil(design.channelN / 2);
+        }
+        
         design.wallT = queryCivilDim(design.ip, SheetType.WALL, SheetMaterial.AUTO, design.inletHW, ["factoryT"]).factoryT;
         design.drainHorizontalL = design.wallT + design.componentS;
         design.sideDrainHorizontalL = design.channelW / 2 + design.wallT + design.componentS;
