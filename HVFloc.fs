@@ -108,6 +108,20 @@ export const hvFlocTree = {
                     "horizontalL" : "$.drainHorizontalL",
                 },
             },
+            sideDrain : {
+                tree : elbowDrainPipeStubTree,
+                inputs : {
+                    rep : "$.rep",
+                    ip : "$.ip",
+                    FB : "$.FB",
+                    "Qm_max" : "$.drainQm_max",
+                    "HW" : "$.inletHW",
+                    "ND_min" : 2,
+                    "slabT" : "$.tank.slab.T",
+                    "componentS" : "$.componentS",
+                    "horizontalL" : "$.sideDrainHorizontalL",
+                },
+            },
         },
     };
 
@@ -164,7 +178,7 @@ export const hvFlocPreDesigner = function(design) returns map
             if (!design.increaseGTtoMatchL)
             {
                 //design.L = design.VOL / (design.W_total * design.outletHW);
-                design.outletHW_new = design.VOL / (design.W_total *design.L);
+                design.outletHW_new = design.VOL / (design.W_total * design.L);
                 design.drainChannelH += design.outletHW - design.outletHW_new;
                 design.outletHW = design.outletHW_new;
             }
@@ -192,8 +206,9 @@ export const hvFlocPreDesigner = function(design) returns map
         //each drain will cover at most two channels. The max flow is double the average
         design.drainQm_max = 2 * min(design.channelN, 2) * design.channelW * design.L * design.inletHW / design.drainTI;
         design.drainN = ceil(design.channelN / 2);
-
-        design.drainHorizontalL = queryCivilDim(design.ip, SheetType.WALL, SheetMaterial.AUTO, design.inletHW, ["factoryT"]).factoryT + design.componentS;
+        design.wallT = queryCivilDim(design.ip, SheetType.WALL, SheetMaterial.AUTO, design.inletHW, ["factoryT"]).factoryT;
+        design.drainHorizontalL = design.wallT + design.componentS;
+        design.sideDrainHorizontalL = design.channelW / 2 + design.wallT + design.componentS;
 
         return design;
     };
@@ -270,7 +285,7 @@ function baffleS(design)
     }
     //design.expN = ceil(design.outletHW / (design.baffle.S * design.maxHS_pi));
     //design.expN = 1;
-   // design.baffle.expH = design.outletHW / design.expN; //distance between expansions
+    // design.baffle.expH = design.outletHW / design.expN; //distance between expansions
     //design.HS_pi = design.baffle.expH / design.baffle.S;
     //design.outletHW = design.baffle.S * design.maxHS_pi;
     //design.baffleK = Kbaffle(design.HS_pi, 3);
