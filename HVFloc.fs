@@ -39,7 +39,7 @@ export const hvFlocTree = {
             "humanChannelW_min" : [0.3, 0.5, 1],
             "baffleChannelW_max" : [0.5, 1.08, 2],
             "TEMP_min" : [0, 5, 40],
-            "HL_bod" : [0, 0.4, 1],
+            "HL_bod" : [0, 0.5, 1], //will use the minimum G set by HL_bod and G_bod.
             "minHS_pi" : [4, 6, 8],
             "maxHS_pi" : [8, 10, 12],
             "outletHW" : [0.3, 2, 5],
