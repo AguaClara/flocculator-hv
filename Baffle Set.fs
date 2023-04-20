@@ -28,7 +28,7 @@ export const baffleSetTree =
             FB : [0, 0.1, 1],
             baffleT : [0, 0.0008, 2],
             baffleS : [0.01, 0.1, 10],
-            HL_max : [0, 0.4, 1],
+            HL_max : [0, 0.4, 1, 2],
 
         },
         children : {
